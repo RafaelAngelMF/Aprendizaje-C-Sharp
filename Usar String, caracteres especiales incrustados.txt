@@ -29,4 +29,9 @@ class UsarString
 	static void Main()
 	{
 	}
+
+/* Otros caracteres especiales.
+
+*/
+
 }
