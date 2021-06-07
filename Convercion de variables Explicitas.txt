@@ -1,0 +1,24 @@
+//Ejemplo de conversion de variables explicitas.
+//Se le da el tipo de datos al declararse.
+
+class VariablesImplicitas
+{
+
+	int VariableInt=43;
+	char VariableChar;
+
+	long VariableLong=0;//Se usa para una convercion explicita aunque se puea realizar en forma implicita.
+
+	static void Main()
+	{
+		//La convercion es lo mismo que un casting en C++.
+		VariableChar = (char) VariableInt;
+
+		/*
+			Ejemplo de convercion explicita con datos que se pueden convertir implicitamente.
+			Pero de esta forma es más seguro.
+		*/
+
+		VariableLong = (long) VariableInt;
+	}
+}

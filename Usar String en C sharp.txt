@@ -1,0 +1,12 @@
+class UsarString
+{
+	//C# admite los caracteres unicode, debes buscar una imagen con la tabla de caracteres unicode, es muy util al momento de programar.
+
+	string MiVarialeString="";
+	string AprendizageCSharp="Yo Rafael Angel Montero Fernández inicié el aprendizage en C# el dia sabado 5 de junio del 2021. A la edad de 43 años.";
+
+	static void Main()
+	{
+		MiVarialeString="Datos en mi primer variable string domingo 6 de junio del 2021.";
+	}
+}

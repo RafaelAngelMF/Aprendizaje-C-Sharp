@@ -1,0 +1,12 @@
+class UsandoMatrices2
+{
+	//En caso de tenerse los valores de la matriz de ante mano.
+	//No es necesario establecer un tamaño estatico, en este caso el tamaño es dinamico pero llega hasta el ultimo item introducido al declararse.
+	
+	int []MatrizConValores={0,1,2,3,4};
+
+	static void Main()
+	{
+
+	}
+}

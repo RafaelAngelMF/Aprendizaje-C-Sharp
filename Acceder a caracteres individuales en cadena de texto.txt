@@ -1,0 +1,13 @@
+class AccediendoACaracteresIndividuales
+{
+	//Los caracteres o cadenas de texto son como matrices.
+	//Son de base cero (El primer elemento siempre será cero).
+
+	char UnaLetra;
+	string UnaCadena="Rafael";
+
+	static void Main()
+	{
+		UnaLetra=UnaCadena[5];
+	}
+}

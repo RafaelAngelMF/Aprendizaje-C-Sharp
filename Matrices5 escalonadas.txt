@@ -1,0 +1,25 @@
+class UsandoMatrices3
+{
+	//Las matrices escalonadas se distinguen porque tienen 2 grupos de corchetes.
+	
+	public byte [][]MatrizEscalonada=new byte[5][];
+	static void Main()
+	{
+		UsandoMatrices3 c=new UsandoMatrices3();
+		c.MatrizEscalonada[0]=new byte[2];
+		c.MatrizEscalonada[1]=new byte[4];
+		c.MatrizEscalonada[2]=new byte[3];
+		c.MatrizEscalonada[3]=new byte[5];
+		c.MatrizEscalonada[4]=new byte[10];
+		
+		//Asi se puebla con datos la matriz escalonada.
+		//De esta misma forma se llenan los demas escalones de la matriz.
+		c.MatrizEscalonada[0][0]=1;
+		c.MatrizEscalonada[0][1]=2;
+		System.Console.WriteLine("Valor de un elemento de la matriz escalonada " + c.MatrizEscalonada[0][1]);
+
+/*
+Bueno, el libro no da muchos detalles pero conforme avance en las 735 paginas de la Biblia del C# ire viendo el uso de las matrices escalonadas en accion.
+*/
+	}
+}

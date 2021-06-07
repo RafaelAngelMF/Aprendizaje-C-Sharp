@@ -1,0 +1,33 @@
+class UsandoMatrices3
+{
+	///Matrices multidimencionales.
+	//Se usa byte porque el numero a usar es muy pequeño, asi se ahorra memoria ram.
+	//La coma indica que la matriz tiene 2 dimenciones; una coma mas y la matriz tendrá 3 dimenciones.
+	//En una matriz de 2 dimenciones, la primera dimencion corresponde a las filas y la segunda dimencion corresponde a las columnas.
+	byte [,] MatrizMultidimencional=new byte[2,5];
+
+
+	static void Main()
+	{
+		//Cargar datos de matriz en variable
+
+		//Fila 1.
+		MatrizMultidimencional[0,0]=1;
+		MatrizMultidimencional[0,1]=2;
+		MatrizMultidimencional[0,2]=3;
+		MatrizMultidimencional[0,3]=4;
+		MatrizMultidimencional[0,4]=5;
+
+		//Fila 2		
+		MatrizMultidimencional[1,0]=1;
+		MatrizMultidimencional[1,1]=2;
+		MatrizMultidimencional[1,2]=3;
+		MatrizMultidimencional[1,3]=4
+		MatrizMultidimencional[1,5]=5;
+		byte ElementoDeMatriz=0;
+
+		//Datos cargados en la variable.
+		ElementoDeMatriz=MatrizMultidimencional[1,5];
+
+	}
+}

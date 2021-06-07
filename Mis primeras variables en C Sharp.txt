@@ -1,0 +1,19 @@
+class MiClase
+{
+	///Mi primer comentario con formato XML.
+	//Una variable declarada a nivel de clase al no asignarsele valor, el compilador entonces C# le asigna un valor por defecto.
+	int VariableINT; 
+	//Mi segundo comentario con formato de comentario de una sola linea.
+	static void Main()
+	{
+		/*
+		Mi tercer comentario con formato de varias lineas.
+			//Comentario anidado1.
+			///Comentario anidado 2 con formato XML.
+		*/
+
+		//Cuando se declaran variables dentro de funciones se les debe asignar un valor por defecto.
+		float UnaVariableFlotante=0.0;
+		System.Console.WriteLine("Hola");
+	}
+}

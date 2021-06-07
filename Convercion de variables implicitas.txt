@@ -1,0 +1,19 @@
+//Ejemplo de conversion de variables implicitas.
+//Se le da el tipo de datos al declararse.
+
+class VariablesImplicitas
+{
+	int VariableInt=43;
+	Long VariableLong=0;
+
+	static void Main()
+	{
+		///Un valor int puede estar contenido en un tipo de datos long. 
+		VariableLong=VariableInt;
+
+		/*
+			Pero un tipo de datos long no puede estar contenido en un tipo de datos int.
+			Ademas, no se puede convertir long, double, fload a int.
+		*/
+	}
+}

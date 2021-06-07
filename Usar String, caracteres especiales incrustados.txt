@@ -1,0 +1,32 @@
+class UsarString
+{
+	/*
+		\t significa tabulacion igual que la tecla tap.
+		
+		\r significa salto de linea(retorno de carro), igual que la tecla enter.
+		
+		\v significa tabulacion vertical. Investigar que es tabulacion vertical.
+		
+		\f significa bandera(flag(caracter de implrecion)), permite a la impresora darse cuenta que debe pasar a una nueva pagina o sea si solo escribe "Estoy aprendiendo c#\fTodas las 835 paginas" en una hoja de papel se imprime  "Estoy aprendiendo c#" y en otra hoja nueva se imprime "Todas las 835 paginas".
+
+		\n significa nueva linea, es similar a \r pero un poco diferente. Igual se pueden usar juntos \n\r. Recomendado usar \n para saltos de linea o nueva linea ya que es igual al de Java.
+
+		\x para usar caracteres ANSII por medio de valores Hexadecimales. Deben colocarse 2 digitos hexadecimales despues de \x.
+
+		\u para usar caracteres unicode por medio de valores Hexadecimales. Deben colocarse 4 digitos hexadecimales despues de \u.	
+
+		\\ significa una barra invertida en el texto, deben ir 2 para evitar que sucedan confuciones como la primera letra de una palabra junto a una sola barra, ejemplo "\tasa", al mostrar la informacion se deria con un salto de linea, luego solo "	asa" ya que  \t se interpreta como tabulacion.
+
+	Para deshabilitar los caracteres especiales en una cadena de texto solo se debe poner: 
+	String Texto = @"Esto es \nun texto.";
+	La deshabilitacion de caracteres especiales es util, por ejemplo en la colocacion de una direccion de directorio o de internet.
+	*/
+
+	string DireccionConCaracteresEspecialesHabilitados = "www.YouTube.com\\User\\Sharkyc12";
+
+	string DireccionConCaracteresEspecialesDesHabilitados = @"www.YouTube.com\User\Sharkyc12";
+
+	static void Main()
+	{
+	}
+}

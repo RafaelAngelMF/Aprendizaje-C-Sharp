@@ -1,0 +1,33 @@
+public class MatrizMultidimencional
+{
+
+	public string [,]mInicializada = new string[2,3];
+	public static void Main()
+	{
+		MatrizMultidimencional c=new MatrizMultidimencional();
+		//Columnas, para mostrar las columnas el indice cero de cada fila debe estar vacio.
+            c.mInicializada[0, 0] = "Si";
+            c.mInicializada[1, 0] = "No";
+
+	    //El indice cero de cada fila esta vacio.
+            c.mInicializada[0, 1] = "Aceptado";
+            c.mInicializada[0, 2] = "Permitido";
+
+            c.mInicializada[1, 1] = "Aceptado";
+            c.mInicializada[1, 2] = "Permitido";
+		
+		//Columna con la palabra "si"
+            System.Console.WriteLine("Datos del elemento de matriz " + c.mInicializada[0,0]);
+
+		//Columna con la palabra "No"
+            System.Console.WriteLine("Datos del elemento de matriz " + c.mInicializada[0,0]);
+
+		//Un elemento de la columna "si"
+            System.Console.WriteLine("Datos del elemento de matriz " + c.mInicializada[0,1]);
+
+		//Un elemento de la columna "No"
+            System.Console.WriteLine("Datos del elemento de matriz " + c.mInicializada[0,1]);
+
+		System.Console.ReadLine();//Aqui funciona como pausa.
+	}
+}

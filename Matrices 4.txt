@@ -1,0 +1,17 @@
+class UsandoMatrices3
+{
+
+	//Cargar una matriz multidimencional (De dos dimenciones en este ejemplo), con datos.
+	//Matriz con 2 filas y 5 columnas.
+	public double [,]MatrizInicializada={{0,1,2,3,4},{0,1,2,3,4}};
+
+	static void Main()
+	{
+
+		//Para usar la matriz aquí se debe declarar la clase.
+		//Esto porque a pesar que el Main esta dentro de UsandoMatrices3 puede existir fuera del class y no puede llamar los demas objetos del class UsandoMatrices3.
+		
+		UsandoMatrices3 c=new UsandoMatrices3();
+		System.Console.WriteLine("Elemento de matriz " + c.MatrizInicializada[0,1]);
+	}
+}

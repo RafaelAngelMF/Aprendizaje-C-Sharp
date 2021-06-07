@@ -1,0 +1,20 @@
+class UsandoMatrices
+{
+	//Matriz inicializada desde su declaracion.
+	int []MiMatriz=new int [5];
+
+	//Matriz no inicializada.
+	int Matriz2[];
+	static void Main()
+	{
+		//Inicializacion de la matriz.
+		Matriz2=new int[5];
+
+		//Las matrices en C# son de base cero (Todas se inician con indice cero hasta el ultimo indice 5-1=4).
+		Matriz2[0]=0;
+		Matriz2[1]=1;
+		Matriz2[2]=2;
+		Matriz2[3]=3;
+		Matriz2[4]=4;
+	}
+}

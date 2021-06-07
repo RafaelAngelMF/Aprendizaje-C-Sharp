@@ -1,0 +1,42 @@
+public enum MiPrimeraEnumeracion
+{
+	//No es necesario ponerles un numero ya que el primer item de la enumeracion será uno.
+	//No obstante, se le pueden colocar valores iniciales, ya que las enumeraciones contienen constantes. Se puede colocar pi, neper, NumeroDeOro.
+
+	//Tipo de datos admitidos en las enumeraciones:
+	//byte, short, int, lon.
+
+	uno,dos,tres,cuatro,
+}
+
+Public enum EnumeracionConValoresIncluidosPorElProgramador
+{
+	//Si C# pertenece a la familia de C++ entonces en un mismo archivo se pueden declarar varias clases.
+	Pi=3.14,
+	Neper=72,
+	NumeroDeOro=1.6 //El ultimo elemento de la enumeracion puede terminar con coma o sin coma, probado en C# version 2017.
+
+
+	/*
+		Finalmente en C# version 2017 el primer elemento de una enumeracion vale cero.
+	*/
+}
+
+public enum Enumeracion3
+    {
+//Solo es necesario darle el valor al primer elemento y los demas aumentaran en uno a partir del primero.
+
+        cien=100,
+        ciento_1,
+        ciento_2
+
+//Para mostrar el nombre del elemento solo basta cargarlo en una variable string y para mostrar su valor se realiza una convercion en una variable int o cualquiera de las admitidas por la enumeracion.
+    }
+
+public class ElMain
+{
+	public static void Main()
+	{
+		System.Console.WriteLine("Nombre del elemento " + Enumeracion3.cien + " valor del elemento " + (int) Enumeracion3.cien);
+	}
+}

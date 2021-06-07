@@ -1,0 +1,7 @@
+public class CondicionalSiEntonces
+{
+	public static void Main(){
+		System.Console.WriteLine("2e+3 numero cientifico " + 2e+3);//Resultado 2000.
+                System.Console.ReadLine();//Aqui funciona como pausa.
+	}
+}

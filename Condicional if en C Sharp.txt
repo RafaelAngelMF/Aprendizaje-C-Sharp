@@ -1,0 +1,17 @@
+public class CondicionalSiEntonces
+{
+	public static void Main(){
+		int SiNo=1;
+
+		if (SiNo==1){
+		   //Codigo que se ejecuta si la comprobacion del condicional es verdadera.
+		}
+		
+		bool si=true;//En c# equivale a -1
+		bool no=false;//En c# equivale a cero.
+
+		if (si==no){
+			//Al no ser iguales no se ejecuta el codigo aqui.
+		}
+	}
+}
