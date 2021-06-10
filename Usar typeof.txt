@@ -1,0 +1,12 @@
+public class Usartypeof
+{
+	/*
+	El typeof sirve para obtener(Conocer) el tipo de datos de la variable.
+	*/
+	
+	public static void main()
+	{
+		int Variable=0;
+		System.Console.WriteLine(typeof(Variable));//Indica que la variable es de numeros int.
+	}
+}

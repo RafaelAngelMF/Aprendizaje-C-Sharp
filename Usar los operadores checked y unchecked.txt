@@ -1,0 +1,27 @@
+public class UsarChecked_unchecked
+{
+	/*
+	Checked= Activa la verificasion de operaciones matematicas.
+	unChecked=Desactiva la verificasion de operaciones matematicas.
+	*/
+	
+	public static void main()
+	{
+	
+		int DosMilMillones1=2000000000;//Un numero con 9 ceros.
+		int DosMilMillones2=2000000000;//Un numero con 9 ceros.
+
+		//El int acepta 2 mil millones pero no 4 mil millones.
+
+		int sumaDesbordada=checked(DosMilMillones1 + DosMilMillones2);
+
+		//No muestra ningun resultado, solo indica que se ha producido un desbordamiento.
+		//Si no se usa checked entonces se obtendria cualquier numero diferente al resultado verdadero.
+
+		System.Console.WriteLine(sumaDesbordada);
+	}
+/*
+Concluyendo, el unchecked ya viene activado por defecto en las operaciones matematicas.
+
+*/
+}
