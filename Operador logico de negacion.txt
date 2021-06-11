@@ -1,0 +1,13 @@
+public class NegacionLegica
+{
+	/*
+	El signo ! sirve para negar en forma logica una exprecion booleana.
+	Puede convertir false en true y true en false.
+	*/
+	
+	public static void main()
+	{
+		bool VariableBooleana=true;//Se declara como verdadera.
+		VariableBooleana=!VariableBooleana=;//Se niega(Se convierte en false con !), ahora es false.
+	}
+}

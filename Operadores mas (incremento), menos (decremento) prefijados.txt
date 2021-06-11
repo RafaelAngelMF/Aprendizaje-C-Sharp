@@ -1,0 +1,11 @@
+public class Mas_Menos_prefijados
+{
+	//Los operadores + y - se pueden prefijar para aumentar o disminuir el valor de una variable o un operando(Variable o cualquier convinacion de numeros y variables.) de la sigueinte forma: --, ++.
+
+	public static void Main()
+	{
+		int VariableDePrueba=10;
+		--VariableDePrueba;//La varaible ahora vale 9.
+		++VariableDePrueba;//La varaible ahora vale 10.
+	}
+}

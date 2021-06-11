@@ -1,0 +1,20 @@
+public class DiferenciaEntrePostfijo_y_Prefijo
+{
+	//El operador postfijo sirve por ejemplo en un for.
+	//El valor prefijo sirve por ejemplo en un conteo incremental.
+
+	//Ambos cambian.
+
+	public static void Main()
+	{
+		int VariableDePrueba=1;
+		System.Console.WriteLine(++VariableDePrueba);//Le suma 1, el resultado es 2.
+		System.Console.WriteLine(VariableDePrueba++);//No le suma nada, el resultado es 1.
+	}
+
+	/*
+	Analicis final:
+		Prefijo, el valor se cambian antes que se evalue el operando.
+		Postfijo, el valor se cambia despues que se evalua el operando.
+	*/
+}

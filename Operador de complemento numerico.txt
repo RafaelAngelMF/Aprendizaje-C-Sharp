@@ -1,0 +1,13 @@
+public class OperacionDeComplemento_Bit_a_Bit
+{
+	/*
+		El operador de complemento numerico convierte en binario los unos 111 en ceros 000. Y los ceros 00 en unos 11.
+		Este simbolo ~ cuesta mucho expresarlo con el teclado, pero se puede copiar y pegar. En c++ se usa para el destructor, asi mismo quizas no avance demaciado en C++ como para darme cuenta que tambien se usaba como complemento; esto lo supongo porque C# es un hijo de C++.
+	*/
+	
+	public static void main()
+	{
+		int Numero=123;
+		Numero=~Numero;//Se crea el complemento numerico de 123.
+	}
+}

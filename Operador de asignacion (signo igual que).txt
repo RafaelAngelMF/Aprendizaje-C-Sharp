@@ -1,0 +1,22 @@
+public class OperadorDeAsignacion
+{
+//El operador de asignacion es el signo igual que "="
+
+	public static void Main()
+	{
+		int v1=0;
+		int v2=1;
+		v1=1;//Se asigna 1 a la variable v1.
+		v2=3;//Se asigna 3 a la variable v3
+
+		/*
+		Uso compuesto del operador de asignacion.
+		Esta forma es igual que en C++.
+		Hce que las 2 variables tengan el mismo valor asignado.
+		*/
+
+		v1=v2=4;//Se asigna 4 a la variable v1 y v2 al mismo tiempo.
+
+	}
+
+}
