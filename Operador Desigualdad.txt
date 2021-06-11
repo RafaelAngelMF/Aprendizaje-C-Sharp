@@ -1,0 +1,14 @@
+public class OperadorDesigualdad
+{
+	//El operador de desigualdad devuelve verdadero si las dos expreciones son diferentes, al ser iguales devuelve falso.
+
+//Su signo es !=.
+//En español es: No es igual que.
+
+	public static void Main(){
+		int Uno=1;
+		int Dos=2;
+		bool Son_Desiguales=Uno!=Dos;//No son iguales "true"
+
+	}
+}

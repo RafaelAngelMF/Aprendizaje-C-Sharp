@@ -1,0 +1,16 @@
+public class OperadorDivision
+{
+//Se muestra como usar el operador de division en sus variantes de uso.
+
+	public static void main(){
+		double siete=7.0;
+		double resultado=0.0;
+		resultado=siete/3; //Resultado 2.3333...
+
+		resultado=7;
+
+		//El operador de division esta en prefijo.
+		
+		resultado/=3;  //Resultado 2.3333...
+	}
+}

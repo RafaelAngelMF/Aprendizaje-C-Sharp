@@ -1,0 +1,11 @@
+public class OperadorResto
+{
+	public static void Main(){
+		//Resultado 1 porque su cociente es 2 y su resto es 1.
+		double Resto=7 % 3;
+		
+		Resto=7;
+		Resto%=3;  //Resultado 1.
+	}	
+		
+}

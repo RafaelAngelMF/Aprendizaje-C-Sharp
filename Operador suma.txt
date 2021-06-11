@@ -1,0 +1,10 @@
+pubic class OperadorSuma
+{
+	public static void Main()
+	{
+		int DosMasDos=2+2; //Resultado 2.
+
+		int CuatroMasCuatro=4;
+		CuatroMasCuatro+=4;  //Resultado 8.
+	}
+}

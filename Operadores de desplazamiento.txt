@@ -1,0 +1,32 @@
+//Operadores de desplazamiento.
+
+public class OperadoresDeDesplazamiento
+{
+	//Funciona con numeros y expreciones binarias.
+
+	//Se necesitan dos operandos para desplazarse.
+
+	public static void Main()
+	{
+		int Desplazamiento_izquierdo=6; //En binario 00000110
+
+		//El operador << los desplaza hacia la izquierda los lugares que se le indiquen en la parte derecha del operador <<.
+
+		Desplazamiento_izquierdo=0;
+		Desplazamiento_izquierdo=6<<3; 	//Desplaza los numeros binarios 3 lugares hacia la izquierda, resultado 48 en decimal y en binario 00110000.
+
+		//Desplzamiento izquierdo con prefijo.
+
+		Desplazamiento_izquierdo=6;
+		Desplazamiento_izquierdo<<=3;
+
+		//Desplazamiento a la derecha
+		int DesplazamientoDerecho=0;
+		DesplazamientoDerecho=48>>3; //Resultado 6.
+		DesplazamientoDerecho=48;
+		DesplazamientoDerecho>>=3; //Resultado 6.
+		
+	}
+//Conclusion
+//Siempre que los datos puedan ser expreados en numeros, se puede realizar algun desplazamiento.
+}

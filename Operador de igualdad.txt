@@ -1,0 +1,10 @@
+public class OperadorDeIgualdad
+{
+
+	public static void Main(){
+		int Uno=1;
+		int Dos=2;
+		bool SonIguales=Uno==Dos;//No son iguales "false"
+
+	}
+}
