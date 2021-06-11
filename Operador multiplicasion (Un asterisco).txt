@@ -1,0 +1,14 @@
+public class Multiplicasion
+{
+
+	public static void Main()
+	{
+		int Multiplicasion_simple=2*2;//Resultado 4.
+
+		int Multiplicasion_con_asterisco_prefijo=3;
+
+		//Las siguiente operacion es lo mismo que Multiplicasion_con_asterisco_prefijo=Multiplicasion_con_asterisco_prefijo*2.
+
+		Multiplicasion_con_asterisco_prefijo*=2;//Resultado 6.
+	}
+}
