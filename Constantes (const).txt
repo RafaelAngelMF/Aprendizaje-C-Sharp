@@ -1,0 +1,14 @@
+//Las constantes son varaibles que mantienen su valor sin cambios durante la ejecucion del programa.
+
+public class Constantes
+{
+	//Constante declarada a nivel de class.
+	
+	public const double Pi=3.14159;
+
+	public static void Main(){
+		//Constante local.
+		const int Otro_numero=2;
+	}
+
+}

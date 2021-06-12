@@ -1,0 +1,11 @@
+public class VariasVariables
+{
+	//Declaracion a nivel del class
+	private int v1,v2,v3;
+	private int a1=1,a2=12;
+
+	public static void Main(){
+		int b1,b2,b3=0;
+	}
+
+}

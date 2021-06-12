@@ -1,0 +1,67 @@
+//Uso del condicional if (Si entonces).
+
+public class CondicionalIF{
+
+	public static void Main(){
+		//El codigo fuera del bloque if siempre se ejecuta.
+
+		int A=1; //Esta variable existe dentro y fuera de todos los bloques condicionales if, else, else if. Pero solo esta variable solo existe dentro del Main.
+		
+		if (A==2){
+			System.Console.WriteLine("Este codigo no se ejecuta porque A no vale 2.");
+		} //End If
+		
+		if (A==1){
+			System.Console.WriteLine("Este codigo si se ejecuta porque A si vale 1.");
+		} //End If
+
+
+		//Los dos bloques if anteriores en uno solo usando if else (Si entonces ademas).
+		if (A==2){
+			int si=0;//Esta bariable solo existe dentro del bloque if.
+			//No se hace nada porque no es verdadero.
+		}else{
+			int ademas=0; //Esta variable solo existe dentro del bloque else.
+			//Se ejecuta el codigo colocado aquí.
+			//Al dar un valor false la comprobacion entonces se ejecuta el bloque else.
+		} //End else
+
+
+		//Bloque if con else if (si entonces ademas si).
+
+		if (A==2){
+			//No se hace nada porque no es verdadero.
+		}else if(A==1){
+			int ademas_si=0;//Esta variable solo existe dentro del  bloque else if.
+			//Se ejecuta el codigo colocado aquí.
+			//El else if da verdadero ya que A es igual a 1.
+		} //End else if
+
+
+		//Bloque if con else else if (si entonces, ademas,  ademas si).
+
+		if (A==2){
+
+			//No se hace nada porque no es verdadero.
+
+		}else{
+
+			//Si las dos comprobaciones son falsas tanto if como else if entonces se ejecuta el codigo dentro del bloque else.
+
+		}else if(A==4){
+			//Se ejecuta el codigo colocado aquí.
+			//El else if da false ya que A es no es igual a 4.
+		} //End else
+
+		//El codigo fuera del bloque if siempre se ejecuta.
+	
+	}
+
+/*
+Conclusiones:
+El bloque condicional if con sus extras else y else if, son de suma importancia.
+Para la ejecucion del codigo y para un codigo bien programado, de hecho el if será usado en todo, casi todo.
+
+*/
+
+}
