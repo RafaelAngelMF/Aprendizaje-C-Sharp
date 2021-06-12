@@ -1,0 +1,10 @@
+public class OperadoresMenorQueMayorQue
+{
+	public static void Main()
+	{
+		int uno=1;
+		int dos=2;
+		bool Es_menor_que=uno<dos; //Verdadero porque uno es menor que dos.
+		bool Es_mayor_que=dos>uno; //verdadero porque dos es mayor que uno.
+	}
+}

@@ -1,0 +1,16 @@
+//Operador ternario (Operador legico condicional)
+//Para comparar valores booleanos.
+
+//Unico operador logico ternario en C#.
+
+public class OperadorTernarioCondicional{
+
+	public static void Main(){
+	    int numero = 123;
+            numero=(numero==123)?4:12; //Carga la variable con  al ser verdadero.
+            /*
+             * Si es verdadero que la variable vale 123 entonces se carga la variable con 4.
+             * Si es falso que la variable vale 123 entonces se carga la variable con 12.
+             */
+	}
+}

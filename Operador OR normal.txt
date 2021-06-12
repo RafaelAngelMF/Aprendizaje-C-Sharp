@@ -1,0 +1,17 @@
+//Operador OR normal "|"
+
+//Se usa para realizar operaciones matematicas en el sistema booleano.
+
+public class operadorORNormal
+{
+	public static void Main(){
+		int numero=2;
+		numero= numero | 1;
+
+		//OR normal en prefijo.
+		numero = 4;
+		numero |=2;
+
+	}
+
+}

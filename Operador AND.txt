@@ -1,0 +1,27 @@
+//Sirve para realizar operaciones matematicas en el sistema booleano.
+
+//Operador AND (&) en C#, pagina 124 de la biblia del C#.
+// Letra del operador AND "&".
+
+// AND "&" es 1 si los dos operandos tienen el mismo valor.
+//AND "&" es 2 si los dos operandos tienen un valor diferente.
+
+
+public class OperadorAND
+{
+	public static void Main()
+	{
+		int Un_numero=6;
+		int Otro_numero=3;
+		int Resultado_del_AND=Un_numero & Otro_numero; //El resultado es 2, ver pagina 124 de la biblia del C#.
+
+		//Forma prefija.
+		Un_numero&=3;   //El resultado es 2, ver pagina 124 de la biblia del C#.
+	}
+	
+	/*
+	Concluyendo, a mi criterio el AND booleano "&" tiene un comportamiento erratico en C#, ya que puede devolver valores diferentes de acuerdo a que se este comprobando.
+	Claro, no es tan erratico despues de repazar un poco el algebra booleana y un poco de principios de arquitectura de computadoras.
+	*/
+}
+

@@ -1,3 +1,6 @@
+//Operador de complemento bit a bit "~".
+
+
 public class OperacionDeComplemento_Bit_a_Bit
 {
 	/*

@@ -1,0 +1,23 @@
+//Operador OR condicional "||"
+
+
+//Pagina 126 de la biblia del C#
+
+
+//Devuelve true si uno de los dos operandos es verdadero.
+//Devuelve false si los dos operandos son falsos.
+
+public class OperadorORCondicional{
+	public static void Main(){
+		//Solo para comprovar valores verdadero falso.
+            /*
+             * false || false ==false
+             * true || false ==true
+             * false || true ==true
+             * true || true ==true
+             */
+
+            bool SiNo= true || false; //Resultado true de acuerdo a la tabla de verdad anotada en las lineas anteriores.
+	}
+
+}

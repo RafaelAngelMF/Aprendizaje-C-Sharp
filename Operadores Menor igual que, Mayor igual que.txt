@@ -1,0 +1,28 @@
+public class OperadoresMenorIgualQueMayorIgualQue
+{
+	public static void Main()
+	{
+		int v1=25;
+		int v2=32;
+
+		//Comprobando menor igual que.
+
+		bool Es_menor_igual_que=v1<=v2;//Verdadero porque la variable v1 es menor que v2.
+		v1=1;
+		v2=1;
+		Es_menor_igual_que=v1<=v2;//Verdadero porque la variable v1 es igual que v2.
+		v1=2;
+		v2=1;
+		Es_menor_igual_que=v1<=v2;//Falso porque la variable v1 es mayor que v2.
+
+		//Comprobando mayor igual que.
+
+		bool Es_mayor_igual_que=v1>=v2;//Verdadero porque la variable v1 es mayor que v2.
+		v1=2;
+		v2=2;
+		Es_mayor_igual_que=v1>=v2;//Verdadero porque la variable v1 es igual que v2.
+		v1=0;
+		v2=2;
+		Es_mayor_igual_que=v1>=v2;//Falso porque la variable v1 es menor que v2.
+	}
+}

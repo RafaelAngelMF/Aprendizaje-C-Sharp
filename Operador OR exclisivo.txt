@@ -1,0 +1,17 @@
+//Operador logico OR exclusivo "^".
+//Sirve para realizar operaciones matematicas booleanas.
+
+public class OperadorOR
+{
+	public static void Main()
+	{
+		int numero=2;
+		int resultado=numero ^ 4;
+		numero=2;
+
+		//Con el OR en prefijo.
+		numero ^= 4;
+	
+	}
+
+}
