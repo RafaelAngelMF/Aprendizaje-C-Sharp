@@ -1,0 +1,27 @@
+//Es una instruccion de salto.
+
+public class UsarBreak
+{
+	public static void Main()
+	{
+		int v=0;
+		for(v=0;v<10;v++){
+			//Este codigo siempre se ejecuta
+			
+			if (v==5){
+				//Este codigo se ejecuta al llega a 5.
+				continue;       //Salta el 5 y continua el bucle while hasta llegar a 10.
+			} //End if
+			System.Console.WriteLine(v);
+		} //End for
+
+		//Este codigo se ejecuta al salir del bucle.
+	} //End Main
+
+/*
+Conclusiones:
+ continue se usa con for, foreach, while, do, switch.
+
+*/
+
+} //End Class

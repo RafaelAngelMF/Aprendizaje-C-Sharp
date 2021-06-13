@@ -1,0 +1,20 @@
+public class BucleForEach
+{
+	public static void Main()
+	{
+		int []Matriz=new int[5];
+Matriz[0]=12;
+Matriz[1]=22;
+Matriz[2]=34;
+Matriz[3]=45;
+Matriz[4]=100;
+		foraech(int UnElemento in Matriz)
+		{
+			System.Console.WriteLine("Un elemento de la matriz " + UnElemento);
+		}
+	}
+/*
+Conclusiones:.
+Es util cuando se necesita trabajar con cada elemento de una matriz sin la necesidad de conocer el tamaño de la matriz.
+*/
+}

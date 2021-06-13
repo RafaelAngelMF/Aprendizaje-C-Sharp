@@ -1,0 +1,39 @@
+//El codicional switch sirve para evaluar varios casos condicionales. Pagina 135 de la biblia del C#
+
+
+public class CondicionalSwitch
+{
+
+	public static void Main()
+	{
+		int variable=4;
+
+		switch (variable)
+		{
+		case 1:
+
+		break;
+		case 2:
+
+		break;
+		case 3:
+
+		break;
+		case 4:
+			//El codigo en este bloque case si se ejecuta porque el valor de la variable es 4.
+		break;
+		case 5:
+		case 6:
+			/*
+			En algunas situaciones es necesario agrupar varios bloques "case".
+			Porque se necesita ejecutar el mismo bloque de codigo para esos casos condicionales, ejemplo el caso del valor 5 y 6 de la variable.
+			*/
+		break;
+		default:
+			//El codigo aqui se activa o ejecuta cuando los casos anteriores direon falso, por ejemplo que la variable valga 7, valga 10. Son casos no conocidos entonces se ejecuta este bloque.
+		//La instruccion default se puede considerar como un caso adicional, algo asi como el "else".
+		break;
+		}
+	}
+
+}

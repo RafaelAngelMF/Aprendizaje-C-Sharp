@@ -1,0 +1,28 @@
+//Es una instruccion de salto.
+
+public class UsarBreak
+{
+	public static void Main()
+	{
+		int v=0;
+		while(v<10){
+			//Este codigo siempre se ejecuta
+			System.Console.WriteLine(v);
+
+			if (v==5){
+				//Este codigo se ejecuta al llega a 5.
+				break;       //Se sale del bucle while antes de llegar a 10.
+			} //End if
+			v++;
+		} //End while
+
+		//Este codigo se ejecuta al salir del bucle.
+	} //End Main
+
+/*
+Conclusiones:
+ break se usa con for, foreach, while, do, switch.
+
+*/
+
+} //End Class

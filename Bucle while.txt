@@ -1,0 +1,22 @@
+public class BucleWhile
+{
+	public static void Main()
+	{
+		int v=0;
+		while(v<10)
+		{
+			System.Console.WriteLine("v=" + v);
+			v++;
+		}
+	}
+/*
+Conclusion:
+Siempre que la instruccion while sea verdadera entonces, el bloque while ejecuta el codigo. 
+
+En el bloque anterior se ve:
+	Siempre que la variable v sea menor a 10 entonces ejecutar el codigo.
+	Ademas, siempre que sea menor a 10 el while da true.
+	Cuando llega a 10 el while da false y ahi se detiene el bloque while (Se sale de el).
+*/
+
+}

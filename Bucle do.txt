@@ -1,0 +1,31 @@
+public class BucleDo
+{
+	public static void Main()
+	{
+		int v=100;
+		while(v<10)
+		{
+			//No se ejecuta el codigo porque la primera vez que el while lo lee da falso ya que la variable vale 100, eso mucho mayor a 10.
+			System.Console.WriteLine("v=" + v);
+			v++;
+		} //End while
+
+		//Pero con el bucle "do" la primera pasada (leída) ejecuta el codigo y luego evalua que es false.
+
+		do
+		{
+			System.Console.WriteLine("Codigo ejecutado antes de evaluar con do\nv=" + v);
+			v++;
+		}while(v<10);
+	}
+/*
+Conclusion:
+	El while evalua si true o false antes de ejecutar su codigo interno en el bloque while.
+	
+	El do ejecuta primero su codigo interno y luego evalua si es true o false.
+	El do termina en while la evaluacion de la variable o exprecion entre parentecis y luego cierra con punto y coma.
+
+	"\n" Es un salto de linea.
+*/
+
+}
