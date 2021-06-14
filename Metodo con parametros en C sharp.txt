@@ -1,0 +1,19 @@
+public class LLamarUnMetodoConParametros
+{
+	public void Metodo_simple(String escriba_algo, int valor)
+	{
+		System.Console.WriteLine("Datos del parametro:\n\n" + escriba_algo + "\nValor==" + valor);
+	}
+
+	public static void Main()
+	{
+		LLamarUnMetodoSimple simple= new LLamarUnMetodoSimple();
+		simple.Metodo_simple("Datos para el parametro.", 1);
+		simple.Metodo_simple("Rafael Angel Montero Fernández.", 43);
+	}
+/*
+Conclusiones:
+Los metodos se pueden llamar las veces que se quieran.
+*/
+
+}

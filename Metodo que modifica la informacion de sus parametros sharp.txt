@@ -1,0 +1,34 @@
+//Demostracion de como un metodo modifica la informacion de sus parametros afectando las varaibles o campos que fueron pasados por parametro.
+
+
+public class LLamarUnMetodoConParametros
+{
+	public void Metodo_simple(String escriba_algo, int valor)
+	{
+		
+		System.Console.WriteLine("Datos originales de los parametros:\n\n" + escriba_algo + "\nValor==" + valor);
+		escriba_algo="Datos recividos.";
+		valor=1;
+		System.Console.WriteLine("Datos modificados de los parametros:\n\n" + escriba_algo + "\nValor==" + valor);
+	}
+
+	public static void Main()
+	{
+		LLamarUnMetodoSimple simple= new LLamarUnMetodoSimple();
+
+		int ValorLocal=12;
+		string Datos="Datos locales.";
+
+		System.Console.WriteLine("Datos de las variable locales: " + Datos + " " + ValorLocal);
+
+		simple.Metodo_simple(Datos, ValorLocal);
+
+		System.Console.WriteLine("Datos de las variable locales: " + Datos + " " + ValorLocal);
+	}
+/*
+Conclusiones:
+La modificasion de parametros solo modifica el parametro en si, no logra afectar las varaibles que se pasaron por parametro.
+Se muestra la informacion de las variables locales y la informacion de los parametros.
+*/
+
+}

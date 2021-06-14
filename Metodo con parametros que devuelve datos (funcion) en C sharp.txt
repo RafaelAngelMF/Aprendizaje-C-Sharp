@@ -1,0 +1,19 @@
+public class LLamarUnMetodoConParametros
+{
+	public String Metodo_simple(String escriba_algo, int valor)
+	{
+		return "Datos del parametro:\n\n" + escriba_algo + "\nValor==" + valor;
+	}
+
+	public static void Main()
+	{
+		LLamarUnMetodoSimple simple= new LLamarUnMetodoSimple();
+		System.Console.WriteLine(simple.Metodo_simple("Datos para el parametro.", 1) );
+		System.Console.WriteLine(simple.Metodo_simple("Rafael Angel Montero Fernández.", 43) );
+	}
+/*
+Conclusiones:
+ Una funcion (metodo que devuelve datos), puede tener muchos parametros pero solo puede devolver un tipo de datos.
+*/
+
+}

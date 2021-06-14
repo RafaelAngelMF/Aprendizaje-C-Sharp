@@ -1,0 +1,14 @@
+public class LLamarUnMetodoSimple
+{
+	public string Metodo_simple()
+	{
+		return "Esta es la respuesta del metodo simple.";
+	}
+
+	public static void Main()
+	{
+		LLamarUnMetodoSimple simple= new LLamarUnMetodoSimple();
+		System.Console.WriteLine(simple.Metodo_simple());
+	}
+
+}

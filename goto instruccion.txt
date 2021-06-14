@@ -1,0 +1,20 @@
+public class UsoDeGOTO
+{
+
+	public static void Main()
+	{
+		int v=0;
+		while(v<10)
+		{
+			System.Console.WriteLine(v);
+			if(v==5)
+			{
+				goto Fuera_del_while;
+			} //End IF
+			v++;
+		}//End while.
+
+		Fuera_del_while;
+
+	}
+}
