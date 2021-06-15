@@ -1,0 +1,31 @@
+//El pasar una matriz por parametro o una serie de parametros al estilo de una matriz es muy versatil.
+//Se usa la palabra "params" antes de declarar el parametro.
+//No se pueden usar las palabras claves out o ref en matrices de parametros.
+
+public class PasarMatrizPorParametro
+{
+	public static void Main()
+	{
+		int v1=12, v2=20;
+		UsoDeOut c= new UsoDeOut();
+		c.UnMetodo(1);
+		c.UnMetodo(v1,v2);
+		c.UnMetodo(5,99,7,55,77,10);
+	}
+
+	public void UnMetodo(params int []Matriz_de_parametros)
+	{
+		System.Console.WriteLine("Escribiendo:");
+		foreach (int un_elemento_de_la_matriz in Matriz_de_parametros)
+		{
+			System.Console.WriteLine(un_elemento_de_la_matriz);
+		}
+		System.Console.WriteLine("\n\n\n");
+	}
+
+/*
+Conclusiones:
+	Mas que pasar una matriz por parametro es como pasar una serie de parametros al estilo de una matriz.
+O sea el metodo no sabe cuantos parametros tiene.
+*/
+}

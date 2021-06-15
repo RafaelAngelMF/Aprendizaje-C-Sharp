@@ -1,0 +1,40 @@
+//Cambiar la informacion de una variable pasada por argumento con out.
+//Importante no se pueden usar los parametros sin antes haberles asignados datos nuevos.
+
+public class UsoDeOut
+{
+	public static void Main()
+	{
+		int v1=12, v2=20;
+		UsoDeOut c= new UsoDeOut();
+		System.Console.WriteLine(c.Suma(out v1,out v2));
+		System.Console.WriteLine(v1);
+		System.Console.WriteLine(v2);
+		
+		v1=12; v2=20;
+		c.CambiaValoresExternos(out v1,out v2);
+		System.Console.WriteLine(v1);  //20
+		System.Console.WriteLine(v2);  //12
+	}
+
+	public int Suma(out int un_numero, out int otro_numero)
+	{
+		int resultado=un_numero + otro_numero;
+		un_numero=0;
+		otro_numero=0;
+		return resultado;
+	}
+
+	public void CambiaValoresExternos(out int un_numero, out int otro_numero)
+	{
+		//Se cambian los datos de una variable a otra.
+		int cambio=un_numero;
+		un_numero=otro_numero;
+		otro_numero=cambio;
+	}
+/*
+Conclusiones:
+out se debe usar cuando se declara el parametro y cuando al metodo se le pasan variables por parametro.
+
+*/
+}
