@@ -1,0 +1,196 @@
+/*
+Creacion de un struct.
+Creacion de campos(variables) en un struct.
+Creacion de una propiedad en un struct.
+Creacion de un indizador en un struct.
+Creacion de constructores con parametros en un struct.
+
+Como usar los objetos del struct.
+*/
+
+namespace Apendizage_C_sharp //Debe estar dentro de una carpeta llamada Apendizage_C_sharp para compilarlo.
+
+public struct Estructura_a_nivel_del_NamesPase
+{
+
+	//No se puede declarar constructores sin parametros.
+	//Como minimo un solo parametro.
+	public struct Estructura_a_nivel_del_NamesPase(int Nuevo_valor)
+	{
+		valor=Nuevo_valor;
+		Matriz=new string[2];
+
+	}
+
+
+
+	public string []Matriz;//Matriz para el indizador.
+
+	//Esto es un indizador.
+	public string this[int index]
+	{
+		get
+		{
+			return Matriz[index];
+		}
+		set
+		{
+			Matrix[index]=value;
+		}
+	}
+
+	private int valor;
+
+	public int Valor
+	{
+		get
+		{
+			return valor;
+		}
+		set
+		{
+			valor=value;
+		}
+	}
+	
+}//End struct Estructura_a_nivel_del_NamesPase
+
+    /// <summary>
+    /// En la biblia del C# se dice que un struct no puede declararse fuera de un class.
+    /// Parese que con C# 2017 si se puede.
+    /// Recordar que la biblia del C# fue escrita hace unos años atras.
+    /// </summary>
+public class UsoDeStruct
+{
+
+	public void Declarar_estructura_con_constructores()
+	{
+		Datos_de_persona Luis=new Datos_de_persona();
+		System.Console.WriteLine(Luis.Informe());
+		Datos_de_persona Roy=new Datos_de_persona("Roy", "MF", 50);
+		System.Console.WriteLine(Roy.Informe());
+	}		
+
+	public void UnirDosEstructuras()
+	{
+		Datos_de_persona OtraPersona=new Datos_de_persona();
+		OtraPersona=Persona;
+		System.Console.WriteLine(OtraPersona.Informe());
+	}
+	
+	public void UsarIndizadoresEnEstructuras()
+	{
+		Datos_de_persona Empleado=new Datos_de_persona();
+		Empleado.Matriz = new string[2];
+            	Empleado[0] = "Cero";
+            	Empleado[1] = "uno";
+            	Console.WriteLine("\n\n\n");
+            	for (int id=0; id < 2; id++)
+            	{
+                	Console.WriteLine("Indisador " + Empleado[id]);
+            	}
+	}
+
+
+	public Datos_de_persona Persona=new Datos_de_persona();//No es necesario usar new para llamar al constructor en una estructura.
+
+	public struct Datos_de_persona
+	{
+
+
+		/// <summary>
+        	/// Matriz publica en un struct, sirve para el indizador.
+        	/// </summary>
+        	public string[] Matriz;
+
+        	/// <summary>
+        	/// Es el unico objeto capaz de redefinir el this.
+        	/// </summary>
+        	/// <param name="index">Un numero entero para enviar o recivir datos.</param>
+        	/// <returns>Retorna un id.</returns>
+        	public string this[int index]
+        	{
+            		get
+            		{
+                		return Matriz[index];
+            		}
+            		set
+            		{
+                		Matriz[index] = value;
+            		}
+        	}
+
+		private string Comentarios;
+        	/// <summary>
+        	/// Propiedad dentro de un struct
+        	/// </summary>
+        	public string PrComentarios
+        	{
+            	get
+            	{
+                	return Comentarios;
+           	}
+            	set
+            	{
+                	Comentarios = value;
+            	}
+        }
+
+		public Datos_de_persona(string Nuevo_nombre, string Nuevos_apellidos, int Nueva_edad)
+		{
+			//Los constructores en C# deben tener como minimo un parametro de entrada.
+			Comentarios=""; //Es obligatorio inicializar campos private o protected.
+            		this.Nombre = Nuevo_nombre;
+            		this.Apellidos = Nuevos_apellidos;
+            		this.Edad = Nueva_edad;
+			
+			//Los campos private, protected deben ser inicializados en los constructores con parametros.
+			Comentarios="";
+		}
+		//Las varaibles en una estructura no pueden inicializarse al declararse.
+		//Se debe usar un constructor para inicializar las variables.
+
+		public string Nombre;
+		public String Apellidos;
+		public int Edad;
+
+		public string Informe()
+		{
+			return "Nombre " + Nombre + ", apellidos " + Apellidos + ", edad " + Edad;
+		}
+	}//End struct Datos_de_persona
+
+	public static void Main()
+	{
+		UsoDeStruct c1=new UsoDeStruct();
+		
+		c1.Persona.Nombre="Angel";
+		c1.Persona.Apellidos="MF";
+		c1.Persona.Edad=43;
+		System.Console.WriteLine("C1");
+		System.Console.WriteLine(c1.Persona.Informe());
+
+		UsoDeStruct c2=new UsoDeStruct();
+		c2.Persona=c1.Persona;
+		System.Console.WriteLine("C2");
+		System.Console.WriteLine(c2.Persona.Informe());
+
+		c1.UnirDosEstructuras();//Carga un struct en otro y muestra la informacion cargada.
+		c1.Declarar_estructura_con_constructores();
+		
+		
+
+		System.Console.ReadLine();//Aqui funciona como pausa.
+	}
+/*
+Conclusiones:
+El codigo fue probado en C# 2017 y funcionó bien.
+Las estructuras pueden ser declaradas sin usar su constructor, siempre y cuando no se haya construido ni un solo constructor con parametros.
+
+Pero tambien se pueden declarar usando su constructor al estilo de un class comun y corriente. Esto cuando el struct tiene uno o varios constructores con parametros.
+De hecho el compilador obliga a declarar y asignar el strict con "new NombreDelStruct()"
+
+Los campos (Variables) ocultos(private, protected) deben ser asignados en los constructores con parametros.
+*/
+
+}

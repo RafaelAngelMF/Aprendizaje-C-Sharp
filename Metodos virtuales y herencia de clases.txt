@@ -1,0 +1,54 @@
+//Metodos virtuales. 
+
+public class ClaseOverride
+{
+	public string NombreDeLibro()
+	{
+		return "Mi libro. ";
+	}
+
+	public string Reiting()
+	{
+		return "5 estrellas. ";
+	}
+}//End ClaseOverride
+
+public class ClaseMain
+{
+
+	public static void Main()
+	{
+		ClaseOverride base=new ClaseOverride();
+		System.Console.WriteLine(base.NombreDeLibro() + " " + base.Reiting());
+		
+		ClaseDescendiente descendiente=new ClaseDescendiente();
+		System.Console.WriteLine(descendiente.NombreDeLibro() + " " + descendiente.Reiting());
+	}
+}//End ClaseMain
+
+public class ClaseDescendiente : ClaseOverride
+{
+	new public string NombreDeLibro()
+	{
+		return "La biblia del C#";
+	}
+
+	new public string Reiting()
+	{
+		return "5 estrellas (*****) ";
+	}
+
+} //End ClaseDescendiente
+
+
+
+/*
+Conclusiones:
+Se toma el tema de la herencia simple de clases.
+La sobreescritura de metodos.
+
+    La palabra new invalida u oculta el metodo de la clase base.
+    El override solo se usa en metodos abstractos o metodos definidos en interfeces.
+
+*/
+

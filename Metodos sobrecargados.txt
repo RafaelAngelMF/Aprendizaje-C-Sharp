@@ -1,0 +1,38 @@
+//Un metodo sobrecargado es un metodo definido varias veces en el class pero con diferente cantidad de parametros.
+
+//Incluso un metodo sobrecargado puede tener un tipo de datos de retorno diferente, return string, int o no retornar nada void.
+
+
+public class MetodosSobrecargados
+{
+
+	public static void Main()
+	{
+		MetodosSobrecargados c=new MetodosSobrecargados();
+		c.MetodoSobrecargado(1,2,"Una suma","Rafael");
+	}
+	public int MetodoSobrecargado()
+	{
+		return 1;
+	}
+
+	public int MetodoSobrecargado(int un_numero)
+	{
+		return un_numero++;
+	}
+
+	public int MetodoSobrecargado(int un_numero, int otro_numero)
+	{
+		return un_numero + otro_numero;
+	}
+
+ 	public string MetodoSobrecargado(int un_numero, int otro_numero, string datos)
+        {
+            return "Los datos son\n" + datos + "\nLa suma es " + (un_numero + otro_numero);
+        }
+
+        public void  MetodoSobrecargado(int un_numero, int otro_numero, string datos, string nombre)
+        {
+            Console.Write("El nombre es " + nombre  +"\nLos datos son\n" + datos + "\nLa suma es " + (un_numero + otro_numero));
+        }
+}
