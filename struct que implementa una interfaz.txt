@@ -1,0 +1,31 @@
+namespace Aprendizage_C_sharp
+{
+
+public interface UnaInterface
+{
+	public string Informacion();
+}//End UnaInterface
+
+public struct MisDatos:UnaInterface
+{
+	publcic string Nombre;
+	
+	
+	public string Informacion()
+	{
+		return "El nombre es " + Nombre;
+	}
+}//End struct MisDatos
+
+public class ClaseMain
+{
+	public static void Main()
+	{
+		MisDatos Datos; //No es necesario usar new porque no tiene constructores con parametros.
+
+		Datos.Nombre="Alberto";
+		System.Console.WriteLine(Datos.Informacion());
+	}
+}//End ClaseMain
+
+}//End namespace Aprendizage_C_sharp
