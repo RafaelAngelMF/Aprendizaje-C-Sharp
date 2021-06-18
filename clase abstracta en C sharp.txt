@@ -1,0 +1,51 @@
+//Se aprende a crear clases abstractas y a implementarlas.
+//Se aprende a usar ArrayList
+
+using System;
+using System.Collections;
+
+
+namespace Aprendizage_del_C_sharp{
+abstract class Animal
+{
+	public abstract void Hace_ruido();
+}
+
+
+public class Gato:Animal
+{
+	public override void Hace_ruido()
+	{
+		System.Console.WriteLine("miauuu");
+	}
+}
+
+public class Perro:Animal
+{
+	public override void Hace_ruido()
+	{
+		System.Console.WriteLine("guauuu");
+	}
+}
+
+public class Polimorfismo
+{
+	public static void Main()
+	{
+		ArrayList Hotel_de_mascotas=new ArrayList(3);
+		Gato Mini=new Gato();
+		Perro Bebe, Mongo;
+		Bebe=new Perro();
+		Mongo = new Perro();
+		Hotel_de_mascotas.add(Mini);
+		Hotel_de_mascotas.add(Bebe);
+		Hotel_de_mascotas.add(Mongo);
+		foreach(Animal Mascota in Hotel_de_mascotas)
+		{
+			Mascota.Hace_ruido();
+		}
+		Syste.Console.Reed();//Pausa antes de salir.
+	}
+}
+
+}//End namespace

@@ -1,0 +1,18 @@
+public interface Una_interfas
+{
+    string Tema();
+    string Fecha();
+}
+
+public class Heredero_de_interfas : Una_interfas
+{
+    public string Fecha()
+    {
+        return "Jueves 17 de junio del 2021.";
+    }
+
+    public string Tema()
+    {
+        return "Voy por la pagina 204 de la Biblia del C#";
+    }
+}

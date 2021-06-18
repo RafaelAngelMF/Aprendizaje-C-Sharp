@@ -21,7 +21,7 @@ public class ClaseMain
 {
 	public static void Main()
 	{
-		MisDatos Datos; //No es necesario usar new porque no tiene constructores con parametros.
+		MisDatos Datos=new MisDatos(); 
 
 		Datos.Nombre="Alberto";
 		System.Console.WriteLine(Datos.Informacion());

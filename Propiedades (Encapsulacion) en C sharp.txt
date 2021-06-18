@@ -1,0 +1,28 @@
+//Este es un ejemplo del uso de las propiedades las cuales se les llama encapsulacion de datos.
+//El ejemplo no usa un Main porque solo se esta demostrando la creacion de propiedades, el encapsulamiento y la proteccion de datos.
+
+namespace Aprendizage_C_sharp{
+public class Encapsulacion
+{
+    private int numero;
+
+    public int Numero
+    {
+        get
+        {
+            return numero;
+        }
+        set
+        {
+		//Las propiedades controlan que datos entran a la variable privada.
+		//Asi protegen la informacion.
+            if (value > 4 && value < 8)
+            {
+                numero = value;
+            }
+        }
+    }
+}
+
+
+}//End Namespace
