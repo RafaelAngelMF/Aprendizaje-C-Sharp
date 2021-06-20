@@ -1,0 +1,104 @@
+/// <summary>
+/// Clase para demostrar el uso de constructores.
+/// A diferencia de una estructura, en una clase el programador si puede crear un constructor sin parametros.
+/// </summary>
+public class Una_clase_con_constructores
+{
+    /// <summary>
+    /// Campo, solo puede insertarsele datos por medio del constructor.
+    /// </summary>
+    private string tema;
+
+
+    /// <summary>
+    /// Por lo general la propiedad lleva el mismo nombre que la variable(campo) pero en mayuscula.
+    /// </summary>
+    public string Tema
+    {
+        get
+        {
+            return tema;
+        }
+    }
+
+
+    /// <summary>
+    /// Campo, solo puede insertarsele datos por medio del constructor.
+    /// </summary>
+    private string fecha;
+
+    /// <summary>
+    /// Por lo general la propiedad lleva el mismo nombre que la variable(campo) pero en mayuscula.
+    /// </summary>
+    public string Fecha
+    {
+        get
+        {
+            return fecha;
+        }
+    }
+
+    /// <summary>
+    /// Campo, solo puede insertarsele datos por medio del constructor.
+    /// </summary>
+    private string detalles;
+
+    /// <summary>
+    /// Por lo general la propiedad lleva el mismo nombre que la variable(campo) pero en mayuscula.
+    /// </summary>
+    public string Detalles
+    {
+        get
+        {
+            return detalles;
+        }
+    }
+
+    /// <summary>
+    /// Constructor sin parametros.
+    /// </summary>
+    public Una_clase_con_constructores()
+    {
+        this.detalles = "";
+        this.fecha = "";
+        this.tema = "";
+    }
+
+    /// <summary>
+    /// Constructor con un parametro, bueno en las busquedas de objetos.
+    /// </summary>
+    /// <param name="nuevo_tema"></param>
+    public Una_clase_con_constructores(string nuevo_tema)
+    {
+        this.detalles = "";
+        this.fecha = "";
+        this.tema = nuevo_tema;
+    }
+
+    /// <summary>
+    /// Constructor con 2 parametros.
+    /// </summary>
+    /// <param name="nuevo_tema"></param>
+    /// <param name="nueva_fecha"></param>
+    public Una_clase_con_constructores(string nuevo_tema, string nueva_fecha)
+    {
+        this.detalles = "";
+        this.fecha = nueva_fecha;
+        this.tema = nuevo_tema;
+    }
+
+
+    /// <summary>
+    /// Constructor con 3 parametros.
+    /// </summary>
+    /// <param name="nuevo_tema"></param>
+    /// <param name="nueva_fecha"></param>
+    /// <param name="nuevos_detalles"></param>
+    public Una_clase_con_constructores(string nuevo_tema, string nueva_fecha,string nuevos_detalles)
+    {
+        this.detalles = nuevos_detalles;
+        this.fecha = nueva_fecha;
+        this.tema = nuevo_tema;
+    }
+
+}

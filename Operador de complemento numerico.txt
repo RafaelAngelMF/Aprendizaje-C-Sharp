@@ -1,4 +1,5 @@
 //Operador de complemento bit a bit "~".
+//Tambien conocido como simbolo del destructor.
 
 
 public class OperacionDeComplemento_Bit_a_Bit

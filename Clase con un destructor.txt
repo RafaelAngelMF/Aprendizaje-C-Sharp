@@ -1,0 +1,34 @@
+public class Clase_con_un_destructor
+{
+    private string titulo;
+
+    private double precio;  //Siempre que se maneje monedas, debe ser un double o algun tipo de datos de punto flotante.
+
+    public Clase_con_un_destructor()
+    {
+        //Constructor sin parametros.
+        titulo = "";
+        precio = 0.0;
+    }
+
+    public Clase_con_un_destructor(string Nuevo_titulo, double Nuevo_precio)
+    {
+        //Constructor con 2 parametros.
+        titulo = "";
+        precio = Nuevo_precio;
+    }
+
+    //Los destructores en C# son opcionales, o sea que no es necesario crearlos al estilo de c++.
+    //Pero para experimentar a modo de aprendizage o por algo excepcional, el programador puede crearlos.
+
+
+    ~Clase_con_un_destructor()
+    {
+	//No se puede llamar a un destructor de una clase.
+	//El destructor es llamado por el recolector de basura de C#. clr.
+        //Al destructor no se le debe poner public, protected o private.
+        titulo = "";
+        precio = 0.0;
+    }
+
+}
