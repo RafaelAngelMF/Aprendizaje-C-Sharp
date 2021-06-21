@@ -1,3 +1,5 @@
+//Este simbolo ~ funciona para crear el destructor y como operador bit a bit.
+
 public class Clase_con_un_destructor
 {
     private string titulo;

@@ -1,0 +1,68 @@
+
+/// <summary>
+/// El operador bit a bit solo funciona con: uint, int, long, ulong.
+/// uint y ulong solo funcionan con numeros positivos.
+/// 
+/// ~ operador bit a bit y tambien se usa para crear un destructor.
+/// </summary>
+public Sobrecarga_del_operador_de_complemento_bit_a_bit() { }
+
+    public Sobrecarga_del_operador_de_complemento_bit_a_bit(int nuevos_años, long nuevo_precio)
+    {
+        años_de_antiguedad = nuevos_años;
+        this.precio = nuevo_precio;
+    }
+
+    private int años_de_antiguedad;
+
+    public int Años_de_antiguedad
+    {
+        get
+        {
+            return this.años_de_antiguedad;
+        }
+    }
+    private long precio;
+
+    public long Precio
+    {
+        get
+        {
+            return this.precio;
+        }
+    }
+    
+    public static Sobrecarga_del_operador_de_complemento_bit_a_bit operator ~(Sobrecarga_del_operador_de_complemento_bit_a_bit valor_derecho)
+    {
+        Sobrecarga_del_operador_de_complemento_bit_a_bit bit_a_bit = new Sobrecarga_del_operador_de_complemento_bit_a_bit();
+        bit_a_bit.precio= ~valor_derecho.precio;
+        bit_a_bit.años_de_antiguedad= ~valor_derecho.años_de_antiguedad;
+        return bit_a_bit;
+    }
+
+    public string Informe()
+    {
+        return "Años de antiguedad " + this.años_de_antiguedad + "\nPrecio " + this.precio;
+    }
+
+}
+
+public class Inicial
+{
+	public static void Main()
+	{
+Sobrecarga_del_operador_de_complemento_bit_a_bit bit_a_bit = new Sobrecarga_del_operador_de_complemento_bit_a_bit(5,9);
+            Console.WriteLine("Datos originales:\n" + bit_a_bit.Informe());
+            bit_a_bit = ~bit_a_bit;
+            Console.WriteLine("Datos modificados con ~:\n" + bit_a_bit.Informe());
+            System.Console.ReadLine();//Aqui funciona como pausa.
+	}
+/*
+Conclusiones:
+
+El operador bit a bit genera complementos de numeros.
+Trabaja con valores hexadecimales.
+Si se le pasa un numero lo convierte en hexadecimal o lo toma como un numero hexadecimal.
+No obstante da buenos resultados pasandole numeros en deimal (base 10).
+*/
+}
