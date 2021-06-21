@@ -1,0 +1,67 @@
+//Sobrecarga del operador unario menos.
+
+public class Sobrecargar_el_operador_menos
+{
+    private int precio;
+    private string nombre;
+
+    public string Nombre
+    {
+        get
+        {
+            return this.nombre;
+        }
+        set
+        {
+            nombre = value;
+        }
+    }
+
+    public int Precio
+    {
+        set
+        {
+            precio = value;
+        }
+        get
+        {
+            return precio;
+        }
+    }
+
+    public static Sobrecargar_el_operador_menos operator -(Sobrecargar_el_operador_menos valor)
+    {
+        Sobrecargar_el_operador_menos sobrecargado = new Sobrecargar_el_operador_menos();
+            if (valor.precio > 0)
+            {
+                //Si es mayor a cero se convierte en negativo.
+                sobrecargado.precio = -(valor.precio);
+            }
+            else
+            {
+                sobrecargado.precio = valor.precio;
+            }
+            sobrecargado.nombre = valor.nombre;
+
+            return sobrecargado;
+        }
+ }//End class
+
+
+public class Principal
+{
+	public static void Main()
+	{
+Sobrecargar_el_operador_menos Sobrecarga1 = new Sobrecargar_el_operador_menos(), Sobrecarga2 = new Sobrecargar_el_operador_menos();
+            Sobrecarga1.Nombre = "Mango";
+            Sobrecarga1.Precio = 100;
+
+            Sobrecarga2.Nombre = "Aguacate";
+            Sobrecarga2.Precio = 30;
+            Sobrecarga1 = -Sobrecarga1;
+            Sobrecarga2 = -Sobrecarga2;
+            Console.WriteLine("Sobrecarga 1=" + Sobrecarga1.Precio + "\nSobrecarga 2=" + Sobrecarga2.Precio);
+            System.Console.ReadLine();//Aqui funciona como pausa.
+	}
+
+}
