@@ -1,0 +1,36 @@
+public class MisNotas
+{
+
+	public MisNotas()
+	{
+		this.Tema="Mi primer tema";
+		this.Detalles_del_tema="Por ahi de mediados del 2003, finales del 2003 empesé a aprender programacion.";
+	}
+
+	private string tema;
+	public string Tema{
+	get{
+		return tema;
+	}
+
+	set{
+		tema=value;
+	}
+
+	}
+
+
+	private string detalles_del_tema;
+	public string Detalles_del_tema{
+	get{
+		return detalles_del_tema;;
+	}
+
+	set{
+		detalles_del_tema;=value;
+	}
+
+	}
+
+
+}

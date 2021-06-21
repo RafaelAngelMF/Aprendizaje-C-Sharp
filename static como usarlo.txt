@@ -1,0 +1,27 @@
+//La oalabra clave static sirve para hacer que diferentes instancias de una misma clase compartan la misma informacion.
+//Una propiedad que guarda un valor y que debe ser leido por todas las instancias del class.
+
+public class Uso_de_Static
+{
+    public static string tema;//Al ser static es mejor inicializarla desde aqui.
+
+    public string Tema
+    {
+        get
+        {
+            return tema;
+        }
+    }
+
+}
+
+
+public class Inicial
+{
+	public static void Main(){
+            Uso_de_Static vStatic1 = new Uso_de_Static(), vStatic2 = new Uso_de_Static();
+            Uso_de_Static.tema = "Un tema";
+            Console.WriteLine("static 1: " + vStatic1.Tema + "\nstatic 2: " + vStatic2.Tema);
+            System.Console.ReadLine();//Aqui funciona como pausa.		
+	}
+}
