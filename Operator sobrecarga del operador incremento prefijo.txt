@@ -1,0 +1,50 @@
+public class Sobrecargar_incremento_prefijo
+{
+
+    /// <summary>
+    /// Sobrecargando el ++.
+    /// O mejor dicho el incremento prefijo.
+    /// </summary>
+    /// <param name="nuevo_valor_derecho"></param>
+    /// <returns></returns>
+    public static Sobrecargar_incremento_prefijo operator ++(Sobrecargar_incremento_prefijo nuevo_valor_derecho)
+    {
+        Sobrecargar_incremento_prefijo sobrecarga = new Sobrecargar_incremento_prefijo();
+        sobrecarga.cantidad = nuevo_valor_derecho.cantidad + 1;
+        return sobrecarga;
+    }
+
+    /// <summary>
+    /// Solo una variable para el ejemplo.
+    /// </summary>
+    private int cantidad = 0;
+
+    /// <summary>
+    /// Propiedad para la cantidad.
+    /// </summary>
+    public int Cantidad
+    {
+        set
+        {
+            cantidad = value;
+        }
+        get
+        {
+            return cantidad;
+        }
+    }
+}
+
+
+public class Inicial{
+	public static void Main()
+	{
+Sobrecargar_incremento_prefijo incfremento_prefijo = new Sobrecargar_incremento_prefijo();
+            incfremento_prefijo.Cantidad = 12;
+            Console.WriteLine("incfremento_prefijo.Cantidad="+ incfremento_prefijo.Cantidad);
+            ++incfremento_prefijo;
+            Console.WriteLine("++incfremento_prefijo.Cantidad= " + incfremento_prefijo.Cantidad);
+            System.Console.ReadLine();//Aqui funciona como pausa.
+	}
+
+}
