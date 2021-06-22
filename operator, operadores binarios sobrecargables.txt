@@ -1,0 +1,35 @@
+Esta es la lista de operadores binarios (Con dos parametros (Uno opera a la derecha y otro opera a la izquierda)) que se pueden sobrecargar.
+
+Lista de operadores binarios sobrecargables.
+
+Suma +
+
+Resta -
+
+Multiplicacion *
+
+Division /
+
+Resto %
+
+AND
+
+OR
+
+OR exclusivo
+
+Desplazamiento a la izquierda << investigarlo
+
+Desplazamiento a la derecha >> investigarlo
+
+Igualdad ==
+
+Desigualdad !=
+
+Mayor que >
+
+Menor que <
+
+Mayor o igual que >=
+
+Menor o igual que <=

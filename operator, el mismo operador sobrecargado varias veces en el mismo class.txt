@@ -1,0 +1,25 @@
+Se puede hacer que los operadores sobrecargados devuelvan cualquier valor, o la clase en la que esta.
+
+Al sobrecargar varias veces un mismo operador, el operador debe tener diferentes tipos de datos como caparmetros. Esto aunque siempre sean los mismo 2 parametros o el mismo unico parametro, o misma lista de parametros.
+
+Ademas, se pueden colocar dos parametros de tipos de datos diferentes, un objeto class y un valor numerico o booleano.
+Ejemplo suponiendo que las sobrecargas estan dentro de un class: 
+//A modo de ejemplo.
+    public static  bool operator +(Sobrecarga_de_los_operadores_true_false dr, int iz)
+    {
+        return true;
+    }
+
+    //A modo de ejemplo.
+    public static bool operator +(Sobrecarga_de_los_operadores_true_false dr, double iz)
+    {
+        return true;
+    }
+
+    //A modo de ejemplo.
+    public static Sobrecarga_de_los_operadores_true_false operator +(Sobrecarga_de_los_operadores_true_false dr, Sobrecarga_de_los_operadores_true_false iz)
+    {
+        Sobrecarga_de_los_operadores_true_false R=new Sobrecarga_de_los_operadores_true_false();
+        R.descuento =dr.descuento+iz.descuento;
+        return R;
+    }

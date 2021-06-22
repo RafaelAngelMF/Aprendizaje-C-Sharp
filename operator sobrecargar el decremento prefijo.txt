@@ -1,0 +1,44 @@
+public class Sobrecarga_del_decremento_prefijo
+{
+
+    /// <summary>
+    /// Sobrecarga del decremento prefijo --
+    /// </summary>
+    /// <param name="valor_derecho"></param>
+    /// <returns></returns>
+    public static Sobrecarga_del_decremento_prefijo operator --(Sobrecarga_del_decremento_prefijo valor_derecho)
+    {
+        Sobrecarga_del_decremento_prefijo sobrecargado = new Sobrecarga_del_decremento_prefijo();
+        sobrecargado.contador = valor_derecho.contador - 1;
+
+        return sobrecargado;
+    }
+
+    private int contador;
+
+    public int Contador
+    {
+        get
+        {
+            return contador;
+        }
+        set
+        {
+            contador = value;
+        }
+    }
+}
+
+public class Principal
+{
+	public static void Main()
+	{
+	     Sobrecarga_del_decremento_prefijo decremento_prefijo = new Sobrecarga_del_decremento_prefijo();
+            decremento_prefijo.Contador = 31;
+            Console.WriteLine("decremento_prefijo.Contador=" + decremento_prefijo.Contador);
+            --decremento_prefijo;
+            Console.WriteLine("--decremento_prefijo.Contador= " + decremento_prefijo.Contador);
+            System.Console.ReadLine();//Aqui funciona como pausa.
+	}
+
+}

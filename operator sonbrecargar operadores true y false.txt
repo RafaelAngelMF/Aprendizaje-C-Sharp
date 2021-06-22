@@ -1,0 +1,91 @@
+/// <summary>
+/// Cuando se sobrecarga true tambien debe sobrecargarse false, es lo mismo a la inversa.
+/// Sedeben sobrecargar los dos en el mismo class.
+/// Para este par de operadores se debe saber un poco de las reglas del algebra booleana.
+/// Se debe saber un poco de logica para informaticos.
+/// De la misma manera, puede sobrecargarlo y usarlo sin necesidad de saberse esas reglas, ya que como humanos inteligentes las usamos sin darnos cuenta.
+/// </summary>
+public class Sobrecarga_de_los_operadores_true_false
+{
+    /// <summary>
+    /// Se sobrecarga tru y false para comprobar si la propiedad del class ha sido modificado, basta con agregarle cero o cualquier numero en una nueva instancia para considerarse modificado. 
+    /// Pero si se consulta su valor sin introducirle ningun valor entonces, dara si es verdadero que no ha sido modificado.
+    /// 
+    /// Devuelve verdadero si la propiedad Descuento no se ha modificado.
+    /// ... si es verdad que es verdadero.
+    /// </summary>
+    /// <param name="valor_derecho"></param>
+    /// <returns></returns>
+    public static bool operator true(Sobrecarga_de_los_operadores_true_false valor_derecho)
+    {
+        Sobrecarga_de_los_operadores_true_false sobrecarga = new Sobrecarga_de_los_operadores_true_false();
+        if (valor_derecho.descuento == 0)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// Devuelve verdadero si la propiedad Descuento si se ha modificado.
+    /// 
+    /// Es algo asi como:
+    /// Es falso que la propiedad Descuento vale cero.
+    /// Respuesta falso ==> Si es verdad que es falso. 
+    /// </summary>
+    /// <param name="valor_derecho"></param>
+    /// <returns></returns>
+    public static bool operator false(Sobrecarga_de_los_operadores_true_false valor_derecho)
+    {
+        Sobrecarga_de_los_operadores_true_false sobrecarga = new Sobrecarga_de_los_operadores_true_false();
+        if (valor_derecho.descuento == 0)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    private double descuento;
+
+    public double Descuento
+    {
+        set
+        {
+            descuento = value;
+        }
+        get
+        {
+            return descuento;
+        }
+    }
+}
+
+public class Principal{
+
+	public static void Main()
+	{
+
+	    Sobrecarga_de_los_operadores_true_false Verdadero_falso = new Sobrecarga_de_los_operadores_true_false();
+            
+            if (Verdadero_falso)
+            {
+                Console.WriteLine("Es verdadero");
+            }
+            else
+            {
+                Console.WriteLine("Es falso");
+            }
+            Verdadero_falso.Descuento = 1;
+            if (Verdadero_falso)
+            {
+                Console.WriteLine("Es verdadero");
+            }
+            else
+            {
+                Console.WriteLine("Es falso");
+            }
+            System.Console.ReadLine();//Aqui funciona como pausa.
+	}
+}
