@@ -1,12 +1,16 @@
-//Herencia en C# pagina 259.
+//Uso de new para ocultar identificadores(variables, propiedades...) declarados como "protected" en la clase base.
 
 
-    /// <summary>
+/// <summary>
     /// Clase base para las 2 dimenciones.
     /// </summary>
 public class Dos_dimenciones
 {
-    private int x;
+
+    /// <summary>
+    /// Se declara protegido para heredearse, asi demostrar el uso de new.
+    /// </summary>
+    protected int x;
     private int y;
 
     public int X
@@ -36,6 +40,12 @@ public class Dos_dimenciones
 
 public class Tres_dimenciones: Dos_dimenciones
 {
+    /// <summary>
+    /// Se oculta el campo (variable) x de la clase base Dos_dimeciones.
+    /// Con la palabra clave "new".
+    /// </summary>
+    new public int x;
+
     private int z;
 
     public int Z
@@ -49,23 +59,4 @@ public class Tres_dimenciones: Dos_dimenciones
             z = value;
         }
     }
-}
-
-
-public class Principal
-{
-public static void Main()
-    {
-        Dos_dimenciones Dos_D = new Dos_dimenciones();
-        Dos_D.X = 12;
-        Dos_D.Y = 10;
-        Console.WriteLine("2D\nx="+ Dos_D.X + ", y="+ Dos_D.Y);
-
-        Tres_dimenciones Tres_D = new Tres_dimenciones();
-        Tres_D.X = 12;
-        Tres_D.Y = 10;
-        Tres_D.Z = 15;
-        Console.WriteLine("3D\nx=" + Tres_D.X + ", y=" + Tres_D.Y+", z="+ Tres_D.Z);
-    }
-
 }

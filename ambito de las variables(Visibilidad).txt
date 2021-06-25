@@ -1,0 +1,31 @@
+En C# existen 5 formas de darle visibilidad (Ambito(Alcanse(vida))) a las variables.
+
+Solo es visible para la clase donde se declaro la variable, metodo, funcion, propiedad, struct, clase interna.
+
+private    
+__________________________________________
+Es visible para la clase y tambien fuera de la clase donde se declaro la variable, metodo, funcion, propiedad, struct, enum, clase interna.
+
+public   
+__________________________________________
+Solo es visible para la clase y para las clases descendientes(deribadas) donde se declaro la variable, metodo, funcion, propiedad, struct, enum, clase interna.
+protected   
+
+__________________________________________
+Si en un archivo de C# se declaran 2 o 3 clases y una tiene una variable, metodo, funcion, propiedad, struct, enum, clase interna como "internal" entonces es visible para las demas clases en ese archivo pero no para las clases declaradas en otro archivo del mismo proyecto. Ademas, no es alcanzable ni con la herencia de clases desde otro archivo.
+
+internal 
+__________________________________________
+Es heredable por clases deribadas dentro y fuera del archivo.
+Solo admite una herencia.
+Si la clase B esta en el archivo x.cs y yo la heredo desde el archivo z.cs con una clase llamada "Prueba" entonces tengo acceso a los miembros declarados "protected internal".
+Pero si despues desde el mismo archivo z.cs o supongamos otro f.cs heredo de la clase "Prueba" entonces, parte del codigo de la clase base será deshabilitado (no funciona).
+
+protected internal
+__________________________________________
+
+Finalmente, se puede delcarar en un class, a nivel de clase asi:
+
+int numero=0;
+
+Pero se le dará por defecto visibilidad privada "private".
