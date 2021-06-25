@@ -1,0 +1,76 @@
+/// <summary>
+/// Cuando se sobrecarga el == tambien, se debe sobrecargar el != 
+/// (Se deben sobrecargar el operador de igualdad y el operador de desigualdad en el mismo class.)
+/// Se debe sobreescribir Equals y GetHashCode.
+/// </summary>
+public class Sobrecarga_del_Operador_de_igualdad_y_desigualdad
+{
+
+    public override bool Equals(object obj)
+    {
+        return true;
+    }
+
+    public override int GetHashCode()
+    {
+        return base.GetHashCode();
+    }
+
+    private string nombre;
+
+    public string Nombre
+    {
+        get
+        {
+            return nombre;
+        }
+        set
+        {
+            nombre = value;
+        }
+    }
+
+    
+    private int edad;
+
+    public int Edad
+    {
+        get
+        {
+            return edad;
+        }
+        set
+        {
+            edad = value;
+        }
+    }
+    public static bool operator !=(Sobrecarga_del_Operador_de_igualdad_y_desigualdad valor_izquierdo, Sobrecarga_del_Operador_de_igualdad_y_desigualdad valor_derecho)
+    {
+        if (valor_izquierdo.Edad != valor_derecho.Edad)
+        {
+            return true;
+        }
+
+        if (valor_izquierdo.Nombre != valor_derecho.Nombre)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public static bool operator ==(Sobrecarga_del_Operador_de_igualdad_y_desigualdad valor_izquierdo, Sobrecarga_del_Operador_de_igualdad_y_desigualdad valor_derecho)
+    {
+        if(valor_izquierdo.Edad!= valor_derecho.Edad)
+        {
+            return false;
+        }
+
+        if (valor_izquierdo.Nombre != valor_derecho.Nombre)
+        {
+            return false;
+        }
+
+        return true;
+    }
+    
+}

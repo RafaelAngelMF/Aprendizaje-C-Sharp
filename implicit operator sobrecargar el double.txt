@@ -1,0 +1,57 @@
+/// <summary>
+/// El uso de operator con la pabra implicit para redefinir el funcionamiento del double.
+/// Para este ejemplo de aprendisage se usa el teorema de Pitagoras.
+/// Lo mismo se puede hacer con los demas operadores de conversion.
+/// string, int, fload, byte, long, double y los demas que iran apareciendo en el camino del aprendizage.
+/// </summary>
+public class Conversion_implicita
+{
+    public static implicit operator double(Conversion_implicita valor_derecho)
+    {
+        double suma=(valor_derecho.x* valor_derecho.x) + (valor_derecho.y* valor_derecho.y);
+        double Distancia=System.Math.Sqrt(suma);//Funcion statica de la clase Math.
+        return Distancia;
+    }
+
+    private int x;
+
+    public int X
+    {
+        get
+        {
+            return x;
+        }
+        set
+        {
+            x = value;
+        }
+    }
+
+    private int y;
+
+    public int Y
+    {
+        get
+        {
+            return y;
+        }
+        set
+        {
+            y= value;
+        }
+    }
+}
+
+public class Principal
+{
+	public static void Main(){
+            Conversion_implicita  conversion_implicita = new Conversion_implicita();
+            conversion_implicita.X = 50;
+            conversion_implicita.Y = 30;
+            double Distancia_obtenida= conversion_implicita;
+            Console.WriteLine("La distancia es " + Distancia_obtenida);
+
+            System.Console.ReadLine();//Aqui funciona como pausa.
+	}
+
+}

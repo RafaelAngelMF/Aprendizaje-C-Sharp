@@ -1,0 +1,7 @@
+Lista de operadores que obligatoriamente deben sobrecargarse a la vez.
+
+== y != Igualdad y desigualdad.
+
+< y > Menor que y mayor que.
+
+<= y >= Menor igual que y mayor igual que.

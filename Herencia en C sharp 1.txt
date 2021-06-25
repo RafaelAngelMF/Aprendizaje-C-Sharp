@@ -1,0 +1,71 @@
+//Herencia en C# pagina 259.
+
+
+    /// <summary>
+    /// Clase bsae para las 2 dimenciones.
+    /// </summary>
+public class Dos_dimenciones
+{
+    private int x;
+    private int y;
+
+    public int X
+    {
+        get
+        {
+            return x;
+        }
+        set
+        {
+            x = value;
+        }
+    }
+
+    public int Y
+    {
+        get
+        {
+            return y;
+        }
+        set
+        {
+            y = value;
+        }
+    }
+}
+
+public class Tres_dimenciones: Dos_dimenciones
+{
+    private int z;
+
+    public int Z
+    {
+        get
+        {
+            return z;
+        }
+        set
+        {
+            z = value;
+        }
+    }
+}
+
+
+public class Principal
+{
+public static void Main()
+    {
+        Dos_dimenciones Dos_D = new Dos_dimenciones();
+        Dos_D.X = 12;
+        Dos_D.Y = 10;
+        Console.WriteLine("2D\nx="+ Dos_D.X + ", y="+ Dos_D.Y);
+
+        Tres_dimenciones Tres_D = new Tres_dimenciones();
+        Tres_D.X = 12;
+        Tres_D.Y = 10;
+        Tres_D.Z = 15;
+        Console.WriteLine("3D\nx=" + Tres_D.X + ", y=" + Tres_D.Y+", z="+ Tres_D.Z);
+    }
+
+}

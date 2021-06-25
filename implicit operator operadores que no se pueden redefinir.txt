@@ -1,0 +1,19 @@
+Lista de operadores no recargables.
+
+= Operador de asignacion.
+
+AND condicional (Que se usan en el if o switch)
+
+OR condicional (Que se usan en el if o switch)
+
+if (Si condicional para los bloques si entonces.)
+
+
+
+Palabras claves no recargables.
+
+new
+
+typeof
+
+is
