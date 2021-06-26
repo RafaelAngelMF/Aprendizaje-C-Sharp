@@ -1,0 +1,100 @@
+//Uso de la palabra clave "virtual" para hacer que los metodos se puedan redefinir en las clases descendientes(deribadas) descendientes.
+
+
+    /// <summary>
+    /// Clase base para las 2 dimenciones.
+    /// </summary>
+public class Dos_dimenciones
+{
+
+    /// <summary>
+    /// Se declara virtual para que pueda ser redefinido mediante la herencia.
+    /// </summary>
+    public virtual void Informe()
+    {
+        Console.WriteLine("Informe 2D");
+        Console.WriteLine("({0},{1})", x, y);
+    }
+
+    /// <summary>
+    /// Se declara protegido para heredearse, asi demostrar el uso de new.
+    /// </summary>
+    protected int x;
+    private int y;
+
+    public int X
+    {
+        get
+        {
+            return x;
+        }
+        set
+        {
+            x = value;
+        }
+    }
+
+    public int Y
+    {
+        get
+        {
+            return y;
+        }
+        set
+        {
+            y = value;
+        }
+    }
+}
+
+public class Tres_dimenciones: Dos_dimenciones
+{
+    /// <summary>
+    /// Se redefine su funcionamiento interno para que pueda dar un informe de las 3 dimenciones.
+    /// Ademas, al tener "override" en su declaracion entonces, puede ser redefinido en otras clases descendientes de esta (Tres_dimenciones).
+    /// Ademas, al tener "override" en su declaracion entonces, puede ser redefinido en otras clases descendientes de esta (Tres_dimenciones).
+    /// </summary>
+    public override void Informe()
+    {
+        Console.WriteLine("Informe 3D");
+
+        //Esta linea no me estaba tirando la informacion de la dimencion z pero la solucion fue compilar el proyecto antes de probarlo.
+
+        Console.WriteLine("{0}, {1}, {2}", X, Y, Z);    
+    }
+
+    /// <summary>
+    /// Se oculta el campo (variable) x de la clase base Dos_dimeciones.
+    /// Con la palabra clave "new".
+    /// </summary>
+    new public int x;
+
+    private int z;
+
+    public int Z
+    {
+        get
+        {
+            return z;
+        }
+        set
+        {
+            z = value;
+        }
+    }
+}
+
+public class Principal
+{
+	public static void Main()
+	{
+	    Dos_dimenciones DosD = new Dos_dimenciones();
+            DosD.X = 2; DosD.Y = 4;
+            DosD.Informe();
+
+            Tres_dimenciones TresD = new Tres_dimenciones();
+            TresD.X = 2; TresD.Y = 4; TresD.Z = 8;
+            TresD.Informe();
+            System.Console.ReadLine();//Aqui funciona como pausa.
+	}
+}
