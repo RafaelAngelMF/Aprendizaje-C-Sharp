@@ -1,0 +1,83 @@
+/// <summary>
+/// Esta clase sirve para demostrar el uso y efectos del polimorfismo.
+/// </summary>
+public class Polimorfismo
+{
+    private int x;
+
+    public int X
+    {
+        get
+        {
+            return x;
+        }
+        set
+        {
+            x = value;
+        }
+    }
+
+    private int y;
+
+    public int Y
+    {
+        get
+        {
+            return y;
+        }
+        set
+        {
+            y = value;
+        }
+    }
+
+    private int z;
+
+    public int Z
+    {
+        get
+        {
+            return z;
+        }
+        set
+        {
+            z = value;
+        }
+    }
+
+    /// <summary>
+    /// Puede ser redefinido en un descendiente (Clase derivada).
+    /// </summary>
+    public virtual void Informe()
+    {
+        Console.WriteLine("Eje x=" + x + ", eje y=" + y + ", eje z=" + z);
+    }
+
+    /// <summary>
+    /// Procedimiento que no se puede redefinir, el cual sirve para el ejemplo de polimorfismo.
+    /// </summary>
+    public void El_informe()
+    {
+        Informe();
+    }
+}
+
+public class Derivado_de_polimorfismo: Polimorfismo
+{
+    public override void Informe()
+    {
+        Console.WriteLine("La clase Derivado_de_polimorfismo informando de las coordenadas:");
+        Console.WriteLine("Eje x=" + X + ", eje y=" + Y + ", eje z=" + Z);
+    }
+}
+
+public class Principal
+{
+	//La primera letra de la palabra Main  va en mayuscula.
+	//El Main en c# va en mayuscula.
+	public static void Main()
+	{
+
+	}
+
+}

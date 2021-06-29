@@ -1,0 +1,9 @@
+/// <summary>
+/// Demostracion para declarar constantes.
+/// </summary>
+public class Uso_de_constantes
+{
+    public const string Autor = "Rafael Angel Montero Fernpandez";
+    public int Edad = 43;
+    public string Juego_favorito="ZERO-K";
+}

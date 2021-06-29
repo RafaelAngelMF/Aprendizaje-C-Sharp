@@ -1,0 +1,61 @@
+//No trae Main porque solo se quiere demostrar el uso de "abstract".
+
+/// <summary>
+/// Clase base abstracta que proporciano el metodo para devolver la formula.
+/// Pero debe ser implementado en las clases deribadas.
+/// </summary>
+public abstract class Base_abstracta
+{
+    public abstract double Area();
+}
+
+public class Cuadrado : Base_abstracta
+{
+
+    private int lado;
+
+    public int Lado
+    {
+        get
+        {
+            return lado;
+        }
+        set
+        {
+            lado = value;
+        }
+    }
+
+    /// <summary>
+    /// Lado elevado a 2 para el area del cuadrado.
+    /// </summary>
+    /// <returns></returns>
+    public override double Area()
+    {
+        return Math.Pow(lado , 2) ;
+    }
+}
+
+public class Circunferencia:Base_abstracta
+{
+    private readonly double PI = 3.14;//3.14 pero es int, debe ser un double.
+
+    private int radio;
+
+    public int Radio
+    {
+        get
+        {
+            return radio;
+        }
+        set
+        {
+            radio = value;
+        }
+    }
+
+    public override double Area()
+    {
+        return PI * Math.Pow(radio, 2);//Radio elevado a 2.
+    }
+}
