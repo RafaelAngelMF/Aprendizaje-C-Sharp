@@ -1,0 +1,73 @@
+//No se usa Main porque lo que se quiere es demostrar el uso de la palabra cleve "base".
+
+public class Usar_palabra_clave_Base
+{
+    public Usar_palabra_clave_Base()
+    {
+        nombre = "";
+        se_mueve = true;
+    }
+
+    public Usar_palabra_clave_Base(string nuevo_nombre, bool nuevo_se_mueve)
+    {
+        nombre = nuevo_nombre;
+        se_mueve = nuevo_se_mueve;
+    }
+
+    private string nombre;
+    public string Nombre
+    {
+        get
+        {
+            return nombre;
+        }
+        //set
+        //{
+        //    nombre = value;
+        //}
+    }
+    private bool se_mueve;
+    public bool Se_mueve
+    {
+        get
+        {
+            return se_mueve;
+        }
+        //set
+        //{
+        //    se_mueve = value;
+        //}
+    }
+    
+}
+
+public class Descendiente_de_base: Usar_palabra_clave_Base
+{
+    private int puntos;
+
+    /// <summary>
+    /// Constructor que ejemplifica como usar la palabra clave base con parametros.
+    /// </summary>
+    /// <param name="nuevos_puntos"></param>
+    /// <param name="nuevo_nombre"></param>
+    /// <param name="nuevo_se_mueve"></param>
+    public Descendiente_de_base(int nuevos_puntos, string nuevo_nombre, bool nuevo_se_mueve) : base(nuevo_nombre, nuevo_se_mueve)
+    {
+        puntos = nuevos_puntos;
+    }
+
+    /// <summary>
+    /// Constructor bacio que llama al constructor bacio de la clase base.
+    /// </summary>
+    public Descendiente_de_base() : base()
+    {
+
+    }
+
+    /*Conclusiones:
+     * La pabra clave base es como el super en Java.
+     * Ademas, para colocarlo hay que poner 2 puntos y luego la palabra base.
+     * 
+     * 
+     * */
+}
