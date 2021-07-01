@@ -1,0 +1,19 @@
+/// <summary>
+/// Se puede tener la cantidad que sea necesaria de clases anidadas.
+/// </summary>
+public class Clase
+{
+
+    public void Mensaje()
+    {
+        Console.WriteLine("Soy un class que contiene una o muchas clases anidadas.");
+    }
+
+    public class Clase_anidada
+    {
+        public void Mensaje()
+        {
+            Console.WriteLine("Soy un class anidado.");
+        }
+    }
+}

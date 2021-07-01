@@ -1,0 +1,17 @@
+/// <summary>
+/// Con la palabra clave "sealed" estoy indicando que no se puede heredar.
+/// </summary>
+sealed class Clase_sellada_no_deribable
+{
+    public const string No_herdable = "No se puede heredar.";
+}
+
+
+///// <summary>
+///// Este class se incluye como prueba, esta en modo comentario.
+///// Para probar que no se puede heredar, quite el comentario.
+///// </summary>
+//public class Intentando_heredar : Clase_sellada_no_deribable
+//{
+
+//}

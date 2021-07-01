@@ -1,0 +1,104 @@
+/// <summary>
+    /// Ejemplo de contencion
+    /// Dentro de este class estan 3 clases que demuestran el uso de la delegacion y un poco de polimorfismo.
+    /// No sabia que yo ya sabia delegar.
+    /// Lo habia hecho durante años sin saber como se llamaba esta tecnica.
+    /// Se usa este tecnica porque no se puede realizar herencia multiple de clases abstractas o clases normales.
+    /// Solo se acepta la herencia multiplo en interfaces.
+    /// </summary>
+public class Delegar_en_lugar_de_heredar
+{
+    public class Reloj
+    {
+        protected bool OnOff=false;
+
+        /// <summary>
+        /// Se puede redefinir
+        /// </summary>
+        public virtual void Sonar_alarma()
+        {
+            if (!OnOff)
+            {
+                Console.WriteLine("Sonando alarma");
+            }
+            else
+            {
+                Console.WriteLine("Alarma apagada");
+            }
+            
+        }
+    }
+
+    public class Radio
+    {
+        protected bool activar_radio = false;
+
+        public bool Activar_radio
+        {
+            get
+            {
+                return activar_radio;
+            }
+            set
+            {
+                activar_radio = value;
+            }
+        }
+
+        public void Sonar_radio()
+        {
+            if (!activar_radio)
+            {
+                Console.WriteLine("Radio sonando musica.");
+            }
+            else
+            {
+                Console.WriteLine("Radio apagado.");
+            }
+        }
+    }
+
+
+    /// <summary>
+    /// Simulacion de herencia multiple.
+    /// </summary>
+    public class RadioReloj : Reloj
+    {
+        /// <summary>
+        /// Delegando Radio.
+        /// </summary>
+        public void Ensender_radio()
+        {
+            radio.Activar_radio = true;
+        }
+
+        /// <summary>
+        /// Delegando Radio.
+        /// </summary>
+        public void Apagar_radio()
+        {
+            radio.Activar_radio = false;
+        }
+
+        public RadioReloj()
+        {
+            radio=new Radio();
+            
+        }
+
+        private Radio radio;
+
+        public override void Sonar_alarma()
+        {
+            OnOff = radio.Activar_radio;
+            if (!radio.Activar_radio)
+            {
+                radio.Sonar_radio();
+            }
+            else
+            {
+                this.Sonar_alarma();
+            }
+        }
+    }
+}

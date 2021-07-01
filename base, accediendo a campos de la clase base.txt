@@ -1,0 +1,38 @@
+/// <summary>
+/// Demostracion de como acceder a propiedades y demas objetos de la clase base.
+/// </summary>
+public class Acceder_a_miebros_de_la_clase_base
+{
+    private int x;
+
+    public int X
+    {
+        get
+        {
+            return x;
+        }
+        set
+        {
+            x = value;
+        }
+    }
+}
+
+public class Accediendo_a_base: Acceder_a_miebros_de_la_clase_base
+{
+    /// <summary>
+    /// Forma de acceder a propiedades, metodos y otros objetos del class base.
+    /// </summary>
+    public void Acceder()
+    {
+        base.X = 12;
+    }
+
+    /// <summary>
+    /// Constructor de este class y ademas se llama al constructor de la clase base.
+    /// </summary>
+    public Accediendo_a_base() : base()
+    {
+
+    }
+}
