@@ -1,0 +1,5 @@
+
+Boxing=Permite convertir un numero o un texto en un objeto.
+43.ToString();
+
+UnBoxing=Permite revertir, o sea convertir un objeto en un numero o en texto.
