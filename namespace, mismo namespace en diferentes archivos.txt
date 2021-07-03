@@ -1,0 +1,21 @@
+El mismo namespace puede ser declarado en diferentes archivos, esto al compilarlo, hace que todas las clases dentro de ese namespace queden en una sola carpeta o contenedor.
+
+Primer archivo X.cs
+
+namespace grupal
+{
+	public class A
+	{
+		public double cantidad_de_dinero=999000;//Novecientos noventa y nueve mil.
+	}
+}
+
+En otro archivo llamado Y.cs
+
+namespace grupal
+{
+	public class B
+	{
+		public double dinero_ahorrado=9000000;//Nueve millones.
+	}
+}

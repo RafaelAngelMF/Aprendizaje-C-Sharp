@@ -1,0 +1,26 @@
+namespace Espacio_de_nombres_superior
+{
+    public class A
+    {
+        public String Nombre = "";
+    }
+
+    namespace Espacio_de_nombres_anidado
+    {
+        public class A
+        {
+            public int Edad = 0;
+        }
+
+    }
+}
+
+
+//Declaracion alternativa de un namespace anidado.
+namespace Espacio_de_nombres_superior.Espacio_de_nombres_anidado_forma_alterna
+{
+    public class A
+    {
+        public double Estatura = 1.75;
+    }
+}

@@ -1,0 +1,46 @@
+//Ejemplo para llamar una clase que esta en otro namespace.
+//Pagina 287 de La Biblia Del C#.
+
+
+namespace Un_Namespace
+{
+    public class Angel
+    {
+        private const String Mi_nombre = "Rafael Angel ";
+
+        /// <summary>
+        /// Llamando un class de otro namespace.
+        /// </summary>
+        /// <returns></returns>
+        public String getNombre()
+        {
+            Otro_Namespace.Clase_extranjera mis_apellidos = new Otro_Namespace.Clase_extranjera();
+            mis_apellidos.Apellidos = "Montero Fernández";
+            return Mi_nombre + mis_apellidos.Apellidos;
+        }
+
+    }
+}
+
+namespace Otro_Namespace
+{
+    /// <summary>
+    /// Este class es llamado desde otro class que esta en otro namespace.
+    /// </summary>
+    public class Clase_extranjera
+    {
+        private String apellidos = "";
+
+        public String Apellidos
+        {
+            get
+            {
+                return apellidos;
+            }
+            set
+            {
+                apellidos = value;
+            }
+        }
+    }
+}

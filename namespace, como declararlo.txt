@@ -1,0 +1,22 @@
+//Como declarar espacios de nombres
+//Los espacios de nombres pueden contaner clases con el mismo nombre, siempre y cuando esten en diferentes espacios de nombres.
+
+
+namespace Mi_primer_espacio_de_nombres
+{
+
+	public class A
+	{
+		public int X=0;
+	}
+
+} //Final del namespace
+
+namespace Mi_segundo_espacio_de_nombres
+{
+	public class A
+	{
+		public int Y=0;
+	}
+
+} //Final del namespace
