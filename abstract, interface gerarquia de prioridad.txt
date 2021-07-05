@@ -1,0 +1,64 @@
+/*
+En este ejemplo se muestra la gerarquia de prioridad entre abstract e interface.
+
+*/
+
+namespace gerarquia_de_prioridad_entre_abstract_e_implements
+{
+    public abstract class Propiedades
+    {
+        private string nombre = "";
+        public string Nombre
+        {
+            get
+            {
+                return nombre;
+            }
+            set
+            {
+                nombre = value;
+            }
+        }
+        private int puntos_obtenidos = 0;
+        public int Puntos_obtenidos
+        {
+            get
+            {
+                return puntos_obtenidos;
+            }
+            set
+            {
+                puntos_obtenidos = value;
+            }
+        }
+
+        public abstract string Informe();
+    } //Fin de abstract class Propiedades
+
+    public interface Procedimientos
+    {
+        void Obtener_puntos();
+        void Perder_puntos();
+    } //Fin de interface Procedimientos
+
+    /// <summary>
+    /// Primero se implementa la clase abstracta (abstract) y luego la interface (interface).
+    /// </summary>
+    public class Jugador : Propiedades, Procedimientos
+    {
+        public override string Informe()
+        {
+            return "El jugador " + Nombre + " obtuvo " + Puntos_obtenidos + " puntos.";
+        }
+
+        public void Obtener_puntos()
+        {
+            Puntos_obtenidos++;
+        }
+
+        public void Perder_puntos()
+        {
+            Puntos_obtenidos--;
+        }
+    } //Fin de class Jugador
+} //Fin del namespace gerarquia_de_prioridad_entre_abstract_e_implements

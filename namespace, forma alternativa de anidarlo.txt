@@ -24,3 +24,5 @@ namespace Espacio_de_nombres_superior.Espacio_de_nombres_anidado_forma_alterna
         public double Estatura = 1.75;
     }
 }
+
+//La palabra using es una directiva de espacio de nombre.

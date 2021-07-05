@@ -1,0 +1,87 @@
+//Llamando un class que esta dentro de un namespace que esta anidado en otro namespace.
+
+/// <summary>
+/// En este namespace se llama un class que esta en otro namespace, el cual esta anidado 
+/// dentro de un namespace.
+/// se usan varias formas de llamado.
+/// Como extra, va un ejemplo de herencia, con la gerarquia de prioridad entre abstract e 
+/// interface, es primero abstract y luego interface.
+/// </summary>
+namespace pagina_287
+{
+
+    public class Escenario
+    {
+        tengo_el_namespace_anidado.tengo_el_class.Tanque tanque = new tengo_el_namespace_anidado.tengo_el_class.Tanque();
+        Robot robot = new Robot();
+
+        public void Iniciar_movimiento()
+        {
+            tanque.Mover();
+            robot.Mover();
+        }
+    }
+
+    public class Robot : tengo_el_namespace_anidado.tengo_el_class.Unidad, tengo_el_namespace_anidado.tengo_el_class.Procedimientos
+    {
+        
+        public void Detener()
+        {
+            this.se_mueve = false;
+        }
+
+        public void Disparar()
+        {
+             //No dispara.
+        }
+
+        public void Mover()
+        {
+            this.se_mueve = true;
+        }
+    }
+} //Fin del namespace pagina_287
+
+namespace tengo_el_namespace_anidado
+{
+    namespace tengo_el_class
+    {
+        public abstract class Unidad
+        {
+            protected Boolean se_mueve = false;
+            protected Boolean esta_vivo = false;
+            protected Boolean llego_al_objetivo = false;
+            protected Boolean impacto = false;
+        }
+
+        public interface Procedimientos
+        {
+            void Mover();
+            void Detener();
+            void Disparar();
+        }
+
+        public class Tanque : Unidad, Procedimientos
+        {
+            private Boolean disparar = false;
+
+            public void Detener()
+            {
+                this.se_mueve = false;
+            }
+
+            public void Disparar()
+            {
+                this.disparar = true;
+            }
+
+            public void Mover()
+            {
+                this.se_mueve = true;
+            }
+        }
+    } //Fin del namespace tengo_el_class
+
+} //Fin del namespace tengo_el_namespace_anidado
+
+//La palabra using es una directiva de espacio de nombre.

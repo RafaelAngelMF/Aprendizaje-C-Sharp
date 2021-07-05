@@ -1,0 +1,90 @@
+//Usando alias en namespace
+
+//La palabra using es una directiva de espacio de nombre.
+
+//Ademas, aunque el namespace este anidado si se quiere obtener este efecto se debe declarar tambien con using aunque sea en el mismo archivo.
+
+//Ademas, siempre que se llama a un namespace en el encavezado del archivo se debe usar "using" antes del nombre del namespace.
+
+//Ademas las llamadas a los namespaces deben declararse fuera de de los espacios de nombres en el inicio o encavezado de los archivos de codigo.
+
+// Sirve para hacer referencia unicamente a un class.
+using UnX = PracticandoCSharp.Uno.X;
+
+// Sirve para hacer referencia unicamente a un class.
+using UnY = PracticandoCSharp.Dos.Y;
+
+//Sirve para hacer referencia a todo lo que exista dentro del namespace.
+using PracticandoCSharp.Tres;
+
+//Se le pone un alias corto a todo el namespace.
+using t3=PracticandoCSharp.Tres;
+
+namespace PracticandoCSharp
+{
+    namespace Uno
+    {
+        public class X
+        {
+            public string getX()
+            {
+                return "X";
+            }
+        }
+    } //Fin del namespace Uno
+
+    namespace Dos
+    {
+        public class Y
+        {
+            public string getY()
+            {
+                return "Y";
+            }
+        }
+    } //Fin del namespace Dos
+
+    namespace Tres
+    {
+        public class Z
+        {
+            public string getZ()
+            {
+                return "Z";
+            }
+        }
+
+        public class Piramide
+        {
+            public string getPiramide()
+            {
+                return "Piramide";
+            }
+        }
+    } //Fin del namespace Tres
+
+    public class Ejecutando_ejemplo
+    {
+        public void Ejemplo()
+        {
+            //Clases en diferentes namespaces llamados con un alias.
+            UnX cx = new UnX();
+            Console.WriteLine( cx.getX() );
+
+            UnY cy = new UnY();
+            Console.WriteLine( cy.getY() );
+
+
+            //Clases en el nemespace llamado en forma normal.
+            Z cz = new Z();
+            Console.WriteLine(cz.getZ());
+
+            Piramide piramide = new Piramide();
+            Console.WriteLine(piramide.getPiramide());
+
+            //Un ultimo ejemplo
+            t3.Piramide p = new t3.Piramide();
+            t3.Z z3 = new t3.Z();
+        }
+    }
+}//Fin del namespace PracticandoCSharp

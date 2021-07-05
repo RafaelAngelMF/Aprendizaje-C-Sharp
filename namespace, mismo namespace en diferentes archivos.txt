@@ -19,3 +19,5 @@ namespace grupal
 		public double dinero_ahorrado=9000000;//Nueve millones.
 	}
 }
+
+//La palabra using es una directiva de espacio de nombre.

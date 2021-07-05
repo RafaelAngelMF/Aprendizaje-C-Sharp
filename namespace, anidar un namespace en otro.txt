@@ -21,3 +21,4 @@ namespace Mi_primer_espacio_de_nombres
 
 } //Final del primer namespace
 
+//La palabra using es una directiva de espacio de nombre.
