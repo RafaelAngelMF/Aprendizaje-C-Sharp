@@ -1,0 +1,16 @@
+public interface Definidr_un_evento
+    {
+        /// <summary>
+        /// Evento definido en una interface.
+        /// Sucede cuando se llama a Sumar.
+        /// </summary>
+        event EventHandler Evento;
+
+        /// <summary>
+        /// Procedimiento sumar.
+        /// </summary>
+        /// <param name="uno"></param>
+        /// <param name="dos"></param>
+        /// <returns></returns>
+        int Sumar(int uno, int dos);
+    }

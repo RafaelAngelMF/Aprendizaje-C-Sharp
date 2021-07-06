@@ -1,0 +1,47 @@
+/// <summary>
+    /// Los indizadores permiten acceder a datos en un class como si se tratara de una matriz
+    /// (Hace que el class se comporte como una matriz).
+    /// 
+    /// Un class, una interface, un struct o un abstract pueden tener varios indizadores pero 
+    /// cada uno debe tener diferente cantidad de parametros para que puedan coexistir.
+    /// 
+    /// </summary>
+    public interface Definir_indizadores
+    {
+        /// <summary>
+        /// Indizador de escritura lectura.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        int this[int index]
+        {
+            set;
+            get;
+        }
+
+        /// <summary>
+        /// Le puse 2 parametros para poderlo definir la misma interfaz.
+        /// Indizador de solo escritura.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="clave"></param>
+        /// <returns></returns>
+        string this[int index,string clave]
+        {
+            set;
+        }
+
+        /// <summary>
+        /// indizador de solo lectura.
+        /// 3 parametros para poderlo definir en la misma interfaz.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="valor"></param>
+        /// <param name="clave"></param>
+        /// <returns></returns>
+        double this[int index, double valor, string clave]
+        {
+            get;
+        }
+
+    }

@@ -1,0 +1,40 @@
+/// <summary>
+    /// Interfaces que heredan de interfaces (Derivar de interfaces).
+    /// Importante, las interfaces en sus definiciones no llevan la palabra clave "public", 
+    /// ya que por defecto las definiciones contenidas en una interface son publicas.
+    /// Ademas, la misma interface es publica por si misma no necesita la pabra clave "public"
+    /// cuando se declara.
+    /// </summary>
+    interface Favorito
+    {
+        string Juego_favorito();
+    }
+
+    interface Tiempo
+    {
+        int Horas
+        {
+            get;
+            set;
+        }
+    }
+
+    interface Detalles
+    {
+        string Comentarios
+        {
+            set;
+            get;
+        }
+    }
+
+     interface Derivando_de_otras_interfaces: Favorito, Tiempo, Detalles
+    {
+        string Donde_conocio_el_juego
+        {
+            get;
+            set;
+        }
+
+        double Precio();
+    }

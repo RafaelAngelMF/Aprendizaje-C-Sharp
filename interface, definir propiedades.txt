@@ -1,0 +1,23 @@
+/// <summary>
+    /// Esta interface deberia empezar con la letra "i" ya que se usa como nomenclatura de interface en C#.
+    /// Pero esa nomenclatura es opcional.
+    ///En esta interface se esta definiendo propiedades, se esta mostrando como declarar propiedades en un interfaz.
+    /// </summary>
+    public interface Definir_propiedades
+    {
+        string Propiedad_de_escritura_lectura
+        {
+            get;
+            set;
+        }
+
+        int Propiedad_de_solo_lectura
+        {
+            get;
+        }
+
+        double Propiedad_de_solo_escritura
+        {
+            set;
+        }
+    }
