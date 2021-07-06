@@ -1,0 +1,27 @@
+//Ejemplo de la palabra clave using. Para llamar todo un namespace. De la pagina 293 de la Biblia del C#.
+using Ejemplo_de_la_pagina_293;
+
+namespace Ejemplo_de_la_pagina_293
+{
+    public struct Novia
+    {
+        public int Edad;
+        public double Estatura;
+        public string Tiempo_de_noviasgo;
+    }
+}
+
+namespace Ejecutando_ejemplo
+{
+    public class Relacion_con_mi_novia
+    {
+        public void Generar_relacion()
+        {
+            //Se llama directamente al class que esta en otro namespace porque ya se usó la palanbra clave using para llamar al namespace.
+            Novia MiNovia = new Novia(); 
+            MiNovia.Edad = 45;
+            MiNovia.Estatura = 1.75;
+            MiNovia.Tiempo_de_noviasgo = "9 meces de noviasgo.";
+        }
+    }
+}
