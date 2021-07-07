@@ -1,0 +1,101 @@
+
+//Se usa un alias.
+using Consultar_objeto = Consultar_un_objeto_por_una_interfaz_310.Analizador;
+
+namespace El_main{
+
+	public class Principal{
+		public static void Main()
+		{
+			Consultar_objeto interfaz_vs_class = new Consultar_objeto();
+            		interfaz_vs_class.Acepta_la_interfaz_o_no();
+            		System.Console.ReadLine();//Aqui funciona como pausa.
+		}
+	}
+}
+
+
+/// <summary>
+    /// Permite comprobar si un objeto admite una interface o no.
+    /// Por medio de la palabra clave "is".
+    /// Pagina 311 de la biblia del C#.
+    /// </summary>
+    namespace Consultar_un_objeto_por_una_interfaz_310
+    {
+        interface Anfibio
+        {
+            void Canta();
+        }
+
+        /// <summary>
+        /// Esta clase no hereda de la interfaz Anfibio.
+        /// Pero tiene un metodo llamado Canta(), igual que la interfaz.
+        /// </summary>
+        public class Rana_terrestre
+        {
+            public void Canta()
+            {
+                System.Console.WriteLine("Cantando");
+            }
+        } //Fin del class Rana_terrestre
+
+        public class Rana_de_arbol : Anfibio
+        {
+            public void Canta()
+            {
+                System.Console.WriteLine("Silvando muy agudo cada 30 segundos o cada minuto.");
+            }
+        } //Fin del class class Rana_de_arbol
+
+        public class Analizador
+        {
+            /// <summary>
+            /// Comprobando que ambos objetos de diferentes clases sean descendientes de la interfaz.
+            /// 
+            /// </summary>
+            public void Acepta_la_interfaz_o_no()
+            {
+                Rana_de_arbol anfibio_de_arbol = new Rana_de_arbol();
+                Rana_terrestre anfibio_terrestre = new Rana_terrestre();
+
+                const string SI_DESCIENDE= "si es un descendiente de la interfaz Anfibio.";
+                const string NO_DESCIENDE = "no desciendo de la interfaz Anfibio.";
+
+                if (Comprobar(anfibio_de_arbol) == true)
+                {
+                    System.Console.WriteLine("anfibio_de_arbol " + SI_DESCIENDE);
+                }
+                else
+                {
+                    System.Console.WriteLine("anfibio_de_arbol " + NO_DESCIENDE);
+                }
+
+                if (Comprobar(anfibio_terrestre) == true)
+                {
+                    System.Console.WriteLine("anfibio_terrestre " + SI_DESCIENDE);
+                }
+                else
+                {
+                    System.Console.WriteLine("anfibio_terrestre " + NO_DESCIENDE);
+                }
+            }
+
+            /// <summary>
+            /// Funcion privada para comprobar el objeto que se le pase.
+            /// </summary>
+            /// <param name="un_objeto"></param>
+            /// <returns></returns>
+            private bool Comprobar(Object un_objeto)
+            {
+                if(un_objeto is Anfibio)
+                {
+                    Anfibio un_anfibio;
+                    un_anfibio = (Anfibio)un_objeto;
+                    un_anfibio.Canta();
+                    return true;
+                }
+                return false;
+            }
+        }
+
+    } //Fin del namespace Consultar_un_objeto_por_una_interfaz_310

@@ -1,0 +1,63 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PracticandoCSharp
+{
+
+    interface Bombillo
+    {
+        string Color_de_luz();
+    }
+
+    interface Foco
+    {
+        bool Encender();
+        bool Apagar();
+    }
+
+    public class Lampara : Foco, Bombillo
+    {
+        private bool encendido = false;
+
+        public bool Apagar()
+        {
+            encendido = false;
+            return encendido;
+        }
+
+        public string Color_de_luz()
+        {
+            return "Neon";
+        }
+
+        public bool Encender()
+        {
+            encendido = true;
+            return encendido;
+        }
+    }
+
+    /// <summary>
+    /// En C# se puede crear una instancia de una interfaz.
+    /// </summary>
+    class Crear_un_objeto_de_una_interfaz
+    {
+        public void Usar_lampara()
+        {
+            //Se puede crear un objeto de una interfce pero no una instancia.
+            //Lo que se realiza es cargar el objeto con algun objeto de un class que haya implementado esa interface.
+            Bombillo bombillo; //Objeto de interface
+            Foco foco; //Objeto de interface
+            Lampara lampara = new Lampara(); //Objeto e instancia de un class.
+
+            foco = lampara; 
+            System.Console.WriteLine("Estado de la lampara " + foco.Encender());
+
+            bombillo = lampara;
+            System.Console.WriteLine("Color de la luz " + bombillo.Color_de_luz());
+        }
+    }
+}

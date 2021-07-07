@@ -1,0 +1,44 @@
+/// <summary>
+    /// Como implementar 2 interfaces diferentes con el mismo nombre de procedimiento.
+    /// </summary>
+    namespace Procedimiento_con_mismo_nombre_en_diferentes_interfaces
+    {
+        interface Planeta
+        {
+            double Gravedad();
+        }
+
+        interface Galaxia
+        {
+            double Gravedad();
+        }
+
+        /// <summary>
+        /// Al existir 2 interfaces con el mismo 
+        /// procedimiento se debe implementar de forma explicita (No lleva la palabra public).
+        /// Ademas se debe poner el nombre de la 
+        /// interfaz a la que pertenece el procedimiento(double Planeta.Gravedad()).
+        /// 
+        /// Ipoteticamente se esta creando el class Planetoide que representa un planetoide, su gravedad varia entre 0.3 y 0.5.
+        /// </summary>
+        public class Planetoide : Planeta, Galaxia
+        {
+            /// <summary>
+            /// implementacion explicita.
+            /// </summary>
+            /// <returns></returns>
+            double Planeta.Gravedad()
+            {
+                return 0.3;
+            }
+
+            /// <summary>
+            /// Implementacion explicita.
+            /// </summary>
+            /// <returns></returns>
+            double Galaxia.Gravedad()
+            {
+                return 0.5;
+            }
+        }
+    } //namespace Procedimiento_con_mismo_nombre_en_diferentes_interfaces
