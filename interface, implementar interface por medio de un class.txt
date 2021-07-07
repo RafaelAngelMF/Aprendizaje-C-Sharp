@@ -1,0 +1,72 @@
+namespace Implementar_interfaces_con_una_clase
+    {
+        interface Gusano_plano_1
+        {
+            string Alimentos_en_el_estomago();
+
+            void Comer(string alimento);
+
+            bool esqueleto_interno
+            {
+                get;
+            }
+
+            bool Es_acuatico
+            {
+                get;
+                set;
+            }
+
+            int Longitud
+            {
+                set;
+            }
+        }
+
+        public class Pes_primigenio : Gusano_plano_1
+        {
+            public bool esqueleto_interno => true;
+
+            /// <summary>
+            /// Propiedad de solo lectura.
+            /// Cuando una propiedad se hereda de una interface, la sintaxis cambia un poco.
+            /// </summary>
+            private bool es_acuatico = true;
+
+            /// <summary>
+            /// Propiedad de lectura escritura.
+            /// Cuando una propiedad se hereda de una interface, la sintaxis cambia un poco.
+            /// </summary>
+            public bool Es_acuatico { get => es_acuatico; set => es_acuatico=value; }
+
+            private int longitud=5;
+
+            /// <summary>
+            /// Propiedad de solo escritura.
+            /// Cuando una propiedad se hereda de una interface, la sintaxis cambia un poco.
+            /// </summary>
+            public int Longitud { set => longitud=value; }
+
+            private string estomago = "";
+
+            /// <summary>
+            /// Procedimiento no retorna datos.
+            /// </summary>
+            /// <param name="alimento"></param>
+            public void Comer(string alimento)
+            {
+                estomago += "Contiene: " + alimento + "\n";
+                System.Console.WriteLine("Estoy comiendo " + alimento);
+            }
+
+
+            /// <summary>
+            /// Funcion si retorna datos.
+            /// </summary>
+            /// <returns></returns>
+            public string Alimentos_en_el_estomago()
+            {
+                return estomago;
+            }
+        }
+    } //Fin del namespace Implementar_interfaces_con_una_clase

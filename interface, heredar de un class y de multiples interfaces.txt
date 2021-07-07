@@ -1,0 +1,129 @@
+namespace Heredar_de_otro_class_y_de_multiples_interfaces
+    {
+        interface Escenario
+        {
+            /// <summary>
+            /// Recordar que cuando se implementa una propiedad heredada de una 
+            /// interface, la sintaxis es un poco diferente.
+            /// </summary>
+            int Tamaño_del_mapa
+            {
+                set;
+                get;
+            }
+
+            int Cantidad_de_jugadores
+            {
+                get;
+            }
+        } //Fin de interface Escenario
+
+        interface Jugadores
+        {
+            string Nombre_del_jugador_1
+            {
+                set; get;
+            }
+
+            string Nombre_del_jugador_2
+            {
+                set; get;
+            }
+
+
+            bool jugador1_gano();
+            bool jugador2_gano();
+
+        } //Fin de interface Jugador
+
+        interface Facciones
+        {
+            string Nombre_de_la_faccion_1();
+
+            string Nombre_de_la_faccion_2();
+
+            int Total_de_unidades
+            {
+                set; get;
+            }
+
+            int Cantidad_de_unidades_activas();
+
+        } //Fin de interface Faccion
+
+        public class Una_clase_normal
+        {
+            public string Instrucciones()
+            {
+                return "Es un juego por turnos tipo risk.";
+            }
+        } //Fin del class Una_clase_normal
+
+        public class Juego : Una_clase_normal, Escenario, Facciones, Jugadores
+        {
+
+            public Juego()
+            {
+                //Llamando la funcion del class llamado "Una_clase_normal".
+                System.Console.WriteLine(Instrucciones());
+            }
+
+            string jugador1 = "Angel", jugador2 = "Sharkyc12";
+
+            public string Nombre_del_jugador_1
+            {
+                get => jugador1;
+                set => jugador1 = value;
+            }
+
+            public string Nombre_del_jugador_2
+            {
+                get => jugador2;
+                set => jugador2 = value;
+            }
+
+            private int totlal_de_unidades = 100 / 2;
+
+            public int Total_de_unidades
+            {
+                get => totlal_de_unidades;
+                set => totlal_de_unidades = value;
+            }
+
+            private int tamaño_del_mapa = 12 * 12;
+
+            public int Tamaño_del_mapa
+            {
+                get => tamaño_del_mapa;
+                set => tamaño_del_mapa = value;
+            }
+
+            public int Cantidad_de_jugadores => 2;
+
+            public int Cantidad_de_unidades_activas()
+            {
+                return 43;
+            }
+
+            public bool jugador1_gano()
+            {
+                return false;
+            }
+
+            public bool jugador2_gano()
+            {
+                return true;
+            }
+
+            public string Nombre_de_la_faccion_1()
+            {
+                return "La montaña";
+            }
+
+            public string Nombre_de_la_faccion_2()
+            {
+                return "Heredia";
+            }
+        } //Fin del class Juego
+
+    } //Fin del namespace Heredar_de_otro_class_y_de_multiples_interfaces

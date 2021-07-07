@@ -1,0 +1,33 @@
+/// <summary>
+    /// interface base con una propiedad llamada "Alimentarse".
+    /// </summary>
+    interface Gusano_plano
+    {
+        /// <summary>
+        /// Esta propiedad será ocultada en otra interface derivada.
+        /// </summary>
+        string Alimentarse
+        {
+            get;
+            set;
+        }
+    }
+
+    /// <summary>
+    /// Esta interface oculta la Propiedad "Alimentarse" de la 
+    /// interface base "Gusano_plano", por medio de la palabra clave "new".
+    /// </summary>
+    interface Pes : Gusano_plano
+    {
+        /// <summary>
+        /// Ocultando la propiedad de la interface base, 
+        /// colocando una funcion con el mismo nombre (Alimentarse).
+        /// </summary>
+        /// <returns></returns>
+        new string Alimentarse();
+
+        bool Tiene_aletas
+        {
+            get;
+        }
+    }
