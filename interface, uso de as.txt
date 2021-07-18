@@ -1,0 +1,88 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PracticandoCSharp
+{
+    class Uso_de_as
+    {
+
+        /// <summary>
+        /// Todo en un solo procedimiento.
+        /// </summary>
+        public void Probar()
+        {
+            Otro_mensaje m1 = new Otro_mensaje();
+            Un_mensaje m2 = new Un_mensaje();
+            object obj;
+            obj = m1;
+            lanzar_mensaje Descendiente;
+            Descendiente = obj as lanzar_mensaje;
+            if (Descendiente != null)
+            {
+                Descendiente.Mensaje();
+            }
+
+            obj = m2;
+            Descendiente = obj as lanzar_mensaje;
+            if (Descendiente != null)
+            {
+                Descendiente.Mensaje();
+            }
+        }
+
+        public class Demostracion
+        {
+            /// <summary>
+            /// Comprobando que las clases sean descendientes de la interfaz 
+            /// con la palabra clave "as"
+            /// 
+            /// </summary>
+            public void Probando_descendiente()
+            {
+                Otro_mensaje m1 = new Otro_mensaje();
+                Comprobar(m1);
+                Un_mensaje m2 = new Un_mensaje();
+                Comprobar(m2);
+            }
+
+            /// <summary>
+            /// Metodo privado para analizar los objetos, 
+            /// comprobando que sean descendientes de la intefaz.
+            /// </summary>
+            /// <param name="obj"></param>
+            private void Comprobar(object obj)
+            {
+                lanzar_mensaje Descendiente;
+                Descendiente = obj as lanzar_mensaje;
+                if (Descendiente != null)
+                {
+                    Descendiente.Mensaje();
+                }
+            }
+        }
+
+        interface lanzar_mensaje
+        {
+            void Mensaje();
+        }
+
+        public class Otro_mensaje
+        {
+            public void Mensaje()
+            {
+                System.Console.WriteLine("Esto es otro mensaje.");
+            }
+        }
+
+        public class Un_mensaje : lanzar_mensaje
+        {
+            public void Mensaje()
+            {
+                System.Console.WriteLine("Soy descendiente de lanzar_mensaje");
+            }
+        }
+    }
+}
