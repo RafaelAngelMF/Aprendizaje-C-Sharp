@@ -1,0 +1,27 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PracticandoCSharp
+{
+    class UsandoiDispose : IDisposable
+    {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public UsandoiDispose()
+        {
+
+        }
+
+        /// <summary>
+        /// Metodo que se puede usar para limpiar la memoria de las instancias de este class.
+        /// </summary>
+        public void Dispose()
+        {
+            //Ponga codigo de comprobacion de limpieza aqui.
+        }
+    }
+}

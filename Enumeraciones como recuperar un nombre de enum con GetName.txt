@@ -1,0 +1,42 @@
+    public enum Estados_de_la_unidad
+    {
+        Viva=1,
+        Muerta=2,
+        Activa=3,
+        Desactivada=4
+    }
+
+    public class Usar_operadores_con_enumeraciones
+    {
+        /// <summary>
+        /// Variable privada de la enumeracion Estados_de_la_unidad.
+        /// </summary>
+        private Estados_de_la_unidad estado;
+
+        /// <summary>
+        /// Propiedad de la enumeracion Estados_de_la_unidad.
+        /// </summary>
+        public Estados_de_la_unidad Estado
+        {
+            set
+            {
+                estado = value;
+            }
+            get
+            {
+                return estado;
+            }
+        }
+
+        /// <summary>
+        /// Demostracion acerca de como recuperar el nombre de un item de la enumeracion 
+        /// por medio de GetName.
+        /// </summary>
+        public void Como_recuperar_un_nombre_de_enumeracion()
+        {
+            String Nombre_de_la_enumeracion = "";
+            Estado = Estados_de_la_unidad.Viva;
+            Nombre_de_la_enumeracion = Estados_de_la_unidad.GetName(typeof (Estados_de_la_unidad), Estado);
+            System.Console.WriteLine(Nombre_de_la_enumeracion);
+        }
+}//END Usar_operadores_con_enumeraciones

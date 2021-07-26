@@ -1,0 +1,19 @@
+    public enum Estados_de_la_unidad
+    {
+        Viva=1,
+        Muerta=2,
+        Activa=3,
+        Desactivada=4
+    }
+
+    public class Usar_operadores_con_enumeraciones
+    {
+
+        public void Convertir_enumeracion_en_integer()
+        {
+            Estados_de_la_unidad Unidad_activa;
+            Unidad_activa = Estados_de_la_unidad.Activa;
+            int Valor = (int)Unidad_activa;
+            System.Console.WriteLine(Valor);
+        }
+    }

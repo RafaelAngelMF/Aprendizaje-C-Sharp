@@ -1,0 +1,15 @@
+	/// <summary>
+        /// Enumeracion con un valor de datos diferente
+        /// al que se asigna por defecto.
+        /// Por defecto las enumeraciones son int.
+        /// </summary>
+        public enum Enumeracion_1: long
+        {
+            /// <summary>
+            /// Colocando el primer valor.
+            /// </summary>
+            uno=1,
+            dos,
+            tres,
+            cuatro
+        }
