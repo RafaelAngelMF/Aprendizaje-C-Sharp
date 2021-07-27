@@ -1,0 +1,30 @@
+
+    /// <summary>
+    /// Convierte en forma explicita un enum usando parse.
+    /// </summary>
+    public class Convertir_con_parse_objeto
+    {
+
+        public enum Computadoras_que_he_tenido
+        {
+            Pentium_3=1,
+            Celeron_D=2,
+            Pentium_4=3,
+            HP_Compaq=4,
+            HP_i5=5
+        }
+
+        public void Parsear_la_enumeracion()
+        {
+            System.Console.WriteLine("\nDemostracion para realizar parse en un enum.");
+            Object Objeto;
+            Objeto = Computadoras_que_he_tenido.Parse(typeof(Computadoras_que_he_tenido),"Pentium_3");
+            Console.WriteLine( Objeto.ToString());//("" + Objeto.GetType.ToString());
+            Computadoras_que_he_tenido MisComputadoras = (Computadoras_que_he_tenido)Objeto;
+            Console.WriteLine(MisComputadoras.ToString());
+
+            //Se realiza una llamada con format, usando el argumento "d". Retorna 1 (El valor numerico del item seleccionado).
+            System.Console.WriteLine(Computadoras_que_he_tenido.Format(typeof(Computadoras_que_he_tenido), MisComputadoras, "d"));
+        }
+
+    }
