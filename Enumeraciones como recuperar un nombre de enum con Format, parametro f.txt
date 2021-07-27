@@ -1,0 +1,28 @@
+    public class Usar_operadores_con_enumeraciones
+    {
+
+        public enum EnBytes
+        {
+            Uno=1,
+            Dos=2,
+            Cuatro=4,
+            Ocho=8,
+            Dieciseis=16,
+        }
+
+        /// <summary>
+        /// Se usa "Format(Tipo_de_enumeracion,Variable_de_enum,Contenido)" para recuperar el nombre de la enumeracion.
+        /// Contenido:
+        /// g= Devuelve el valor numerico deseado.
+        /// x=Devuelve el valor en Hexadecimal en formato de texto.
+        /// d=Devuelve el valor en Hexadecimal en formato de numero.
+        /// f=Devuelve una lista de valores en formato combinado.
+        /// </summary>
+        public void Como_recuperar_un_nombre_de_enumeracion_3()
+        {
+            EnBytes ListaDeBytes =  EnBytes.Uno | EnBytes.Dos | EnBytes.Cuatro | EnBytes.Ocho | EnBytes.Dieciseis;
+            String Nombre_de_la_enumeracion = "";
+            Nombre_de_la_enumeracion = EnBytes.Format(typeof(EnBytes), ListaDeBytes, "f");
+            System.Console.WriteLine(Nombre_de_la_enumeracion);
+        }
+}

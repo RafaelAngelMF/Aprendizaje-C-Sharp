@@ -1,0 +1,32 @@
+    /// <summary>
+    /// Uso de GetValues.
+    /// En esta demostracion se hace uso de Array.
+    /// Demostracion para obtener todos los items de un enum.
+    /// </summary>
+    public class Obtener_todos_los_items_de_la_enumeracion
+    {
+        public enum Mis_alimentos
+        {
+            Arroz=1,
+            Platanos=3,
+            Arrina=3,
+            Masa=4,
+            ayotes=5,
+            poyo=6,
+            huevos=7,
+            Tiquisque_colorado=8
+        }
+
+        public void Todos_los_items()
+        {
+            System.Console.WriteLine("\nUso de Array para obtener todos los items de un enum." +
+                "\nPor medio de GetValues");
+
+            Array array= Mis_alimentos.GetValues(typeof(Mis_alimentos));
+
+            foreach(Mis_alimentos Un_alimento in array)
+            {
+                System.Console.WriteLine("Alimento obtenido " + Un_alimento);
+            }
+        }
+    }

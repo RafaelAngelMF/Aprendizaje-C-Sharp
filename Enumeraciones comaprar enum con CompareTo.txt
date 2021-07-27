@@ -1,0 +1,22 @@
+/// <summary>
+    /// Demostracion para comparar enumeraciones usando CompareTo.
+    /// </summary>
+    public class Comparar_enumeraciones
+    {
+        public enum Arboles
+        {
+            Arbusto=1,
+            Arbol_mediano=2,
+            Arbol_grande=4,
+            Arbol_con_fruto_comestible=3
+        }
+
+        public void Comaprar_arboles()
+        {
+            Arboles Mango = Arboles.Arbol_con_fruto_comestible;
+            System.Console.WriteLine(Mango.CompareTo (Arboles.Arbusto));//=1 Su valor es inferior a la enumeracion invocada.
+            System.Console.WriteLine(Mango.CompareTo(Arboles.Arbol_mediano));//=1 Su valor es inferior a la enumeracion invocada.
+            System.Console.WriteLine(Mango.CompareTo(Arboles.Arbol_grande));//-1 Su valor es superior a la enumeracio invocada.
+            System.Console.WriteLine(Mango.CompareTo(Arboles.Arbol_con_fruto_comestible));//=0 Su valor es igual a la enumeracion invocada.
+        }
+    }
