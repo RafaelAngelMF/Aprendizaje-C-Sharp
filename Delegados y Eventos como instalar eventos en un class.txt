@@ -1,0 +1,37 @@
+
+    /// <summary>
+    /// Los delegados se pueden declarar fuera de un class.
+    /// Funciona como plantilla para crear eventos.
+    /// </summary>
+    public delegate void Primer_delegado_pagina_346();
+
+    public class Pagina346
+    {
+        /// <summary>
+        /// El evento vinculado al delegado debe ser declarado dentro del class.
+        /// </summary>
+        public event Primer_delegado_pagina_346 Mi_primer_evento_delegado;
+
+        public void Implementacion_del_delegado()
+        {
+            //Codigo para el evento.
+        }
+
+        public Pagina346()
+        {
+            //Variable delegado, se instala la implementacion del evento.
+            //Debe coincidir con el tipo de datos de retorno y argumentos.
+            //Este delegado es "void", no tiene argumentos.
+            Primer_delegado_pagina_346 delegado = new Primer_delegado_pagina_346(Implementacion_del_delegado);
+
+            //Una vez instalada la implementacion entonces,
+            //Para agregarlo a la variable de evento se usa el operador "+=".
+            //Esto permite enlazar las instancias de delegados que sean necesarias para un solo evento.
+
+            Mi_primer_evento_delegado += delegado;
+
+            //Para eliminar la instancia de delegado se usa el operador "-="
+            //Mi_primer_evento_delegado -= delegado;
+        }
+
+    }

@@ -1,0 +1,73 @@
+
+    /// <summary>
+    /// Delegado para el segundo ejemplo acerca de como unirlo todo.
+    /// </summary>
+    /// <param name="Numero_impar"></param>
+    public delegate void Delegado_2(int Numero_impar);
+
+    /// <summary>
+    /// En este class se declara un evento del delegado "Delegado_2".
+    /// Al declarar el evento no es necesario ponerle parametros.
+    /// Los parametros se le ponen al procedimiento que se asociará al evento.
+    /// </summary>
+    public class Unirlo_todo_2
+    {
+        public event Delegado_2 Evento;
+
+        public Unirlo_todo_2()
+        {
+            System.Console.WriteLine("Unirlo_todo_2");
+            Evento = null;
+        }
+
+        public void Conteo()
+        {
+            for (int i = 0; i <= 10; i++)
+            {
+                //Si el numero en el bucle dividido entre 2 da como resto 1 entonces es un numero impar.
+                if (i % 2 == 1)
+                {
+                    if (Evento != null)
+                    {
+                        Evento(i);
+                    }
+                }
+            }
+        }
+    }//Fin del class Unirlo_todo_2.
+
+    /// <summary>
+    /// En este class se unen todos los componentes para orquestar el evento.
+    /// </summary>
+    public class Procedimiento_de_evento
+    {
+
+        public Procedimiento_de_evento()
+        {
+            System.Console.WriteLine("Procedimiento_de_evento");
+        }
+        public void Procedimiento_para_Delegado_2(int Numero_impar)
+        {
+            System.Console.WriteLine("El numero " + Numero_impar + " es un numero impar.");
+        }
+    }//Fin del class Procedimiento_de_evento.
+
+    public class Uniendolo_todo
+    {
+
+        Unirlo_todo_2 unirlo_Todo_2;
+        Procedimiento_de_evento procedimiento_De_Evento;
+
+        public Uniendolo_todo()
+        {
+            System.Console.WriteLine("Uniendolo_todo");
+            unirlo_Todo_2 = new Unirlo_todo_2();
+            procedimiento_De_Evento = new Procedimiento_de_evento();
+            unirlo_Todo_2.Evento += new Delegado_2(procedimiento_De_Evento.Procedimiento_para_Delegado_2);
+        }
+
+        public void Ejecutar()
+        {
+            unirlo_Todo_2.Conteo();
+        }
+    }//Fin del class Uniendolo_todo

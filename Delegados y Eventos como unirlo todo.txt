@@ -1,0 +1,53 @@
+
+    public delegate void Delegado_de_evento(int Numero);
+
+    /// <summary>
+    /// En este class se realiza todo el proceso que en realidad puede implicar a 3 clases diferentes.
+    /// </summary>
+    public class Delegados_y_Eventos_como_unirlo_todo
+    {
+        public event Delegado_de_evento Mi_evento;
+
+        public Delegados_y_Eventos_como_unirlo_todo()
+        {
+            System.Console.WriteLine("\nDelegados y Eventos como unirlo todo.");
+            Mi_evento = null;
+            Unirlo();
+        }
+
+        /// <summary>
+        /// La implementacion del evento es un procedimeinto comun y corriente.
+        /// Solo que debe tener el mismo tipo de datos de retorno.
+        /// Y debe tener la misma cantidad de paramentros, cada uno con el mismo tipo de datos.
+        /// Al del delegado.
+        /// </summary>
+        /// <param name="Numero"></param>
+        private void Implementando_el_evento(int Numero)
+        {
+            System.Console.WriteLine("Se ha desencadenado el evento\nDatos del parametro " + Numero);
+        }
+
+        public void Conteo()
+        {
+            for(int i=0;i<=10; i++)
+            {
+                //Si el numero en el bucle dividido entre 2 da como resto cero entonces es un numero par.
+                if (i%2 == 0)
+                {
+                    if (Mi_evento != null)
+                    {
+                        Mi_evento(i);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Al declarar "Mi_evento = new Delegado_de_evento(Implementando_el_evento);"
+        /// En los parentesis va el procedimiento que implementa el evento.
+        /// </summary>
+        private void Unirlo()
+        {
+            Mi_evento = new Delegado_de_evento(Implementando_el_evento);
+        }
+    }

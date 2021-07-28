@@ -1,0 +1,13 @@
+/// <summary>
+    /// Los delegados se pueden declarar fuera de un class.
+    /// Funciona como plantilla para crear eventos.
+    /// </summary>
+    public delegate void Primer_delegado_pagina_346();
+
+    public class Pagina346
+    {
+        /// <summary>
+        /// El evento vinculado al delegado debe ser declarado dentro del class.
+        /// </summary>
+        public event Primer_delegado_pagina_346 Mi_primer_evento_delegado;
+    }
