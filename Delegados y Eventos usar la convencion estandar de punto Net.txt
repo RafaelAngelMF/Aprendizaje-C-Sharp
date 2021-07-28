@@ -1,0 +1,97 @@
+//Usando la convencion estandar de .Net
+
+    /// <summary>
+    /// Implementa a "EventArgs" para poder pasar por parametro en el delegado.
+    /// </summary>
+    public class Descendiente_de_EventArgs : EventArgs
+    {
+        private int numero = 0;
+
+        /// <summary>
+        /// Propiedad de solo lectura.
+        /// </summary>
+        public int Numero
+        {
+            get
+            {
+                return numero;
+            }
+        }
+
+        public Descendiente_de_EventArgs(int Nuevo_numero)
+        {
+            numero = Nuevo_numero;
+        }
+    }
+
+    /// <summary>
+    /// Se puede usar asi el segundo argumento "EventArgs Un_descendiente_de_EventArgs" o directamente colocando el class descendiente.
+    /// Tal y como se ve en el ejemplo.
+    /// Para lo cual hay que diseñar primero el class.
+    /// </summary>
+    /// <param name="Objeto_que_desencadeno_el_evento"></param>
+    /// <param name="Un_descendiente_de_EventArgs"></param>
+    public delegate void Delegado_convencion_punto_net(Object Objeto_que_desencadeno_el_evento, Descendiente_de_EventArgs Un_descendiente_de_EventArgs);
+
+    public class El_evento
+    {
+        /// <summary>
+        /// Evento del delegado.
+        /// Recordar que el delegado es una plantilla de eventos.
+        /// </summary>
+        public event Delegado_convencion_punto_net Evento;
+
+        public El_evento()
+        {
+            Evento = null;
+        }
+
+        public void Contar()
+        {
+            for (int i = 1; i<=43; i++)
+            {
+                if (Evento != null)
+                {
+                    if (i % 2 == 1)
+                    {
+                        //Se crea un objeto que sea descendiente de EventArgs.
+                        Descendiente_de_EventArgs EvtArgs = new Descendiente_de_EventArgs(i);
+
+                        //Luego se pasa el descendiente de EventArgs al evento.
+                        Evento(this, EvtArgs);
+                    }
+                }
+            }
+        }
+    }//Fin de El_evento
+
+    public class Implementacion_del_evento
+    {
+        public void Evento(Object Objeto_que_desencadeno_el_evento, Descendiente_de_EventArgs Un_descendiente_de_EventArgs)
+        {
+            System.Console.WriteLine("Numero impar=" + Un_descendiente_de_EventArgs.Numero);
+        }
+    }//Fin de Implementacion_del_evento.
+
+    public class Unir_el_estandar
+    {
+
+        public Unir_el_estandar()
+        {
+            Unir_todo_y_ejecutar();
+        }
+
+        /// <summary>
+        /// Se realiza así porque en el constructor pueden ir otras instrucciones no relacionadas con el evento.
+        /// </summary>
+        private void Unir_todo_y_ejecutar()
+        {
+            El_evento evento = new El_evento();
+            Implementacion_del_evento Contenido_del_evento = new Implementacion_del_evento();
+
+            //Devo recordar poner "+=" para asociar el evento con su contenido.
+            evento.Evento += new Delegado_convencion_punto_net(Contenido_del_evento.Evento);
+
+            evento.Contar();
+        }
+    }//Fin de Unir_el_estandar.
