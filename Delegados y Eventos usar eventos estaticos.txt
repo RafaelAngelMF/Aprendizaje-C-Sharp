@@ -1,0 +1,88 @@
+
+    /// <summary>
+    /// En los eventos se puede anteponer:
+    /// Static
+    /// Virtual
+    /// Override
+    /// Abstract
+    /// </summary>
+    namespace Como_usar_modficadores_de_eventos
+    {
+        //Eventos estaticos.
+
+        public delegate void Delegado_Evento_estatico(String Nombre);
+
+        public class Cuerpo
+        {
+            public void Evento_estatico(String Nombre)
+            {
+                System.Console.WriteLine(Nombre);
+            }
+        }
+
+        public class Mis_bicicletas
+        {
+
+            
+            public static event Delegado_Evento_estatico Evento_estatico;
+
+            /// <summary>
+            /// Cuando un evento es "static" no se debe poner "Evento_estatico=null" en el constructor.
+            /// Porque el evento existe con el class desde antes de crear un objeto del class.
+            /// Al crear un objeto nuevo se anularia.
+            /// De hecho me sucedió a mi pero lo corregí.
+            /// </summary>
+            public Mis_bicicletas()
+            {
+                
+            }
+
+            /// <summary>
+            /// Puras cosntantes publicas.
+            /// </summary>
+            protected static class Bicicletas
+            {
+                public  const string Bicicleta_de_carreras = "Bicicleta de carreras";
+                public  const string Bicicleta_20_nikelada_vieja = "Bicicleta nikelada 20";
+                public  const string Bicicleta_20_Nikelada_nueva = "Bicicleta 20 nikeñada nueva.";
+                public  const string Bicicleta_de_colores_fosforecentes = "Bicicleta de colores fosforecentes.";
+                public  const string Bicicleta_de_montaña_renovada = "Bicicleta de montaña renovada.";
+                public  const string Bicicleta_de_motaña_nueva = "Bicicleta de montaña nueva.";
+                public  const string Historia = "Cada una de estas bicicletas fueron mias en una determinada epoca.\nEstuvieron largo tiempo conmigo.\nLa ultima fue la bicicleta de montaña nueva.";
+            }
+
+            /// <summary>
+            /// Desencadena el evento para pasarle las constantes de la clase estatica "Bicicletas".
+            /// </summary>
+            public void Bicicletas_que_he_tenido()
+            {
+                System.Console.WriteLine("\nBicicletas que yo (Rafael MF) he tenido.");
+                if (Evento_estatico != null)
+                {
+                    Evento_estatico(Bicicletas.Bicicleta_de_carreras);
+                    Evento_estatico(Bicicletas.Bicicleta_20_nikelada_vieja);
+                    Evento_estatico(Bicicletas.Bicicleta_20_Nikelada_nueva);
+                    Evento_estatico(Bicicletas.Bicicleta_de_colores_fosforecentes);
+                    Evento_estatico(Bicicletas.Bicicleta_de_montaña_renovada);
+                    Evento_estatico(Bicicletas.Bicicleta_de_motaña_nueva);
+                    Evento_estatico(Bicicletas.Historia);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Para la demostracion de este ejemplo con el evento estatico se ha creado este class.
+        /// </summary>
+        public class Unir_evento_estatico
+        {
+            public Unir_evento_estatico()
+            {
+                Cuerpo Relleno = new Cuerpo();
+                Mis_bicicletas.Evento_estatico += new Delegado_Evento_estatico(Relleno.Evento_estatico);
+                
+                Mis_bicicletas Bicicletas_del_ayer_lejano = new Mis_bicicletas();
+                Bicicletas_del_ayer_lejano.Bicicletas_que_he_tenido();
+            }
+        }
+
+    }//Final del namespace Como_usar_modficadores_de_eventos

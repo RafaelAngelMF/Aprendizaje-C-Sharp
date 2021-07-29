@@ -1,0 +1,90 @@
+
+        namespace Eventos_Virtuales
+        {
+            public delegate void Delegado_de_evento_Virtual(string quien_me_llama);
+
+            public class Procedimientos_de_eventos
+            {
+                public void Evento_virtual(String quien_me_llama)
+                {
+                    System.Console.WriteLine("El evento fue descencadenado por " + quien_me_llama);
+                }
+            }
+
+            /// <summary>
+            /// Se usa un class estandar normal para crear un evento virtual.
+            /// Pero tambien se puede hacer lo mismo en una clase abstracta.
+            /// Simplemente se usa la palabra virtual.
+            /// </summary>
+            public class Tengo_un_evento_virtual
+            {
+
+                public Tengo_un_evento_virtual()
+                {
+                    Evento_Virtual = null;
+                }
+                /// <summary>
+                /// Al declarar un evento abstracto, se hace que la propiedad de evento sea 100%
+                /// abstracta.
+                /// Debe implementarse en algun descendiente.
+                /// </summary>
+                public virtual event Delegado_de_evento_Virtual Evento_Virtual;
+
+                /// <summary>
+                /// Protegido para que solo los descendientes lo usen.
+                /// </summary>
+                /// <param name="datos"></param>
+                protected void Llamar_al_evento(string datos)
+                {
+                    if (Evento_Virtual != null)
+                    {
+                        Evento_Virtual(datos);
+                    }
+
+                }
+
+            }
+            
+            /// <summary>
+            /// Para que el evento funcione hay que usar el descendiente.
+            /// 
+            /// </summary>
+            public class Implemntando_evento_virtual : Tengo_un_evento_virtual
+            {
+                private Delegado_de_evento_Virtual prEvento_virtual;
+                /// <summary>
+                /// Opcionalmente se puede implementar esto.
+                /// </summary>
+                public event Delegado_de_evento_Virtual PrEvento_virtual
+                {
+                    add
+                    {
+                        prEvento_virtual = value;
+                    }
+                    remove
+                    {
+                        try
+                        {
+                            if (value == prEvento_virtual)
+                            {
+                                prEvento_virtual = null;
+                            }
+                        }
+                        catch (Exception) { }
+                    }
+                }
+
+                public Implemntando_evento_virtual()
+                {
+                    Tengo_un_evento_virtual t = new Tengo_un_evento_virtual();
+                    Procedimientos_de_eventos procedimientos_De_Eventos = new Procedimientos_de_eventos();
+                    t.Evento_Virtual+= new Delegado_de_evento_Virtual(procedimientos_De_Eventos.Evento_virtual);
+                    System.Console.WriteLine("\nEjemplo de evento Virtual");
+                    Llamar_al_evento("Tengo_un_evento_virtual");
+                    //Esta forma de pasar por parametro un metodo se llama: Pasar el nombre del metodo.
+                    Evento_Virtual += new Delegado_de_evento_Virtual(procedimientos_De_Eventos.Evento_virtual);
+                    Evento_Virtual("Implemntando_evento_virtual");
+                }
+                public override event Delegado_de_evento_Virtual Evento_Virtual;
+            }
+        }//Fin del namespace Eventos_Virtuales

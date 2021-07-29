@@ -1,0 +1,47 @@
+
+        namespace Eventos_Abstractos
+        {
+            public delegate void Delegado_de_evento_Abstracto();
+
+            public class Procedimientos_de_eventos
+            {
+                public void Evento_virtual()
+                {
+                    System.Console.WriteLine("Este es un evento descencadenado desde un descendiente.");
+                }
+            }
+
+            public abstract class Abstracta_con_evento
+            {
+                /// <summary>
+                /// Al declarar un evento abstracto, se hace que la propiedad de evento sea 100%
+                /// abstracta.
+                /// Debe implementarse en algun descendiente.
+                /// </summary>
+                public abstract event Delegado_de_evento_Abstracto Evento_Abstracto;
+                public abstract void Llamar_al_evento();
+            }
+
+            public class Descendiente_de_Abstracta : Abstracta_con_evento
+            {
+
+                public Descendiente_de_Abstracta()
+                {
+                    System.Console.WriteLine("\nEjemplo de evento abstracto");
+                    Procedimientos_de_eventos procedimientos_De_Eventos = new Procedimientos_de_eventos();
+
+                    //Esta forma de pasar por parametro un metodo se llama: Pasar el nombre del metodo.
+                    Evento_Abstracto += new Delegado_de_evento_Abstracto(procedimientos_De_Eventos.Evento_virtual);
+                }
+                public override event Delegado_de_evento_Abstracto Evento_Abstracto;
+
+                public override void Llamar_al_evento()
+                {
+                    if (Evento_Abstracto != null)
+                    {
+                        Evento_Abstracto();
+                    }
+                     
+                }
+            }
+        }//Fin del namespace Eventos_Abstractos
