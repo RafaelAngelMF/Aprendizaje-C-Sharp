@@ -1,0 +1,119 @@
+
+    /// <summary>
+    /// Como usar descriptores de acceso de eventos.
+    /// 
+    /// Las propiedades de eventos funcionan igual que una propiedad 
+    /// comun y corriente de cualquier class.
+    /// Con una diferencia, siempre se llaman: "add" y "remove".
+    /// 
+    /// "add" se invoca cuando al agregar un nuevo controlador de eventos con "+=".
+    /// 
+    /// "remove" se invoca al quitar o remover un controlador de eventos con "-=".
+    /// 
+    /// Para almacenar los Controladores de eventos 
+    /// se puede usar una lista enlazada, una matriz.
+    /// </summary>
+    namespace Como_usar_descriptores_de_acceso_de_eventos
+    {
+        public delegate void Delegado_plantilla_de_evento(int nuevo_numero);
+
+        public class Contenido_del_evento
+        {
+            public Contenido_del_evento()
+            {
+                System.Console.WriteLine("Iniciando evento");
+            }
+            public void Evento(int nuevo_numero)
+            {
+                System.Console.WriteLine(nuevo_numero);
+            }
+
+            public void Evento2(int nuevo_numero)
+            {
+                if (nuevo_numero == 4)
+                {
+                    System.Console.WriteLine("Evento 2 activado con el numero " + nuevo_numero);
+                }
+                
+            }
+        }
+
+
+        public class Edades
+        {
+
+            public event Delegado_plantilla_de_evento Evento;
+
+            /// <summary>
+            /// Conteo de los indices de la matriz "mProcedimeintos_de_eventos".
+            /// </summary>
+            private int Contador = 0;
+
+            private Delegado_plantilla_de_evento[]mProcedimeintos_de_eventos= { null,null};
+            /// <summary>
+            /// Esta propiedad de evento es para que el evento llamado "Evento", 
+            /// pueda tener tantos procedimientos de eventos como se quiera.
+            /// 
+            /// </summary>
+            private event Delegado_plantilla_de_evento PrEvento
+            {
+                add
+                {
+                    //Me toco que crear el codigo interno del bloque add.
+                    //Porque no venia en la Biblia del C#.
+                    if(Contador<= mProcedimeintos_de_eventos.Length - 1)
+                    {
+                        mProcedimeintos_de_eventos[Contador] = value;
+                    }
+                    else
+                    {
+                        //El contador vuelve a cero o se indica al programador que ha llegado al maximo permitido.
+                    }
+                    Contador++;
+                }
+                remove
+                {
+                    //Tambien me toco que crearle este codigo interno basado en la logica
+                    //e intuicion de lo que me da a entender el libro.
+                    for (int i=0; i<=mProcedimeintos_de_eventos.Length - 1; i++)
+                    {
+                        try
+                        {
+                            if(mProcedimeintos_de_eventos[i] == value)
+                            {
+                                mProcedimeintos_de_eventos[i] = null;
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            //Uno o todos los campos de la matriz son nulos.
+                        }
+                    }
+                }
+            }
+
+            /// <summary>
+            /// procedimiento public, al llamarlo activa el evento con sus
+            /// procedimientos de eventos.
+            /// </summary>
+            public Edades()
+            {
+                //Clase con los procedimientos de eventos.
+                Contenido_del_evento Contenido = new Contenido_del_evento();
+
+                //Procedimiento de evento 1 agregado.
+                Evento += new Delegado_plantilla_de_evento(Contenido.Evento);
+
+                //Procedimiento de evento 2 agregado.
+                Evento += new Delegado_plantilla_de_evento(Contenido.Evento2);
+            }
+
+            public void Contar()
+            {
+                for(int i = 1; i <= 4; i++)
+                {
+                    Evento(i);
+                }
+            }
+        }
+    }//Fin del namespace Como_usar_descriptores_de_acceso_de_eventos
