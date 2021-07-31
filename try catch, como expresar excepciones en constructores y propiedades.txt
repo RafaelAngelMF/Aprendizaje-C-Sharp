@@ -1,0 +1,87 @@
+
+namespace Como_expresar_excepciones_en_constructores_y_propiedades
+{
+    public class Excepcion_de_constructor : Exception
+    {
+        public Excepcion_de_constructor():base("Ha sucedido una excepcion en el constructor")
+        {
+
+        }
+    }
+
+    public class Excepcion_Valor_muy_grande_para_la_propiedad : Exception
+    {
+        public Excepcion_Valor_muy_grande_para_la_propiedad():base("El valor que intenta introducir en la propiedad es demaciado grande.")
+        {
+
+        }
+    }
+
+    public class Horas_jugando
+    {
+        public Horas_jugando() { }
+
+        public Horas_jugando(int cantidad_de_horas_jugando)
+        {
+            if ( cantidad_de_horas_jugando <= 5)
+            {
+                cantidad_de_horas = cantidad_de_horas_jugando;
+            }
+            else
+            {
+                throw new  Excepcion_de_constructor();
+            }
+        }
+        private int cantidad_de_horas;
+
+        public int Cantidad_de_horas
+        {
+            get
+            {
+                return cantidad_de_horas;
+            }
+            set
+            {
+                if (value <= 5)
+                {
+                    cantidad_de_horas = value;
+                }
+                else
+                {
+                    throw new Excepcion_Valor_muy_grande_para_la_propiedad();
+                }
+            }
+        }
+    }
+
+    public class Jugador
+    {
+        private Horas_jugando horas; 
+        public Jugador()
+        {
+            System.Console.WriteLine("\n\nLanzando excepciones de constructores y propiedades.");
+            try
+            {
+                horas = new Horas_jugando(7);
+            }
+            catch (Excepcion_de_constructor e)
+            {
+                System.Console.WriteLine(e.Message);
+            }
+        }
+        public void Agregar_jugador(String nombre, int horas_que_juega)
+        {
+            Horas_jugando horas_locales = new Horas_jugando();
+            try
+            {
+                horas_locales.Cantidad_de_horas= horas_que_juega;
+
+            }
+            catch (Excepcion_Valor_muy_grande_para_la_propiedad e)
+            {
+                System.Console.WriteLine(e.Message);
+            }
+
+        }
+    }
+}

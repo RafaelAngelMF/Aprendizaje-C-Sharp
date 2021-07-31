@@ -1,0 +1,65 @@
+
+/// <summary>
+/// Se pueden definir excepciones propias por medio de la herencia de clases.
+/// Para definir las propias excepciones hay que heredar de System.Exception.
+/// InnerException, referencia al metodo u objeto que proboco la excepcion.
+/// TargetSite, contiene el metodo u objeto que proboco la excepcion.
+/// StackTrace, contiene el recorrido por la pila de llamadas hasta llegar a la excepcion.
+/// Por lo general las excepciones personalizadas se cargan por medio del constructor de la clase base.
+/// Exception(string message, Exception innerException)
+/// Exception(string message)
+/// </summary>
+namespace Mis_propias_excepciones
+{
+    public class Mi_primer_excepcion : Exception
+    {
+        /// <summary>
+        /// Contiene una descripcion de la causa de la excepcion.
+        /// </summary>
+        public override string Message { get => "Has cometido una excepcion personalizada."; }
+    
+    }
+
+    /// <summary>
+    /// Es lo mismo que lo anterior pero desde el constructor de la clase que yo definí.
+    /// La cual es descendiente de Exception.
+    /// La llamada para cargar la propiedad la hago por medio de
+    /// base("texto"), estoy llamando al constructor de la clase base.
+    /// 
+    /// Se puede heredar de ApplicationException o de Exception.
+    /// ApplicationException : Exception, desciende de Exception.
+    /// </summary>
+    public class Mi_segunda_excepcion : Exception
+    {
+        public Mi_segunda_excepcion():base("Has cometido una excepcion personalizada 2.")
+        {
+
+        }
+    }
+
+    public class Mi_tercera_excepcion : ApplicationException
+    {
+       public Mi_tercera_excepcion():base("Esta es la tercera excepcion personalizada.")
+        {
+
+        }
+    }
+
+    public class Provocar_excepciones
+    {
+        public void Arrojando_una_excepcion()
+        {
+            try
+            {
+                //La excepcion que sucede debe ser de la misma clase que se usa en catch. (Mi_segunda_excepcion).
+                //Debe usarse en la provocacion del error y en el catch.
+                //Solo cuando se llama a un error con "throw new..."
+                throw new Mi_segunda_excepcion();
+            }catch (Mi_segunda_excepcion e)
+            {
+                System.Console.WriteLine("\n\n" + e.Message);
+            }
+        }
+    }
+
+}
