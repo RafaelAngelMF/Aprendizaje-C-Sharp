@@ -1,0 +1,182 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Control_de_excepciones
+{
+    /// <summary>
+    /// La excepcion estandar se controla con Exception, pero tambien existen otras para
+    /// situaciones más expecificas: 
+    /// StackOverflowException, controla el desbordamiento de pila.
+    /// NullReferenceException, es por si acaso declaro una variable de objeto, 
+    /// realizo una llamada a alguna propiedad o procedimiento sin haber inicializado el objeto.
+    /// TypeInitializationException, cuando se inicia un constructor estatico y sucede un error.
+    /// Interesante, en lo que llevo de lectura nunca he visto un constructor estatico, aunque
+    /// lo más posible es cuando se declara una clasa como static.
+    /// Voy por la pagina 367 de La biblia del C#.
+    /// InvalidCastException, sucede cuando se intenta hacer un castin entre dos clases diferentes con diferente clase base.
+    /// ArrayTypeMismatchException, cuando se intenta meter en un campo de una matriz un objeto o 
+    /// tipo de datos diferente al tipo de datos de la matriz.
+    /// IndexOutOfRangeException, cuando se recorre una matriz y se intenta obtener un indice superior al tamaño de la matriz.
+    /// DivideByZeroException, al intentar una divicion entre cero.
+    /// OverflowException, desbordamiento de pila.
+    /// </summary>
+    public class ExcepcionesTryCatch
+    {
+        /// <summary>
+        /// La excepcion simple no lleva un nombre de variable para Exception.
+        /// Se ahce así cuando no se necesita obtener informacion de Exception.
+        /// </summary>
+        public void Excepcion1()
+        { 
+            try
+            {
+                //Codigo normal aqui.
+            }
+            catch (Exception)
+            {
+                //Codigo del error aqui.
+            }
+        }
+
+        /// <summary>
+        /// La excepcion 2 tiene una variable de Exception.
+        /// Y se recupera el mensage de error.
+        /// </summary>
+        public void Excepcion2()
+        {
+            try
+            {
+                int i = 0 / 2;//Divicion por cero causa error
+            }catch(Exception excepcion)
+            {
+                System.Console.WriteLine(excepcion.Message);
+            }
+        }
+
+        /// <summary>
+        /// La excepcion 3 permite colocar clausulas genericas.
+        /// </summary>
+        public void Excepcion3()
+        {
+            try
+            {
+
+            }
+            catch (Exception excepcion)
+            {
+                System.Console.WriteLine(excepcion.Message);
+            }
+            catch 
+            {
+                //Clausula catch generica.
+            }
+        }
+
+        /// <summary>
+        /// La excepcion 4 hace uso de finaly para linerar recursos.
+        /// Aunque en mi caso la liberacion de recursos la realizo en el bloque catch.
+        /// 
+        /// </summary>
+        public void Excepcion4()
+        {
+            try
+            {
+                //Codigo operacional.
+            }
+            catch (Exception excepcion)
+            {
+                //Codigo para capturar y controlar el error.
+            }
+            finally
+            {
+                //Codigo para liberar recursos despues de la excepcion.
+            }
+        }
+
+        /// <summary>
+        /// La excepcion 5 es la demostracion del uso de InvalidCastException.
+        /// </summary>
+        public void Excepcion5()
+        {
+            System.Console.WriteLine("Probocando una excepcion de Casting.");
+            try
+            {
+                //Objeto de un class
+                Natural Hijo_propio = new Natural();
+                //Objeto de un class
+                Adoptado Hijo_adoptado = new Adoptado();
+                //Objeto de una interfaz, solo puede ser inicializado(Cargado por un des;cendiente).
+                iProbocarExcepcion Padre;
+                Padre = (iProbocarExcepcion)Hijo_propio;
+                System.Console.WriteLine("Hijo_propio");
+                Padre = (iProbocarExcepcion)Hijo_adoptado;
+                System.Console.WriteLine("Hijo_adoptado");
+            }
+            catch(InvalidCastException Ex)
+            {
+                //Obteniendo el nombre del objeto que lo proboco.
+                System.Console.WriteLine(Ex);
+            }
+        }
+
+        /// <summary>
+        /// Los objetos internos de una interfaz siempre son publicos por lo tanto no es necesario
+        /// poner la palabra "public".
+        /// Interface que se usará para tratar de hacer un casting entre 2 clases, una es
+        /// descendiente de esta y la otra es una clase normal.
+        /// </summary>
+        private interface iProbocarExcepcion
+        {
+             int UnNumero();
+        }
+
+        private class Natural : iProbocarExcepcion
+        {
+            public int UnNumero()
+            {
+                return 43;
+            }
+        }
+
+        private class Adoptado
+        {
+            public int UnNumero()
+            {
+                return 43;
+            }
+        }
+
+        /// <summary>
+        /// Demostracion de IndexOutOfRangeException.
+        /// </summary>
+        public void Excepcion6()
+        {
+            try
+            {
+                //Es igual a 2 campos(id=0, id=1).
+                int[] m = new int[2];
+
+                m[2] = 1;
+            }catch(IndexOutOfRangeException e)
+            {
+                System.Console.WriteLine(e);
+            }
+        }
+
+        public void Excepcion7()
+        { 
+            try
+            {
+                //Algun codigo que proboque un desbordamiento de pila.
+            }
+            catch(OverflowException e)
+            {
+                System.Console.WriteLine("Desbordamiento\n"+e);
+            }
+        }
+
+    }
+} //Final del namespace
