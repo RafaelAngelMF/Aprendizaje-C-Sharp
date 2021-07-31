@@ -1,0 +1,12 @@
+//Primer class dentro del tema de los atributos.
+//Un tema relacionado con la reflectividad.
+//Pagina 379 de La Biblia del C#.
+
+public class Principal
+{
+	[method: STAThread]//Convierte al programa en una app de consola.
+	public void Main(String args[])
+	{
+		
+	}
+}

@@ -1,0 +1,49 @@
+using System;
+using System.Runtime.InteropServices;
+
+
+namespace Atributos
+{
+
+    /// <summary>
+    /// Pagina 383 de La Biblia del C#.
+    /// </summary>
+    public class Como_usar_el_atributo_condicional
+    {
+
+        public Como_usar_el_atributo_condicional()
+        {
+            Console.WriteLine("\n\nComo usar el atributo: System.Diagnostics.Conditional.");
+        }
+
+        /// <summary>
+        /// Se escrive en la consola de Windows.
+        /// </summary>
+        protected void Metodo_1()
+        {
+            Console.WriteLine("Metodo 1");
+        }
+
+        /// <summary>
+        /// Se escrive en el debug(ventana inmediato de C#).
+        /// Al compilarse el programa, este metodo pasa a ser descartado.
+        /// Ya que esta indicado como solo de prueba.
+        /// </summary>
+        [System.Diagnostics.Conditional("Debug")]
+        protected void Metodo_2()
+        {
+            Console.WriteLine("Metodo 2");
+        }
+
+        /// <summary>
+        /// Se escrive en la consola de Windows.
+        /// </summary>
+        public void Metodo_3()
+        {
+            Metodo_1();
+            Metodo_2();//En ventana inmediato.
+            Console.WriteLine("Metodo 3");
+        }
+
+    }
+}

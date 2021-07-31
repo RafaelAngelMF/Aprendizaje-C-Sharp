@@ -1,0 +1,51 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Atributos
+{
+
+    /// <summary>
+    /// Ejemplo de un atributo personalizado para llamar dlls de la tecnologia Com.
+    /// </summary>
+      public class Usar_dll_Com : Attribute
+      {
+            public Usar_dll_Com(String nombre_de_la_dll)
+            {
+
+            }
+
+            public CallingConvention Convencion_de_llamadas;
+
+            public CharSet Juego_de_caracteres;
+
+            public string Punto_de_Entrada;
+
+            /// <summary>
+            /// Al asi como ortografia exacta.
+            /// </summary>
+            public bool ExactSpelling;
+
+            /// <summary>
+            /// Algo asi como conservar la firma de la dll.
+            /// </summary>
+            public bool PreserveSig;
+
+            /// <summary>
+            /// Algo asi como agarrar el ultimo y más nuevo error.
+            /// </summary>
+            public bool SetLastError;
+
+            public string Valor
+            {
+                get
+                {
+                    return "";
+                }
+            }
+
+        }
+}
