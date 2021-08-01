@@ -1,0 +1,133 @@
+using System;
+using System.IO;
+using System.Runtime.InteropServices;
+using System.Runtime.Serialization.Formatters.Binary;
+
+namespace Atributos
+{
+    /// <summary>
+    /// Clase para escribirse por completo en el disco duro en formato de archivo binario.
+    /// </summary>
+    [SerializableAttribute]
+    public class Preferencias_del_juego
+    {
+        private int velocidad_de_la_partida;
+
+        public int Velocidad_de_la_partida
+        {
+            get
+            {
+                return velocidad_de_la_partida;
+            }
+            set
+            {
+                velocidad_de_la_partida = value;
+            }
+        }
+
+        private int cantidad_de_facciones;
+
+        public int Cantidad_de_facciones
+        {
+            get
+            {
+                return cantidad_de_facciones;
+            }
+            set
+            {
+                cantidad_de_facciones = value;
+            }
+        }
+
+        private int cantidad_de_unidades;
+
+        public int Cantidad_de_unidades
+        {
+            set
+            {
+                cantidad_de_unidades = value;
+            }
+            get
+            {
+                return cantidad_de_unidades;
+            }
+        }
+
+        private bool sonido_activado;
+
+        public bool Sonido_activado
+        {
+            get
+            {
+                return sonido_activado;
+            }
+            set
+            {
+                sonido_activado = value;
+            }
+        }
+
+        /// <summary>
+        /// Propiedad de solo lectura para obtener un informe de las preferencias.
+        /// </summary>
+        public String Obtener_informe
+        {
+            get
+            {
+                return "Informe de preferencias.\nEstado del sonido " + this.Sonido_activado + "\nCantidad de unidades " + Cantidad_de_unidades + "\nCantidad de facciones " + cantidad_de_facciones + "\nVelocidad de la partida " + velocidad_de_la_partida;
+            }
+        }
+    }//Fin del class Preferencias_del_juego
+
+    public class Juego_basado_en_ZeroK
+    {
+        private Preferencias_del_juego preferencias;
+
+        /// <summary>
+        /// Llena el objeto del class Preferencias_del_juego con datos.
+        /// Luego lo escribe en el disco duro en un archivo llamado "Preferencias_del_juego.bin",
+        /// en formato binario.
+        /// </summary>
+        public void Guardar_preferencias()
+        {
+            preferencias = new Preferencias_del_juego();
+            preferencias.Cantidad_de_facciones = 4;
+            preferencias.Cantidad_de_unidades = 100;
+            preferencias.Sonido_activado = true;
+            preferencias.Velocidad_de_la_partida = 1;
+
+            Console.WriteLine("\n\nEscribiendo en el disco duro.");
+            //Guardando.
+            Stream escribir = File.Create("Preferencias_del_juego.bin");
+            BinaryFormatter escribir_en_binario = new BinaryFormatter();
+            escribir_en_binario.Serialize(escribir, preferencias);
+            escribir.Close();
+        }
+
+        public void Leer_preferencias()
+        {
+            try
+            {
+                preferencias = new Preferencias_del_juego();
+                Console.WriteLine("\n\nLeyendo las preferencias desde el objeto antes de cargarlas del archivo.");
+                Console.WriteLine(preferencias.Obtener_informe);
+
+                //Cargando archivo en el objeto.
+                Stream Leer = File.OpenRead("Preferencias_del_juego.bin");
+                BinaryFormatter Leer_en_binario = new BinaryFormatter();
+
+                //Realizando un casting
+                preferencias = (Preferencias_del_juego)Leer_en_binario.Deserialize(Leer);
+
+                Leer.Close();
+                Console.WriteLine("\n\nLeyendo las preferencias desde el objeto despues de cargarlas del archivo.");
+                Console.WriteLine(preferencias.Obtener_informe);
+            }
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine("\n\nPrimero llame al procedimiento Guardar_preferencias() y luego Leer_preferencias().");
+                Console.WriteLine(e.Message);
+            }
+        }
+    } //Fin del class Juego_basado_en_ZeroK
+}//Fin del namespace

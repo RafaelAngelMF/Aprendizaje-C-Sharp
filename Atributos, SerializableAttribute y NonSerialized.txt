@@ -1,0 +1,44 @@
+using System;
+using System.Runtime.InteropServices;
+
+
+namespace Atributos
+{
+    /// <summary>
+    /// [SerializableAttribute], se usa a nivel del class para poder guardar la clase entera en archivos en el disco duro.
+    /// Si la clase tiene datos persistentes entonces tambien se guardan.
+    /// Para evitar guardar algunas propiedades solo se marca con el atributo [NonSerializedAttribute], el cual se usa a nivel de metodo.
+    /// </summary>
+    [SerializableAttribute]
+    public class EjemploSerializableAttribute
+    {
+        private string nombre;
+
+        public string Nombre
+        {
+            set
+            {
+                nombre = value;
+            }
+            get
+            {
+                return nombre;
+            }
+        }
+
+        [NonSerialized]
+        private string clave;
+
+        public string Clave
+        {
+            set
+            {
+                clave = value;
+            }
+            get
+            {
+                return clave;
+            }
+        }
+    } //Fin del class
+}
