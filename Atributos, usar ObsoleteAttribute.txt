@@ -1,0 +1,24 @@
+using System;
+
+namespace Atributos
+{
+
+    /// <summary>
+    /// Demostracion de como usar "ObsoleteAttribute".
+    /// Permite indicar a los programadores que existe una vercion actualizada del procedimiento.
+    /// Pero sigue coexistiendo una vercion desfazada del codigo.
+    /// </summary>
+    public class Ejemplo_de_ObsoleteAttribute
+    {
+        public void Mensaje_actualizado()
+        {
+            Console.WriteLine("\n\nProcedimiento actualizado.");
+        }
+
+        [ObsoleteAttribute("Actualice este metodo o use el nuevo metodo: Mensaje_actualizado()")]
+        public void Mensaje_obsoleto()
+        {
+            Console.WriteLine("\n\nProcedimiento marcado como obsoleto.");
+        }
+    }//Fin del class Ejemplo_de_ObsoleteAttribute
+}

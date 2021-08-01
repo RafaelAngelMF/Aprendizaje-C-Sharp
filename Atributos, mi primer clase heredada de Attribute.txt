@@ -1,0 +1,80 @@
+    namespace Mis_propias_clases_de_atributos
+    {
+        /// <summary>
+        /// Mi primera clase de atributo.
+        /// La ultima palabra (Sufijo Attribute) de la declaracion del class 
+        /// permite que el atributo personalizado valla entre corchetes.
+        /// Y al escribirlo como atributo no es necesario la ultima palabra (Attribute),
+        /// solo se escribe [Mi_primer_atributo_personalizado] sin el sufijo Sufijo (Ultimas letras o ultima palabra en este caso).
+        /// </summary>
+        public class Mi_primer_atributo_personalizadoAttribute : Attribute
+        {
+
+        }
+
+        /// <summary>
+        /// Hace referencia a Mi_primer_atributo_personalizadoAttribute.
+        /// </summary>
+        [Mi_primer_atributo_personalizadoAttribute]
+        public class Rafael
+        {
+            public const string AUTOR = "Rafael Angel Montero Fernández.";
+            public const int EDAD = 43;
+            public const int Años_de_conocimientos_de_programacion = 17;
+            public const string CORREO = "Sharkyc12@gmail.com";
+            public const string Telefono_en_Costa_Rica = "+506 83 94 22 35";
+        }
+
+        /// <summary>
+        /// Tambien se puede aplicar herencia a los atributos.
+        /// </summary>
+        public class Autor_evolucionadoAttribute : Mi_primer_atributo_personalizadoAttribute
+        {
+            public Autor_evolucionadoAttribute(string nombre)
+            {
+                nombre_del_autor = nombre;
+            }
+
+            private string nombre_del_autor;
+
+            public string Nombre_del_autor
+            {
+                get
+                {
+                    return nombre_del_autor;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Hace referencia a Mi_primer_atributo_personalizadoAttribute.
+        /// </summary>
+        [Autor_evolucionadoAttribute("Rafa")]
+        [Mi_primer_atributo_personalizado]
+        public class Lenguajes
+        {
+            public const string VB6 = "Primer contacto con el lenguaje, finales del 2003, dominio total del lenguaje, mediados del 2005.";
+            public const string CMasMas="Primer contacto con el lenguaje, lunes 17 de mayo del 2015,... Use la Biblia del C++ de Stroustrup.";
+            public const string JAVA = "Primer contacto con el lenguaje, verano del 2017 en la univercidad. Dominio avanzado medio del lenguaje.";
+            public const string MYSQL = "Primer contacto con el lenguaje, 2018 en la univercidad, inicio del entrenamiento en solitario 2020.\n Dominio avanzado del lenguaje semanas despues de iniciado el entrenamiento.";
+            public const string C_SHARP = "Primer contacto con el lenguaje 2005.\nInicio del entrenamiento en solitario, sabado 5 de junio del 2021.";
+            /*
+             * La falta de acceso a internet junto con la falta de recursos tecnologicos y economicos ademas, las interrupciones de vecinos y familiares retrazaron en parte mis avances en conocimientos informaticos.
+             * Durante años para no decir más de una decada solo domine vb6 y los programas de office.
+             * Tenia la informacion más o menos reunida para aprender por ejemplo C++, pero no tenia la tecnologia adecuada o actualizada.
+             * Ademas en VB6 no me habia quedado muy claro lo de la programacion orientada a objetos.
+             * Esas nociones ambiguas dificultaron la asimilacion en el entrenamiento C++ previo a Java y C#.
+             * No obstante lo que me quedó de C++ me fue muy util para un rapido aprendizage en Java y en C#.
+             * En un futuro no muy definido retomaré el entranamiento C++, un refuerzo de lo que conozco y la parte que me falta (interfaz grafica).
+             * 
+             * Tambien conosco MsDos para Windows. El entrenamiento fue antes de empezar el de C++.
+             * 
+             * Finalmente detuve la lectura y entrenamiento del libro Lenguaje_de_Programacion_C_Spanish_Edition_Stroustrup.pdf.
+             * Porque tenia que prepararme para hacer el examen de admicion a la univercidad UCR.
+             */
+        }
+
+
+
+
+    }//Fin del namespace Mis_propias_clases_de_atributos
