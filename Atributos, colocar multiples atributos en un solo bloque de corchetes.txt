@@ -1,0 +1,41 @@
+    /// <summary>
+    /// Atributos multiples en un solo bloque de corchetes.
+    /// 
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Class,AllowMultiple =true)]
+    public class Nivel_de_programadorAttribute : Attribute
+    {
+
+        public Nivel_de_programadorAttribute(string nuevo_nivel)
+        {
+            nivel = nuevo_nivel;
+        }
+
+        private string nivel;
+
+        public string Nivel
+        {
+            get
+            {
+                return nivel;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Este class tiene el mismo atributo colocado varias veces pero en un solo bloque de corchetes.
+    /// Se permite siempre que se cepare con comas.
+    /// </summary>
+    [Nivel_de_programadorAttribute("Avanzado"), Nivel_de_programador("Medio avanzado"), Nivel_de_programador("Medio"), Nivel_de_programador("Novato")]
+    public class Camino
+    {
+        public double Distancia()
+        {
+            return 0;
+        }
+
+        public double Cantidad_de_feromonas()
+        {
+            return 0;
+        }
+    }

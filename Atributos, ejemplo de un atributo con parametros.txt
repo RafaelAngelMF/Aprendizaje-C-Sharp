@@ -1,0 +1,44 @@
+    /// <summary>
+    /// Ejemplo de un atributo con parametros.
+    /// Pagina 392
+    ///Los parametros se llaman "Parametros pocicionales" en el constructor del class que implementa a "Attribute"
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Enum,AllowMultiple =true)]
+    public class Con_parametrosAttribute : Attribute
+    {
+        private string datos;
+
+        /// <summary>
+        /// Propiedad de solo lectura para obtener los datos pasados al atributo por medio del parametro.
+        /// </summary>
+        public string Datos
+        {
+            get
+            {
+                return datos;
+            }
+        }
+
+        /// <summary>
+        /// Constructor con un parametro.
+        /// </summary>
+        /// <param name="nuevos_datos"></param>
+        public Con_parametrosAttribute(string nuevos_datos)
+        {
+            datos = nuevos_datos;
+        }
+    }
+
+    [Con_parametros("Importante si se quiere representar la tabla periodica mejor crear una interface o una clase abstracta para heredarla y asi crear toda la tabla.")]
+    [Con_parametros("Metal Nikel")]
+    public enum Niquel:long
+    {
+        Punto_de_ebullicion=2730,
+        Punto_de_fucion=1453,
+        Densidad=8,//En realidad 8.9, pero el enum no acepta "double"
+        Peso_atomico=58,//58.71
+        Configuracion_electronica=8,//8-16-2
+        Electro_Negatividad=1,//1.8
+        Valencia=2//+2-+3
+
+    }

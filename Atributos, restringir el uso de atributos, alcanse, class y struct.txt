@@ -1,0 +1,10 @@
+    /// <summary>
+    /// Restringir atributos.
+    /// AttributeUsage, permite indicar el aclcanse del atributo y donde se puede usar.
+    /// Y sus miembros pasados por parametro pueden aparecer juntos pero ceparados con el "OR"=|.
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Class| AttributeTargets.Struct)]
+    public class Clase_y_estructuraAttribute:Attribute
+    {
+
+    }

@@ -1,0 +1,57 @@
+    //usar un atributo varias veces en un class.
+
+    /// <summary>
+    /// Este atributo personalizado permite escribir varias veces el mismo atributo en un class.
+    /// Esto con la intencion ya sea de registrar varios autores o de colocar comentarios 
+    /// totalmente diferentes uno del otro.
+    /// 
+    /// Se logra por medio del segundo parametro de "AttributeUsage", el cual es "AllowMultiple =true"
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple =true)]
+    public class ComentarioAttribute : Attribute
+    {
+        private string fecha;
+
+        public string Fecha
+        {
+            get
+            {
+                return fecha;
+            }
+        }
+
+        private string datos;
+
+        public string Datos
+        {
+            get
+            {
+                return datos;
+            }
+        }
+
+        public ComentarioAttribute(string nueva_fecha, string nuevo_comentario)
+        {
+            fecha = nueva_fecha;
+            datos = nuevo_comentario;
+        }
+    }
+
+    /// <summary>
+    /// Class que usa varias veces el mismo atributo.
+    /// </summary>
+    [ComentarioAttribute("Ayer","Ayer tambien estuve entrenandome en C#.")]
+    [Comentario("Hoy","Inspirado en el algoritmo de hormigas.")]
+    [Comentario("Domingo 1 de agosto del 2021", "Este class representa una hormiga.")]
+    public class Horamiga
+    {
+        public double Probabilidad_de_elegir_un_camino()
+        {
+            return 0;
+        }
+
+        public double Visibilidad()
+        {
+            return 0;
+        }
+    }
