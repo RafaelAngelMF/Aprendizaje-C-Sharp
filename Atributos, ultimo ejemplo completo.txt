@@ -1,0 +1,105 @@
+/// <summary>
+/// Con este ultimo ejemplo concluye el tema de los tributos.
+/// Pagina 393 de La Biblia del C#.
+/// En este ultimo ejemplo tambien se muestra como obtener datos de los atributos.
+/// Algo muy importante para condicionar el comportamiento del codigo, de acuerodo a los datos obtenidos.
+/// </summary>
+
+
+
+namespace Ultimo_ejemplo_de_atributos
+{
+
+    [AttributeUsage(AttributeTargets.Class)]
+    public class Referencia_del_libroAttribute : Attribute
+    {
+        public Referencia_del_libroAttribute()
+        {
+
+        }
+
+        public Referencia_del_libroAttribute(string nuevo_nombre_del_libro)
+        {
+            nombre_del_libro = nuevo_nombre_del_libro;
+        }
+
+        private string numero_de_pagina;
+
+        public string Numero_de_pagina
+        {
+            get
+            {
+                return numero_de_pagina;
+            }
+            set
+            {
+                numero_de_pagina = value;
+            }
+        }
+
+        private string tema;
+
+        public string Tema
+        {
+            get
+            {
+                return tema;
+            }
+            set
+            {
+                tema = value;
+            }
+        }
+
+        private string nombre_del_libro;
+
+        public string Nombre_del_libro
+        {
+            get
+            {
+                return nombre_del_libro;
+            }
+        }
+    }
+
+    [Referencia_del_libro("Biblia del C#",Tema ="Bucles",Numero_de_pagina ="Primeras 200 paginas del libro.")]
+    public class BucleDo
+    {
+        public void Ejecutar_ejemplo()
+        {
+            //La variable local debe inicializarse antes de usarse en el bucle do.
+            int contador=0;
+            Console.WriteLine("El bucle solo cuenta de cero a diez.");
+            do{
+                contador++;
+            }while (contador <= 10) ;
+        }
+    }
+
+    /// <summary>
+    /// Forma de obtener datos de un atributo, de hecho se puede 
+    /// usar para que el programa realice tareas diferentes de acuerdo a 
+    /// la informacion proporcionada por los atributos.
+    /// </summary>
+    public class Obtener_datos_del_atributo
+    {
+        public void Obtener()
+        {
+            BucleDo bucle = new BucleDo();
+            bucle.Ejecutar_ejemplo();
+
+            //Datos del atributo.
+            
+            _MemberInfo informacion_del_miembro=typeof(BucleDo);
+
+            object[] mAtributos_de_la_clase= informacion_del_miembro.GetCustomAttributes(typeof(Referencia_del_libroAttribute),false);
+
+            if (mAtributos_de_la_clase.GetLength(0) != 0)
+            {
+                Referencia_del_libroAttribute referencia_del_libro=(Referencia_del_libroAttribute) (mAtributos_de_la_clase[0]);
+
+                Console.WriteLine("\n\nAtributos Referencia_del_libroAttribute\n" + referencia_del_libro.Nombre_del_libro + ", " + referencia_del_libro.Tema + ", " + referencia_del_libro.Numero_de_pagina);
+            }
+        }
+    }
+} //Fin del namespace Ultimo_ejemplo_de_atributos
