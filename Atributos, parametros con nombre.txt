@@ -1,0 +1,55 @@
+    /// <summary>
+    /// Ejemplo atributos con parametros:
+    /// Este class Attribute tiene un parametro.
+    /// El cual se puede usar al cargar el atributo.
+    /// Parametros con nombre.
+    /// Esta clase de parametros se puede omitir.
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Interface,AllowMultiple =true)]
+    public class ProgramadorAttribute : Attribute
+    {
+
+        private int nivel;
+
+        public int Nivel
+        {
+            set
+            {
+                nivel = value;
+            }
+            get
+            {
+                return nivel;
+            }
+        }
+        public ProgramadorAttribute()
+        {
+
+        }
+
+        public ProgramadorAttribute(string nuevo_nombre)
+        {
+            nombre = nuevo_nombre;
+        }
+
+        private string nombre;
+
+        public string Nombre
+        {
+            get
+            {
+                return nombre;
+            }
+        }
+    }
+    /// <summary>
+    /// Forma de usar el Atributo "Programador" y llamar a una de sus propiedades.
+    /// </summary>
+    [Programador()]
+    [Programador(Nivel =12)]
+    [Programador("Angel",Nivel =10)]
+    [Programador("Rafael Angel MF")]
+    public interface Demostracion
+    {
+
+    }
