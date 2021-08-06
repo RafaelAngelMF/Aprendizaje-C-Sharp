@@ -1,0 +1,45 @@
+using System;
+
+/// <summary>
+/// Con este ejemplo se concluye el tema de las verciones.
+/// </summary>
+namespace Utilizar_verciones_en_mis_clases_ejemplo4
+{
+    public class VercionBase
+    {
+        protected string fecha;
+
+        public VercionBase()
+        {
+            fecha = "Jueves 5 de agosto del 2021";
+        }
+
+        /// <summary>
+        /// En el ejemplo 2 la clase base proporciona el metodo para mostrar en pantalla la informacion.
+        /// </summary>
+        public virtual void Mostrar_fecha_del_ejemplo()
+        {
+            Console.WriteLine("\n\nFecha de la clase base:");
+            Console.WriteLine(fecha);
+        }
+    }
+
+    /// <summary>
+    /// En este class descendiente se muestra como utilizar ambas verciones del metodo definido en la clase base, pero
+    /// redefinido en la clase descendiente.
+    /// Por medio de la palabra "base.Nombre_del_metodo" se puede acceder al original.
+    /// </summary>
+    public class Descendiente: VercionBase
+    {
+
+        public override void Mostrar_fecha_del_ejemplo()
+        {
+            Console.WriteLine("\nEsta es la hora del ultimo ejemplo del tema de las verciones.\n11:39pm de la noche.\n" + fecha);
+        }
+
+        public void Usar_el_metodo_de_la_base()
+        {
+            base.Mostrar_fecha_del_ejemplo();
+        }
+    }
+}

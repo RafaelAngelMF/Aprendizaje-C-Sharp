@@ -1,0 +1,65 @@
+namespace Utilizar_verciones_en_mis_clases_ejemplo2
+{
+
+    /// <summary>
+    /// Clase base que proporciona una variable protegida, la cual se carga en el
+    /// constructor con el valor de la fecha de creacion de este ejemplo.
+    /// </summary>
+    public class Clase_base
+    {
+        protected string fecha;
+
+        public Clase_base()
+        {
+            fecha = "Jueves 5 de agosto del 2021";
+        }
+
+        /// <summary>
+        /// En el ejemplo 2 la clase base proporciona el metodo para mostrar en pantalla la informacion.
+        /// </summary>
+        public virtual void Mostrar_fecha_del_ejemplo()
+        {
+            Console.WriteLine(fecha);
+        }
+    }
+
+    /// <summary>
+    /// En este ejemplo se utiliza la nueva vercion original del metodo.
+    /// 
+    /// </summary>
+    public class Clase_derivada3 : Clase_base
+    {
+        public Clase_derivada3()
+        {
+            Mostrar_fecha_del_ejemplo();
+        }
+    }
+
+    /// <summary>
+    /// En esta clase descendiente el metodo "Mostrar_fecha_del_ejemplo" se hereda y se redefine con la
+    /// palabra clave "override".
+    /// </summary>
+    public class Clase_derivada2 : Clase_base
+    {
+        public override void Mostrar_fecha_del_ejemplo()
+        {
+            Console.WriteLine("La fecha en la que fue creado el ejemplo: " + fecha);
+        }
+    }
+
+    /// <summary>
+    /// En este class descendiente se utiliza la palabra "new" para indicar que el metodo es propio de la
+    /// clase descendiente y que no tiene relacion con el de la clase base.
+    /// </summary>
+    public class Clase_derivada1 : Clase_base
+    {
+        /// <summary>
+        /// Esto indica que este metodo es propio de la clase derivada (Clase_derivada).
+        /// No relacionado con el metodo de la clase base.
+        /// </summary>
+        public new void Mostrar_fecha_del_ejemplo()
+        {
+            Console.WriteLine("Una fecha especial: " + fecha);
+        }
+    }
+}

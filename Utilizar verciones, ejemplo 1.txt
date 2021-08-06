@@ -1,0 +1,28 @@
+Utilizar_verciones_en_mis_clases
+{
+    /// <summary>
+    /// Clase base que proporciona una variable protegida, la cual se carga en el
+    /// constructor con el valor de la fecha de creacion de este ejemplo.
+    /// </summary>
+    public class Clase_base
+    {
+        protected string fecha;
+
+        public Clase_base()
+        {
+            fecha = "Jueves 5 de agosto del 2021";
+        }
+    }
+
+    /// <summary>
+    /// Clase derivada(Descendiente), la cual proporciona un metodo para
+    /// escribir en pantalla la fecha.
+    /// </summary>
+    public class Clase_derivada : Clase_base
+    {
+        public void Mostrar_fecha_del_ejemplo()
+        {
+            Console.WriteLine( fecha);
+        }
+    }
+}

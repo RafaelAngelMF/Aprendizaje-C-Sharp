@@ -1,0 +1,71 @@
+using System;
+
+/// <summary>
+/// Convertir una clase derivada que utiliza la palabra reservada "new" a un objeto puramete de su clase base.
+/// De tal manera que al llamar a los metodos de la clase derivada sean los de la clase base.
+/// </summary>
+namespace Utilizar_verciones_en_mis_clases_ejemplo3
+{
+    public class VercionBase
+    {
+        protected string fecha;
+
+        public VercionBase()
+        {
+            fecha = "Jueves 5 de agosto del 2021";
+        }
+
+        /// <summary>
+        /// En el ejemplo 2 la clase base proporciona el metodo para mostrar en pantalla la informacion.
+        /// </summary>
+        public virtual void Mostrar_fecha_del_ejemplo()
+        {
+            Console.WriteLine("\n\nFecha de la clase base:");
+            Console.WriteLine(fecha);
+        }
+    }
+
+    public class Clase_descendiente : VercionBase
+    {
+        /// <summary>
+        /// Esto indica que este metodo es propio de la clase derivada (Clase_derivada).
+        /// No relacionado con el metodo de la clase base.
+        /// </summary>
+        public new void Mostrar_fecha_del_ejemplo()
+        {
+            Console.WriteLine("\n\nFecha del descendiente. Hoy es una fecha linda.");
+        }
+    }
+
+    /// <summary>
+    /// Clae para convertir a base pura.
+    /// </summary>
+    public class Convertir_a_clase_base_pura
+    {
+
+        public Convertir_a_clase_base_pura()
+        {
+            Console.WriteLine("\n\nConviertiendo a base pura:");
+        }
+
+        public void Convercion1()
+        {
+            //Esto convierte el a clase base pura.
+            VercionBase descendiente_puro =(VercionBase) new Clase_descendiente();
+            descendiente_puro.Mostrar_fecha_del_ejemplo();
+        }
+
+        public void Convercion2()
+        {
+            Clase_descendiente descendiente = new Clase_descendiente();
+
+            //Definido en el descendiente.
+            descendiente.Mostrar_fecha_del_ejemplo();
+
+            VercionBase hijo_puro = (VercionBase)descendiente;
+
+            //Propio de la clase base
+            hijo_puro.Mostrar_fecha_del_ejemplo();
+        }
+    }
+}
