@@ -1,0 +1,17 @@
+    /// <summary>
+    /// Al igual que en C++ en C# tambien se pueden usar punteros al estilo de C++.
+    /// Falta algo más para que C# lo compile.
+    /// </summary>
+    public class Usar_punteros
+    {
+        
+        public unsafe static void Main(string []args)
+        {
+            ////Variable local.
+            //int numero = 43;
+
+            ////Puntero de la variable local.
+            //int *numero_puntero= &numero;
+
+        }
+    }

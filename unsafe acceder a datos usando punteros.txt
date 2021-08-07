@@ -1,0 +1,25 @@
+    /// <summary>
+    /// Accediendo a datos del puntero.
+    /// Importante el puntero en realidad posee dos datos.
+    /// 1) La direccion de memoria de la variable a la que apunta.
+    /// 2)Los datos de la variable a la que apunta. 
+    /// (Aunque en realidad lo que hace es ir a donde esta la 
+    /// variable ubicada en la memoria y extraer los datos a peticion.)
+    /// </summary>
+    public unsafe class Acceder_a_datos_con_punteros
+    {
+        public unsafe struct Datos
+        {
+            public int valor;
+            public string nombre;
+        }
+
+        public unsafe void Acceder()
+        {
+            Datos datos = new Datos();
+            datos.valor = 12;
+            Datos *datos_puntero = &datos;
+            datos_puntero->nombre = "Angel";
+            System.Console.WriteLine("Datos del puntero: " + datos_puntero->nombre + ", " + datos_puntero->valor);
+        }
+    }
