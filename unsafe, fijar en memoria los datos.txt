@@ -1,0 +1,28 @@
+
+    public unsafe class Fijar_en_memoria_los_datos
+    {
+        public unsafe void Ejempo()
+        {
+            int id;
+            int []mInteger=new int [5];
+
+            /*
+             * Bloque fixed para indicar al compilador que los datos en la memoria son fijos.
+             */
+            fixed (int* Puntero = mInteger)
+            {
+                for (id = 0; id < 5; id++)
+                {
+                    Puntero[id] = id;
+
+                }
+
+                System.Console.WriteLine("Leyendo la matriz cargada desde el puntero.\n");
+
+                for (id = 0; id < 5; id++)
+                {
+                    System.Console.WriteLine(mInteger[id]);
+                }
+            }
+        }
+    }
