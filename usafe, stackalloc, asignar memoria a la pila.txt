@@ -1,0 +1,17 @@
+    /// <summary>
+    /// Con la palabra "stackalloc" se puede asignar el espacio de pila en la memoria.
+    /// La memoria se libera al finalizar el metodo donde se asignó esa memoria. 
+    /// (Pagina 418 de La Biblia del C#)
+    /// </summary>
+    public class Asignar_espacio_de_pila_para_la_memoria
+    {
+        public unsafe void Asignando_espacio_de_pila()
+        {
+            int* Puntero = stackalloc int[5];
+            int id;
+            for (id = 0; id < 5; id++)
+            {
+                System.Console.WriteLine(Puntero[id]);
+            }
+        }
+    }

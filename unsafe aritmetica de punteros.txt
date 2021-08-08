@@ -1,0 +1,35 @@
+    /// <summary>
+    /// Por medio del "+" se sube hacia arriba en la pila de memoria de los punteros y 
+    /// por medio de "-" se baja en la pila de memoria de los punteros. 
+    /// (Se cambia de memoria.(Aritmetica de punteros.))
+    /// </summary>
+    public class Cambiar_de_direccion_de_memoria
+    {
+        public /*unsafe*/ void Ejempo()
+        {
+            int id;
+            int[] mInteger = new int[5];
+
+            /*
+             * Bloque fixed para indicar al compilador que los datos en la memoria son fijos.
+             * 
+             * Los punteros pueden ser tratados como una matriz si apuntan a una matriz.
+             */
+            fixed (int *Puntero = mInteger)
+            {
+                for (id = 0; id < 5; id++)
+                {
+                    /*De esta otra manera tambien se cambia de casilla en los punteros.*/
+                    *(Puntero+id)=id;
+
+                }
+
+                System.Console.WriteLine("Leyendo la matriz cargada desde el puntero.\n");
+
+                for (id = 0; id < 5; id++)
+                {
+                    System.Console.WriteLine(mInteger[id]);
+                }
+            }
+        }
+    }
