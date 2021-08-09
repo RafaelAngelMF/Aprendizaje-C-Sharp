@@ -1,0 +1,21 @@
+using System.Windows.Forms;
+
+namespace Entrenamiento_WindowsForm
+{
+    /// <summary>
+    /// Application= Permite gestionar el programa en si con todas las interfaces graficas.
+    /// Form= Se puede heredar desde "Form" para programar de a pie.
+    /// </summary>
+    public class MiPrimerWindowsForm : Form
+    {
+        public MiPrimerWindowsForm()
+        {
+            Text = "Hola interfaz grafica de C#";
+        }
+
+        public static void Main()
+        {
+            Application.Run(new MiPrimerWindowsForm());
+        }
+    }
+}

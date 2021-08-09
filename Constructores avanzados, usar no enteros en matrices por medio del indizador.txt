@@ -1,0 +1,73 @@
+    /// <summary>
+    /// Ultimo ejemplo del tema de los constructores avanzados.
+    ///Buscar informacion de iLDASM
+    /// </summary>
+    namespace Usar_no_enteros_en_matriz
+    {
+        public class Tablero_de_ajedres
+        {
+            private int[,] tablero;
+
+            public Tablero_de_ajedres()
+            {
+                tablero = new int[8, 8];
+            }
+
+            public int this [char columna, int fila]
+            {
+                get
+                {
+                    int columna_id;
+                    switch (columna)
+                    {
+                        case 'A':
+                        case 'a':
+                            columna_id = 0;
+                            break;
+                        case 'B':
+                        case 'b':
+                            columna_id = 1;
+                            break;
+                        case 'C':
+                        case 'c':
+                            columna_id = 2;
+                            break;
+                        case 'D':
+                        case 'd':
+                            columna_id = 3;
+                            break;
+                        case 'E':
+                        case 'e':
+                            columna_id = 4;
+                            break;
+                        case 'F':
+                        case 'f':
+                            columna_id = 5;
+                            break;
+                        case 'G':
+                        case 'g':
+                            columna_id = 6;
+                            break;
+                        case 'H':
+                        case 'h':
+                            columna_id = 7;
+                            break;
+                        default:
+                            throw new Exception("Columna desconocida.");
+                    }
+                    System.Console.WriteLine("Retornando la celda= [" + columna_id + "," + fila + "]");
+                    return tablero[columna_id, fila];
+                }
+            }//Fin del class Tablero_de_ajedres
+
+            public class Ajedres
+            {
+                public void Probar()
+                {
+                    Tablero_de_ajedres tablero = new Tablero_de_ajedres();
+                    int celda = tablero['B',4];
+                }
+            }
+
+        }//Fin del class Tablero_de_ajedres
+    }//Fin del namespace Usar_no_enteros_en_matriz
