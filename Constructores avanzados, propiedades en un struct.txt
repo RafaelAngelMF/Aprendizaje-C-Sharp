@@ -1,0 +1,58 @@
+ /// <summary>
+    /// Lo correcto es usar new cada vez que se inicializa un objeto de un struct.
+    /// Cuando hay propiedades en un struct entonces, se debe inicializar el struct con la palabra new.
+    /// </summary>
+    namespace Como_inicializar_estructuras
+    {
+        public struct Zapato
+        {
+            private string color;
+
+            public string Color
+            {
+                set
+                {
+                    color = value;
+                }
+                get
+                {
+                    return color;
+                }
+            }
+            private int numero_de_calzado;
+
+            public int Numero_de_calzado
+            {
+                set
+                {
+                    numero_de_calzado = value;
+                }
+                get
+                {
+                    return numero_de_calzado;
+                }
+            }
+
+        }//Fin del struct Zapato
+
+        public class MisZapatos
+        {
+            private Zapato[] zapatos = new Zapato[3];
+
+            public MisZapatos()
+            {
+                zapatos[0] = new Zapato();
+                zapatos[0].Color = "Negro";
+                zapatos[0].Numero_de_calzado = 42;
+
+                zapatos[1] = new Zapato();
+                zapatos[1].Color = "Cafe";
+                zapatos[1].Numero_de_calzado = 42;
+
+                zapatos[2] = new Zapato();
+                zapatos[2].Color = "Amarillo pasto";
+                zapatos[2].Numero_de_calzado = 42;
+            }
+        }
+
+    }//Fin del namespace Como_inicializar_estructuras

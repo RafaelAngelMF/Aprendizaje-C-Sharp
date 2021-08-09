@@ -1,0 +1,39 @@
+    /// <summary>
+    /// Este ejemplo se debe investigar por internet ya que viene incompleto 
+    /// en la vercion de la Biblia del C# que yo tengo.
+    /// 
+    /// Se  que funciona en tiempo de diseño, depuracion y compilacion.
+    /// Pero no funcionará en tiempo de ejecucion.
+    /// 
+    /// Y eso es lo que se debe investigar.
+    /// </summary>
+    namespace Excepciones_en_converciones_invalidas
+    {
+        public class Objetivo
+        {
+            public static void ObjetivoPrincipal()
+            {
+                object mi_objeto=new Prueba_objetivo();
+                Objetivo mi_objetivo;
+
+                mi_objetivo = (Objetivo)mi_objeto;
+
+            }
+        }
+
+        public class Prueba_objetivo
+        {
+            private Objetivo Mi_objetivo;
+
+            public Prueba_objetivo()
+            {
+                Mi_objetivo = new Objetivo();
+            }
+
+            public static implicit operator 
+                Objetivo(Prueba_objetivo recurso_de_origen)
+            {
+                return recurso_de_origen.Mi_objetivo;
+            }
+        }
+    }//Fin del namespace Excepciones_en_converciones_invalidas

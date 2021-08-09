@@ -1,0 +1,13 @@
+    public class Usar_referencias
+    {
+        /// <summary>
+        /// Este codigo podria aceptar hasta texto.
+        /// El siguiente codigo tambien fallaria si se le pasa texto.
+        /// </summary>
+        /// <param name="objeto_de_Usar_referencias"></param>
+        public void Prueba(ref object objeto_de_Usar_referencias)
+        {
+            Usar_referencias objeto_de_clase=new Usar_referencias();
+            objeto_de_Usar_referencias = (Usar_referencias)objeto_de_clase;
+        }
+    }
