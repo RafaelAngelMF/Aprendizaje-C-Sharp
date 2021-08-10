@@ -1,0 +1,72 @@
+
+    /// <summary>
+    /// Uso de los eventos del objeto Application.
+    /// Se omiten los atributos del tipo: [assembly: AssemblyTitle("Mi segunda app de Windows Form.")]
+    /// Porque estas practicas las realizo con ide de C# el cual agrega en forma automatica en un 
+    /// archivo aparte los atributos relacionados con assembly.
+    /// Los cuales se pueden ver por medio del menu propiedades en el arbol del proyecto.
+    /// </summary>
+    public class Controlar_los_eventos_de_la_aplicacion : Form
+    {
+
+        public static void Main()
+        {
+            Application.Run(new Controlar_los_eventos_de_la_aplicacion());
+        }
+
+        public Controlar_los_eventos_de_la_aplicacion()
+        {
+            Text = "Eventos de Application";
+            Eventos_del_objetoApplication eventos = new Eventos_del_objetoApplication();
+            Application.ApplicationExit += new EventHandler(eventos.OnApplicationExit);
+            Application.Idle += new EventHandler(eventos.Idle);
+            //Esta me costó porque se usa otro objeto.
+            Application.ThreadException += new ThreadExceptionEventHandler(eventos.OnThreadException);
+            Application.ThreadExit+=new EventHandler(eventos.OnThreadExit);
+        }
+
+        public class Eventos_del_objetoApplication
+        {
+            /// <summary>
+            /// Es el ultimo evento, sucede cuando se sale definitivamente de la apliacasion.
+            /// </summary>
+            /// <param name="sender"></param>
+            /// <param name="e"></param>
+            public void OnApplicationExit(object sender, EventArgs e)
+            {
+                try
+                {
+                    System.Console.WriteLine("La aplicacion esta terminando.");
+                    Console.Read();
+                }catch(NotSupportedException ex)
+                {
+
+                }
+            }
+
+            /// <summary>
+            /// Sucede cuando el form esta en primer plano o en segundo plano, esto con el puntero del mouse.
+            /// </summary>
+            /// <param name="sender"></param>
+            /// <param name="e"></param>
+            public void Idle(object sender, EventArgs e)
+            {
+                System.Console.WriteLine("La aplicacion esta en idle.");
+            }
+
+            /// <summary>
+            /// Penultimo evento, sucede justo antes de OnApplicationExit.
+            /// </summary>
+            /// <param name="sender"></param>
+            /// <param name="e"></param>
+            public void OnThreadException(object sender, ThreadExceptionEventArgs e)
+            {
+                System.Console.WriteLine("Se ha lanzado una excepcion desde el objeto Application.");
+            }
+
+            public void OnThreadExit(object sender, EventArgs e)
+            {
+                System.Console.WriteLine("El hilo de del objeto Application ha terminado.");
+            }
+        }
+    }
