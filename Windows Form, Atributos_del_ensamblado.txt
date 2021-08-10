@@ -1,0 +1,27 @@
+//Estos atrributos del archivo final ya vienen establecidos por defecto.
+//C# lanza un error diciendo que estan duplicados.
+//Claro si uno hace una app de a pie quizas si funcione.
+[assembly: AssemblyTitle("Mi segunda app de Windows Form.")]
+[assembly:AssemblyDescription("Estas propiedades ya existen.")]
+[assembly:AssemblyConfiguration("App")]
+[assembly:AssemblyCompany("Continium")]
+[assembly:AssemblyProduct("Producto de calidad.")]
+[assembly:AssemblyCopyright("Ejemplo libre para aprender.")]
+//El asterisco es para permitir al compilador aumentar el numero automaticamente cada vez que se compila.
+[assembly:AssemblyFileVersion("1.0.*")]
+namespace Entrenamiento_WindowsForm
+{
+    public class Atributos_del_ensamblado : Form
+    {
+
+        public Atributos_del_ensamblado()
+        {
+            Text = "Segunda app.";
+        }
+
+        public static void Main()
+        {
+            Application.Run(new Atributos_del_ejecutable());
+        }
+    }
+}//Fin del namespace Entrenamiento_WindowsForm
