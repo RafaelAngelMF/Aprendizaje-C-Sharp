@@ -1,0 +1,43 @@
+/// <summary>
+    /// Buscar detalles en Windows Platform SDK.
+    /// </summary>
+    namespace Filtros
+    {
+        public class Filtros : IMessageFilter
+        {
+            private const int WM_LBUTTONDOWN = 0x201;
+            private const int WM_LBUTTONUP = 0x202;
+
+
+            public bool PreFilterMessage(ref Message m)
+            {
+               if (m.Msg== WM_LBUTTONDOWN)
+                {
+                    Console.WriteLine("Boton izquierdo del mouse abajo");
+                    return true;
+                }
+
+                if (m.Msg == WM_LBUTTONUP)
+                {
+                    Console.WriteLine("Boton izquierdo del mouse arriba");
+                    return true;
+                }
+                return false;
+            }
+        }
+
+        public class Formulario:Form
+        {
+            public Formulario()
+            {
+                Text = "Filtros de mensajes de Windows hacia la app";
+                Filtros filtros = new Filtros();
+                Application.AddMessageFilter(filtros);
+            }
+
+            public static void Main()
+            {
+                Application.Run(new Formulario());
+            }
+        }
+    }
