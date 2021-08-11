@@ -1,3 +1,9 @@
+using System;
+using System.Windows.Forms;
+
+using System.Reflection;
+using System.Threading;
+
 //Estos atrributos del archivo final ya vienen establecidos por defecto.
 //C# lanza un error diciendo que estan duplicados.
 //Claro si uno hace una app de a pie quizas si funcione.

@@ -1,3 +1,8 @@
+using System;
+using System.Windows.Forms;
+
+using System.Reflection;
+using System.Threading;
 
     /// <summary>
     /// Uso de los eventos del objeto Application.

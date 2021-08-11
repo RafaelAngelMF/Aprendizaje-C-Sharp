@@ -1,0 +1,50 @@
+using System;
+using System.Windows.Forms;
+
+using System.Reflection;
+using System.Threading;
+
+    public class Excepcion_del_mouse:Form
+    {
+
+        public class Eventos
+        {
+            public void OnThreadException(object sender, ThreadExceptionEventArgs e)
+            {
+                Exception exBotonIzquierdo = e.Exception;
+                Console.WriteLine(exBotonIzquierdo.Message);
+            }
+        }
+
+
+        public class Bloquear_el_boton_izquierdo_del_mouse : IMessageFilter
+        {
+            private const int WM_LBUTTONDOWN = 0x201;
+
+            public bool PreFilterMessage(ref Message m)
+            {
+                if (m.Msg == WM_LBUTTONDOWN)
+                {
+                    Exception exBotonIzquierdo = new Exception("Excepcion al hacer click con el boton izquierdo");
+                    Application.OnThreadException(exBotonIzquierdo);
+                    return true;
+                }
+                return false;
+            }
+        }
+
+        public Excepcion_del_mouse()
+        {
+            Text = "Excepciones del mouse";
+            Eventos eventos = new Eventos();
+            Bloquear_el_boton_izquierdo_del_mouse filtro_bloquear_mouse = new Bloquear_el_boton_izquierdo_del_mouse();
+            Application.AddMessageFilter(filtro_bloquear_mouse);
+            Application.ThreadException += new ThreadExceptionEventHandler( eventos.OnThreadException);
+        }
+
+        public static void Main()
+        {
+            Application.Run(new Excepcion_del_mouse());
+        }
+
+    }
