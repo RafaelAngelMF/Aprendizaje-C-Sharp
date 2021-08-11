@@ -1,0 +1,36 @@
+using System;
+using System.Windows.Forms;
+using System.Threading;
+    /// <summary>
+    /// Eliminando un filtro de mensajes instalado por Application.AddMessageFilter
+    /// </summary>
+    public class Eliminar_filtro_de_mensajes_instalado:Form
+    {
+        public class Bloquear_el_boton_izquierdo_del_mouse : IMessageFilter
+        {
+            private const int WM_LBUTTONDOWN = 0x201;
+
+            public bool PreFilterMessage(ref Message m)
+            {
+                if (m.Msg == WM_LBUTTONDOWN)
+                {
+                    Console.WriteLine("Boton izquierdo abajo. Filtro de mensajes removido.");
+                    Application.RemoveMessageFilter(this);
+                    return true;
+                }
+                return false;
+            }
+        }
+
+        public Eliminar_filtro_de_mensajes_instalado()
+        {
+            Text = "Eliminar filtros";
+            Bloquear_el_boton_izquierdo_del_mouse mouse = new Bloquear_el_boton_izquierdo_del_mouse();
+            Application.AddMessageFilter(mouse);
+        }
+
+        public static void Main()
+        {
+            Application.Run(new Eliminar_filtro_de_mensajes_instalado());
+        }
+    }
