@@ -1,0 +1,41 @@
+//Pagina 463 de la Biblia del C#.
+
+using System;
+using System.Windows.Forms;
+
+using System.Threading;
+using System.Drawing;
+
+    /// <summary>
+    /// Con esta demostracion se generaliza que los demas controles de .net se programan de la misma manera.
+    /// Para los eventos.
+    /// Recordar que todos los controles son descendientes de un unico control base, con las propiedades mas comunes.
+    /// 
+    /// Se realiza a mano o a pie como desmotracion pero el ide de C#, dispone de poderosas herramientas visuales
+    /// para arrastrar y colocar botones.
+    /// Asi uno como programador solo se dedica al diseño del algoritmo del programa.
+    /// </summary>
+    public class Usar_boton_en_formulario : Form
+    {
+        public void Click_Boton(object sender, EventArgs argumentos)
+        {
+            MessageBox.Show("Click en el boton.");
+        }
+
+        public Usar_boton_en_formulario()
+        {
+            Button boton = new Button();
+            Text = "Formulario con un boton";
+            boton.Width = 100;
+            boton.Location=new Point(30, 30);
+            boton.Text = "Primer boton ";
+            boton.Click += new EventHandler(Click_Boton);
+            Controls.Add(boton);
+        }
+        
+        public static void Main()
+        {
+            Usar_boton_en_formulario formulario = new Usar_boton_en_formulario();
+            Application.Run(formulario);
+        }
+    }
