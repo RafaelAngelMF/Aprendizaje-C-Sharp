@@ -1,0 +1,40 @@
+    /// <summary>
+    ///Este tema se debe investigar más a fondo por internet.
+    /// Para compilar en linea de comandos el recurso de cadenas se debe usar el comando:
+    /// resgen NombreDelArchivoDeTexto
+    /// NombreDelArchivoDeTexto= Debe tener un formato de recurso de cadenas.
+    /// Por ejemplo: Mensaje=Esto es un mensaje de recurso de cadenas.
+    /// Ver archivo de texto Windows Form, Leer_desde_un_recurso_de_cadenasRs.txt
+    /// Si da error unir el texo asi "Windows_Form_Leer_desde_un_recurso_de_cadenasRs.txt"
+    /// 
+    /// Para compilar en linea de comandos un archivo *.cs con un recurso de cadenas, usar el siguiente comando.
+    /// csc /res:StringTable.resources Leer_desde_un_recurso_de_cadenas.cs
+    /// 
+    /// Claro el formato de los ejemplos es de txt, pero basta con realizar una copia y cambiarle la extencion por .cs
+    /// </summary>
+    public class Leer_desde_un_recurso_de_cadenas : Form
+    {
+
+        public void Evento(object sender, EventArgs argumentos)
+        {
+            ResourceManager rg = new ResourceManager("StringTable", Assembly.GetExecutingAssembly());
+            string mensaje = rg.GetString("Mensaje");
+            MessageBox.Show(mensaje);
+        }
+
+        public Leer_desde_un_recurso_de_cadenas()
+        {
+            Text = "Leer desde un recurso de cadenas";
+            Button boton = new Button();
+            boton.Text = "Leer recurso";
+            boton.Location = new Point(30, 30);
+            boton.Click += new EventHandler(Evento);
+            Controls.Add(boton);
+        }
+
+        public static void Main()
+        {
+            Leer_desde_un_recurso_de_cadenas formulario = new Leer_desde_un_recurso_de_cadenas();
+            Application.Run(formulario);
+        }
+    }

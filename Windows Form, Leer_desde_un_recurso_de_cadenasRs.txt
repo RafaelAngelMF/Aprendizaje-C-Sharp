@@ -1,0 +1,4 @@
+#############
+#String Table
+#############
+Mensaje=Esto es un mensaje escrito en el recurso de cadenas. Pagina 66 de la Biblia del C#.
