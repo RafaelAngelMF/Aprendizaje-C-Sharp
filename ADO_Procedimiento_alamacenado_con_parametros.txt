@@ -1,0 +1,109 @@
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.OleDb;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace PracticandoCSharp.Usar_ADO_Net
+{
+    class Procedimiento_alamacenado_con_parametros
+    {
+        /// <summary>
+        /// Para el ejemplo se puede usar la cuenta sa en caso de no tener contraseña.
+        /// Auque lo correcto es ponerle contraseña.
+        /// Lo mejor es crear una nueva cuenta.
+        /// Retorna la cadena de conexion a una base de datos.
+        /// </summary>
+        private static string Ole_DB_ConectionString_SQL_SERVER
+        {
+            get
+            {
+                //Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False
+                string nombre_de_la_base_de_datos = "MiBase";
+                return "Provider=SQLOLEDB;User ID=sa; Initial Catalog=" + nombre_de_la_base_de_datos + "; Data Source=(localdb)\\MSSQLLocalDB;";
+            }
+        }
+
+        private string consulta_sql;
+
+        /// <summary>
+        /// En un procedimiento almacenado se proporciona el nombre del procedimiento almacenado.
+        /// En una consulta se proporciona codigo sql del tipo select...
+        /// </summary>
+        public string Consulta_SQL
+        {
+            set
+            {
+                consulta_sql = value;
+            }
+            get
+            {
+                return consulta_sql;
+            }
+        }
+
+        /// <summary>
+        /// Lo unico que no me funcionó fue que no conecto a la base de datos SQL Server.
+        /// Todo cambiar los valores int por varchar.
+        /// </summary>
+        /// <returns></returns>
+        public int Llamar_procedimiento_almacenado()
+        {
+            Consulta_SQL = "[Procedimiento_1]";
+
+            OleDbConnection database_conection = new OleDbConnection(Ole_DB_ConectionString_SQL_SERVER);
+
+            OleDbCommand oledb_command = new OleDbCommand(Consulta_SQL, database_conection);
+
+            oledb_command.CommandType = CommandType.StoredProcedure;
+
+            //Agregando los parametros.
+
+            OleDbParameter oledb_parametros = oledb_command.Parameters.Add("[@id_humano]",OleDbType.Integer,4);
+
+            oledb_parametros.Direction = ParameterDirection.Input;
+            oledb_parametros.Value = 2;
+
+            oledb_parametros = oledb_command.Parameters.Add("[@nombre_del_humano]", OleDbType.VarChar, 100);
+
+            oledb_parametros.Direction = ParameterDirection.Input;
+            oledb_parametros.Value = "Angel";
+
+            oledb_parametros = oledb_command.Parameters.Add("[@comentarios_del_humano]", OleDbType.VarChar, 200);
+
+            oledb_parametros.Direction = ParameterDirection.Input;
+            oledb_parametros.Value = "Esto es un comentario.";
+
+            oledb_parametros = oledb_command.Parameters.Add("[@edad_del_humano]", OleDbType.Integer,4);
+
+            oledb_parametros.Direction = ParameterDirection.Input;
+            oledb_parametros.Value = 43;
+
+            try
+            {
+                database_conection.Open();
+                return oledb_command.ExecuteNonQuery();
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.Message,"Error");
+            }
+            finally
+            {
+                //Tareas finales.
+                database_conection.Close();
+            }
+            return 0;
+        }
+
+        public static void Main()
+        {
+            Procedimiento_alamacenado_con_parametros procdimientos = new Procedimiento_alamacenado_con_parametros();
+            procdimientos.Llamar_procedimiento_almacenado();
+        }
+
+    }
+}

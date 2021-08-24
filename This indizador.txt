@@ -1,0 +1,109 @@
+/// <summary>
+/// Esta clase usa un indizador pero sin matriz, haciendo que actue como una matriz de solo lectura.
+/// </summary>
+public class ClaseConIndizador
+{
+    /// <summary>
+    /// Las partes internas de una propiedad (set, get) tambien son llamados: Descriptores.
+    /// </summary>
+    public int Max
+    {
+	
+        get
+        {
+            return 4;
+        }
+    }
+
+    /// <summary>
+    /// Las partes internas de una propiedad (set, get) tambien son llamados: Descriptores.
+    /// </summary>
+    public int Min
+    {
+        get
+        {
+            return 1;
+        }
+    }
+
+    /// <summary>
+    /// En C# las propiedades no necesitan la palabra clave ReadOnly cuando se quiere que sean de solo lectura.
+    /// Basta con poner solo el get o solo el set pero sin los parentesis ().
+    /// </summary>
+    public string this[int id]
+    {
+        get
+        {
+            string Respuesta = "";
+            switch (id)
+            {
+                case 1:
+                    Respuesta = "Uno";
+                    break;
+                case 2:
+                    Respuesta = "Dos";
+                    break;
+                case 3:
+                    Respuesta = "Tres";
+                    break;
+                case 4:
+                    Respuesta = "Cuatro";
+                    break;
+                default:
+                    Respuesta = "Desconocido";
+                    break;
+
+            }
+            return Respuesta;
+        }
+    }
+
+
+/// <summary>
+    /// Un class puede tener más de un indizador, siempre que los demas indizadores tengan más parametros que el primero.
+    /// </summary>
+    /// <param name="id1">Indice 1</param>
+    /// <param name="id2">Indice 2</param>
+    /// <returns></returns>
+       public string this[int id1, int id2]
+       {
+            get
+            {
+            string Respuesta = "";
+            string Respuesta_del_id2 = "";
+            switch (id1)
+            {
+                case 1:
+                    Respuesta = "Saludos"; Respuesta_del_id2 = "amigo";
+                    break;
+                case 2:
+                    Respuesta = "Hola"; Respuesta_del_id2 = "amiga";
+                    break;
+                case 3:
+                    Respuesta = "Excelente"; Respuesta_del_id2 = "día";
+                    break;
+                case 4:
+                    Respuesta = "Animo"; Respuesta_del_id2 = "estamos avanzando";
+                    break;
+                default:
+                    Respuesta = "Hasta"; Respuesta_del_id2 = "luego";
+                    break;
+
+            }
+            return Respuesta + ", " + Respuesta_del_id2;
+        }
+       }
+
+}//End Class
+
+public clas Principal{
+
+	public static void Main()
+	{
+		ClaseConIndizador Clase_con_indizador = new ClaseConIndizador();
+            for(int Indice = Clase_con_indizador.Min;Indice <= Clase_con_indizador.Max;Indice++){
+                Console.WriteLine("Numero " + Clase_con_indizador[Indice]);
+            }
+            System.Console.ReadLine();//Aqui funciona como pausa.
+	}
+}

@@ -1,0 +1,25 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PracticandoCSharp.Usar_ADO_Net
+{
+    class Cadena_de_conexion_sqlServer
+    {
+        /// <summary>
+        /// Para el ejemplo se puede usar la cuenta sa en caso de no tener contraseña.
+        /// Auque lo correcto es ponerle contraseña.
+        /// Lo mejor es crear una nueva cuenta.
+        /// Retorna la cadena de conexion a una base de datos.
+        /// </summary>
+        private static string Ole_DB_ConectionString_SQL_SERVER
+        {
+            get
+            {
+                return "Provider=SQLOLEDB. 1;User ID=sa; Initial Catalog=NombreDeLaBaseDeDatos; Data Source=localhost;";
+            }
+        }
+    }
+}

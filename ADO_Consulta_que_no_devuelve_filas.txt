@@ -1,0 +1,119 @@
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.OleDb;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PracticandoCSharp.Usar_ADO_Net
+{
+    class Consulta_que_no_devuelve_filas
+    {
+
+        /// <summary>
+        /// Para el ejemplo se puede usar la cuenta sa en caso de no tener contraseña.
+        /// Auque lo correcto es ponerle contraseña.
+        /// Lo mejor es crear una nueva cuenta.
+        /// Retorna la cadena de conexion a una base de datos.
+        /// </summary>
+        private static string Ole_DB_ConectionString_SQL_SERVER
+        {
+            get
+            {
+                string nombre_de_la_base_de_datos = "MiBase";
+                return "Provider=SQLOLEDB. 1;User ID=sa; Initial Catalog=" + nombre_de_la_base_de_datos + "; Data Source=localhost;";
+            }
+        }
+
+        private string consulta_sql;
+
+        /// <summary>
+        /// En un procedimiento almacenado se proporciona el nombre del procedimiento almacenado.
+        /// En una consulta se proporciona codigo sql del tipo select...
+        /// </summary>
+        public string Consulta_SQL
+        {
+            set
+            {
+                consulta_sql = value;
+            }
+            get
+            {
+                return consulta_sql;
+            }
+        }
+
+        /// <summary>
+        /// Declarar y asignar los valores apropiados para SQLConectionString.
+        /// Y para strSqlStatement (Consulta sql).
+        /// O sea llamar primero a Ole_DB_ConectionString_SQL_SERVER y pasarlo por parametro.
+        /// </summary>
+        public int Consulta_sin_filas()
+        {
+            OleDbConnection database_connection = new OleDbConnection(Ole_DB_ConectionString_SQL_SERVER);
+
+            Consulta_SQL = "Select nombre, edad, comentarios form Humano;";
+
+            OleDbCommand database_command = new OleDbCommand(Consulta_SQL, database_connection);
+
+            //Para instrucciones sql unicamente.
+            database_command.CommandType = CommandType.Text;
+
+            //Conectando y ejecutando el comando.
+            try
+            {
+                //Conectando a la base.
+                database_connection.Open();
+
+                //Ejecutando comando.
+                return database_command.ExecuteNonQuery();
+            }
+            catch(Exception e)
+            {
+
+            }
+            finally
+            {
+                database_connection.Close();
+            }
+            return 0;
+        }
+
+        /// <summary>
+        /// Esta funcion ejecuta un procedimiento alamcenado.
+        /// </summary>
+        /// <returns></returns>
+        public int Procedimiento_almacenado()
+        {
+            OleDbConnection database_connection = new OleDbConnection(Ole_DB_ConectionString_SQL_SERVER);
+
+            Consulta_SQL = "[Nombre_del_procedimiento_almacenado]";
+
+            OleDbCommand database_command = new OleDbCommand(Consulta_SQL, database_connection);
+
+            //Para procedimientos almacenados unicamente.
+            database_command.CommandType = CommandType.StoredProcedure;
+
+            //Conectando y ejecutando el comando.
+            try
+            {
+                //Conectando a la base.
+                database_connection.Open();
+
+                //Ejecutando comando.
+                return database_command.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                
+            }
+            finally
+            {
+                database_connection.Close();
+            }
+            return 0;
+        }
+
+    }
+}

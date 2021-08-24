@@ -1,0 +1,104 @@
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.OleDb;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace PracticandoCSharp.Usar_ADO_Net
+{
+
+    /// <summary>
+    /// Este es el ultimo ejemplo y practica del tema ADO con enfacis en SQLOLEDB server.
+    /// No obstante, yo usaré estos ejemplos para conectarme a Access o MySQL o icluso a cualquier otro que no fastidie tanto con la seguridad.
+    /// La cual termina convirtiendose en inseguridad de acceso para programadores y usuarios finales.
+    /// Final del tema de ADO net en la pagina 526.
+    /// </summary>
+    class Recuperar_datos_relacionados_con_DataSet
+    {
+        public void Activar()
+        {
+            Consulta_SQL = "[DosConsultas]";
+            OleDbConnection database_connection = new OleDbConnection(Ole_DB_ConectionString_SQL_SERVER);
+            OleDbCommand selectCommand = new OleDbCommand(Consulta_SQL, database_connection);
+            OleDbDataAdapter ole_db_data_adapter = new OleDbDataAdapter();
+            DataSet data_set = new DataSet();
+            selectCommand.CommandType = CommandType.StoredProcedure;
+            try
+            {
+                ole_db_data_adapter.TableMappings.Add("Humano", "Humano");
+                ole_db_data_adapter.TableMappings.Add("Tabla1", "Tabla1");
+                database_connection.Open();
+                ole_db_data_adapter.SelectCommand = selectCommand;
+                int numero_de_filas = ole_db_data_adapter.Fill(data_set,"Humano");
+                DataTable data_table_Humano = data_set.Tables["Humano"];
+                DataTable data_table_Tabla1 = data_set.Tables["Tabla1"];
+                data_table_Humano.PrimaryKey = new DataColumn[] { data_table_Humano.Columns["IdHumano"] };
+
+                //Se supone que contiene la clave foranea de la primera tabla pero a modo de ejemplo lo haré así.
+                //Pagina 525 del archivo PDF de la Biblia del C#
+                data_table_Tabla1.PrimaryKey = new DataColumn[] { data_table_Tabla1.Columns["IdHumano"], data_table_Tabla1.Columns["IdHumano"] };
+
+                //Estableciendo relacion entre las tablas.
+                DataColumn []ColumnaHumano = new DataColumn[] { data_table_Humano.Columns["IdHumano"] };
+                DataColumn []ColumnaTabla1 = new DataColumn[] { data_table_Tabla1.Columns["IdHumano"] };
+                data_set.Relations.Add(new DataRelation("Tabla1", ColumnaHumano, ColumnaTabla1));
+                //Informando
+                DataRow data_row_primarios = data_table_Tabla1.Rows[0];
+                DataRow []mData_row_secundarios = data_row_primarios.GetChildRows("Tabla1");
+                DataRow data_row_secundarios;
+                for(int i=0;i<= mData_row_secundarios.Length - 1; i++)
+                {
+                    data_row_secundarios = mData_row_secundarios[i];
+                    Console.WriteLine(data_row_secundarios["Nombre"] + " " + data_row_secundarios["Comentarios"]);
+                }
+
+                MessageBox.Show(""+ data_row_primarios["IdHumano"] + " " + data_row_primarios["Nombre"] + " " );
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            finally
+            {
+                database_connection.Close();
+            }
+        }
+
+        private string consulta_sql;
+
+        /// <summary>
+        /// En un procedimiento almacenado se proporciona el nombre del procedimiento almacenado.
+        /// En una consulta se proporciona codigo sql del tipo select...
+        /// </summary>
+        public string Consulta_SQL
+        {
+            set
+            {
+                consulta_sql = value;
+            }
+            get
+            {
+                return consulta_sql;
+            }
+        }
+
+        /// <summary>
+        /// Para el ejemplo se puede usar la cuenta sa en caso de no tener contraseña.
+        /// Auque lo correcto es ponerle contraseña.
+        /// Lo mejor es crear una nueva cuenta.
+        /// Retorna la cadena de conexion a una base de datos.
+        /// </summary>
+        private static string Ole_DB_ConectionString_SQL_SERVER
+        {
+            get
+            {
+                //Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False
+                string nombre_de_la_base_de_datos = "MiBase";
+                return "Provider=SQLOLEDB;User ID=Admin; Initial Catalog=" + nombre_de_la_base_de_datos + "; Data Source=(localdb)\\MSSQLLocalDB;";
+            }
+        }
+    }
+}

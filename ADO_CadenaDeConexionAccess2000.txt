@@ -1,0 +1,21 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PracticandoCSharp.Usar_ADO_Net
+{
+    class CadenaDeConexionAccess2000
+    {
+        private static string OleDbConectionString_Access2000
+        {
+            get
+            {
+                //Direccion con el nombre y la extencion de la base de datos de Access.
+                string direccion_completa_de_la_base = "";
+                return "Provider=Microsoft.Jet.OLEDB.4.0; Data Source="+ direccion_completa_de_la_base;
+            }
+        }
+    }
+}

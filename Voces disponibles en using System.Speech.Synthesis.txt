@@ -1,0 +1,18 @@
+
+id=TTS_MS_EN-US_ZIRA_11.0; Nombre=Microsoft Zira Desktop, edad=Adult, genero=Female, cultra=en-US
+
+id=eSpeak_1; Nombre=eSpeak-es-la+f3, edad=Adult, genero=Male, cultra=es-ES_tradnl
+
+id=eSpeak_2; Nombre=eSpeak-es-la+m3, edad=Adult, genero=Male, cultra=es-ES_tradnl
+
+id=eSpeak_3; Nombre=eSpeak-es, edad=Adult, genero=Male, cultra=es-ES_tradnl
+
+id=MSMary; Nombre=Microsoft Mary, edad=Adult, genero=Female, cultra=en-US
+
+id=MSMike; Nombre=Microsoft Mike, edad=Adult, genero=Male, cultra=en-US
+
+id=MSSimplifiedChineseVoice; Nombre=Microsoft Simplified Chinese, edad=Adult, genero=Male, cultra=zh-CN
+
+id=SampleTTSVoice; Nombre=SampleTTSVoice, edad=Adult, genero=Male, cultra=en-US
+
+id=eSpeak; Nombre=eSpeak-es-la, edad=Adult, genero=Male, cultra=es-ES_tradnl

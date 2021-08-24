@@ -1,0 +1,94 @@
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.OleDb;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace PracticandoCSharp.Usar_ADO_Net
+{
+    class RecuperarRegistroUnicoConDataSet
+    {
+
+        public void ActivarProcedimientoAlmacenado()
+        {
+            Consulta_SQL = "EXEC [RecuperarUnUnicoRegistro] @Nombre1='ra'";
+
+            OleDbConnection database_connection = new OleDbConnection(Ole_DB_ConectionString_SQL_SERVER);
+
+            OleDbCommand selectCommand = new OleDbCommand(Consulta_SQL, database_connection);
+
+            OleDbDataAdapter ole_db_data_adapter = new OleDbDataAdapter();
+
+            DataSet data_set = new DataSet();
+
+            selectCommand.CommandType = CommandType.Text;
+
+            try
+            {
+                database_connection.Open();
+
+                ole_db_data_adapter.SelectCommand = selectCommand;
+                int numero_de_filas = ole_db_data_adapter.Fill(data_set, "Humano");
+                //Obteniendo resultados y datos.
+                if (numero_de_filas>0)
+                {
+                    string nombre = data_set.Tables["Humano"].Rows[0]["Nombre"].ToString();
+                    MessageBox.Show(nombre);
+                }
+
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            finally
+            {
+                database_connection.Close();
+            }
+        }
+
+        private string consulta_sql;
+
+        /// <summary>
+        /// En un procedimiento almacenado se proporciona el nombre del procedimiento almacenado.
+        /// En una consulta se proporciona codigo sql del tipo select...
+        /// </summary>
+        public string Consulta_SQL
+        {
+            set
+            {
+                consulta_sql = value;
+            }
+            get
+            {
+                return consulta_sql;
+            }
+        }
+
+        /// <summary>
+        /// Para el ejemplo se puede usar la cuenta sa en caso de no tener contraseña.
+        /// Auque lo correcto es ponerle contraseña.
+        /// Lo mejor es crear una nueva cuenta.
+        /// Retorna la cadena de conexion a una base de datos.
+        /// </summary>
+        private static string Ole_DB_ConectionString_SQL_SERVER
+        {
+            get
+            {
+                //Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False
+                string nombre_de_la_base_de_datos = "MiBase";
+                return "Provider=sqloledb;User ID=0; Initial Catalog=" + nombre_de_la_base_de_datos + "; Data Source=(localdb)\\MSSQLLocalDB;";
+            }
+        }
+
+        public static void Main()
+        {
+            RecuperarRegistroUnicoConDataSet data_set = new RecuperarRegistroUnicoConDataSet();
+            data_set.ActivarProcedimientoAlmacenado();
+        }
+    }
+}

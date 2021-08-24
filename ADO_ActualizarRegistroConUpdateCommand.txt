@@ -1,0 +1,89 @@
+using System.Data.OleDb;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace PracticandoCSharp.Usar_ADO_Net
+{
+    class ActualizarRegistroConUpdateCommand
+    {
+
+        /// <summary>
+        /// Pagina 513
+        /// </summary>
+        public void Actualizando()
+        {
+            Consulta_SQL = "EXEC [Procedimiento_1] @id_humano='-1'";
+            OleDbConnection database_connection = new OleDbConnection(Ole_DB_ConectionString_SQL_SERVER);
+            OleDbCommand selectCommand = new OleDbCommand(Consulta_SQL, database_connection);
+            OleDbDataAdapter ole_db_data_adapter = new OleDbDataAdapter();
+            OleDbCommandBuilder ole_db_command_builder = new OleDbCommandBuilder(ole_db_data_adapter);
+            DataSet data_set = new DataSet();
+
+            selectCommand.CommandType = CommandType.Text;
+            try
+            {
+                database_connection.Open();
+                ole_db_data_adapter.SelectCommand = selectCommand;
+                int numero_de_filas = ole_db_data_adapter.Fill(data_set, "Humano");
+
+                if (numero_de_filas > 0)
+                {
+                    data_set.Tables["Humano"].Rows[1]["Humano"] = "Angel";
+                    ole_db_data_adapter.Update(data_set, "Humano");
+                    MessageBox.Show("Fila actualizada");
+                }
+
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            finally
+            {
+                database_connection.Close();
+            }
+        }
+
+
+        /// <summary>
+        /// Para el ejemplo se puede usar la cuenta sa en caso de no tener contraseña.
+        /// Auque lo correcto es ponerle contraseña.
+        /// Lo mejor es crear una nueva cuenta.
+        /// Retorna la cadena de conexion a una base de datos.
+        /// </summary>
+        private static string Ole_DB_ConectionString_SQL_SERVER
+        {
+            get
+            {
+                //Provider=SQLOLEDB;Data Source=serverName;Initial Catalog = databaseName;User ID = MyUserID; Password = MyPassword;
+                string nombre_de_la_base_de_datos = "MiBase";
+                return "Provider=SQLOLEDB;User ID=Admin; Initial Catalog=" + nombre_de_la_base_de_datos + "; Data Source=(localdb)\\MSSQLLocalDB;";
+            }
+        }
+
+        private string consulta_sql;
+        /// <summary>
+        /// En un procedimiento almacenado se proporciona el nombre del procedimiento almacenado.
+        /// En una consulta se proporciona codigo sql del tipo select...
+        /// </summary>
+        public string Consulta_SQL
+        {
+            set
+            {
+                consulta_sql = value;
+            }
+            get
+            {
+                return consulta_sql;
+            }
+        }
+
+        public static void Main()
+        {
+            ActualizarRegistroConUpdateCommand Actualizar = new ActualizarRegistroConUpdateCommand();
+            Actualizar.Actualizando();
+        }
+    }
+}
