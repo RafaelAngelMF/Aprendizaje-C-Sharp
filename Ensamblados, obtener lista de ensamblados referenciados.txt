@@ -1,0 +1,31 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PracticandoCSharp.TrabajarConEnsamblados
+{
+    class ListaDeEnsambladosReferenciados
+    {
+        /// <summary>
+        /// Recupera una lista de ensamblados a los que se ha hecho referencia en el proyecto o solucion.
+        /// </summary>
+        public void Lista_de_ensamblados()
+        {
+            Assembly assembly = Assembly.GetEntryAssembly();
+            foreach (AssemblyName nombre_de_ensamblado in assembly.GetReferencedAssemblies())
+            {
+                Console.WriteLine("Nombre del ensamblado referenciado: " + nombre_de_ensamblado.ToString());
+            }
+            Console.ReadKey();
+        }
+
+        public static void Main()
+        {
+            ListaDeEnsambladosReferenciados ejemplo = new ListaDeEnsambladosReferenciados();
+            ejemplo.Lista_de_ensamblados();
+        }
+    }
+}
