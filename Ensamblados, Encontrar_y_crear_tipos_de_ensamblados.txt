@@ -1,0 +1,50 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Reflection;
+
+
+namespace PracticandoCSharp.TrabajarConEnsamblados
+{
+    class Encontrar_y_crear_tipos_de_ensamblados
+    {
+        public void Encontrar()
+        {
+            Assembly assembly = Assembly.Load("System.xml,Version=1.0.3300.0,Culture=neutral,PublicKeyToken=b77a5c561934e089");
+            Type[] XMLtypes= assembly.GetExportedTypes();
+            foreach (Type xmlType in XMLtypes)
+            {
+                
+                try
+                {
+                    Console.WriteLine(xmlType.ToString());
+                    
+                    object nuevo_objeto= assembly.CreateInstance(xmlType.ToString());
+                    if (nuevo_objeto != null)
+                    {
+                        Console.WriteLine("Se ha creado el nuevo tipo del ensamblado");
+
+                    }else
+                    {
+                        Console.WriteLine("Error. No se pudo crear el tipo del ensamblado.");
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+                Console.ReadKey();
+            }
+
+
+        }
+
+        public static void Main()
+        {
+            Encontrar_y_crear_tipos_de_ensamblados c = new Encontrar_y_crear_tipos_de_ensamblados();
+            c.Encontrar();
+        }
+    }
+}

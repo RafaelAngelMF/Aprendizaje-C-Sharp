@@ -1,0 +1,35 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Reflection;
+
+
+namespace PracticandoCSharp.TrabajarConEnsamblados
+{
+    class PuntoDeEntradaDeUnEnsamblado
+    {
+        public void Obtener_punto_de_entrada()
+        {
+            Assembly assembly = Assembly.GetEntryAssembly();
+
+            if (assembly.EntryPoint == null)
+            {
+                Console.WriteLine("El ensamblado no tiene punto de entrada");
+            }
+            else
+            {
+                Console.WriteLine("El ensamblado si tiene puinto de entrada.");
+                Console.WriteLine(assembly.EntryPoint.ToString());
+            }
+            Console.ReadKey();
+        }
+
+        public static void Main()
+        {
+            PuntoDeEntradaDeUnEnsamblado c = new PuntoDeEntradaDeUnEnsamblado();
+            c.Obtener_punto_de_entrada();
+        }
+    }
+}

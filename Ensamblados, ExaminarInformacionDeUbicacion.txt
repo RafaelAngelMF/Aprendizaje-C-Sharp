@@ -1,0 +1,29 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Reflection;
+
+namespace PracticandoCSharp.TrabajarConEnsamblados
+{
+    class ExaminarInformacionDeUbicacion
+    {
+        public void ObtenerUbicacion()
+        {
+            Assembly assembly = Assembly.GetEntryAssembly();
+            Console.WriteLine("Ubicacion " + assembly.Location);
+            Console.WriteLine("Code base " + assembly.CodeBase);
+            Console.WriteLine("Escaped code base " + assembly.EscapedCodeBase);
+            Console.WriteLine("Cargado desde GlobalAssemblyCache " + assembly.GlobalAssemblyCache);
+            Console.ReadKey();
+        }
+
+        public static void Main()
+        {
+            ExaminarInformacionDeUbicacion c = new ExaminarInformacionDeUbicacion();
+            c.ObtenerUbicacion();
+        }
+
+    }
+}

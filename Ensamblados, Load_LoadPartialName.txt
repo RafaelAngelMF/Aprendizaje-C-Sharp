@@ -1,0 +1,58 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Reflection;
+using System.IO;
+
+
+namespace PracticandoCSharp.TrabajarConEnsamblados
+{
+    class Load_LoadPartialName
+    {
+        private Assembly Loaded_assembly;
+
+        ///[Obsolete]
+        public Load_LoadPartialName(string nombre_del_loaded_assembly,bool es_partial_name)
+        {
+            Console.WriteLine("Nombre del ensamblado "+ nombre_del_loaded_assembly + "\n\n");
+            try
+            {
+                if (es_partial_name == true)
+                {
+                    Loaded_assembly = Assembly.LoadWithPartialName(nombre_del_loaded_assembly);
+                }
+                else
+                {
+                    Loaded_assembly = Assembly.Load(nombre_del_loaded_assembly);
+                }
+            }catch(Exception ex)
+            {
+                Console.WriteLine("No se pudo cargar el ensamblado " + nombre_del_loaded_assembly + " en modo PartialName.");
+            }
+            finally
+            {
+                //
+            }
+            Console.ReadKey();
+        }
+
+        protected void Mostrar_detalles_del_partial_name()
+        {
+            Console.WriteLine("Nombre completo " + Loaded_assembly.FullName + "\n");
+            Console.WriteLine("Location " + Loaded_assembly.Location + "\n");
+            Console.WriteLine("Code base " + Loaded_assembly.CodeBase + "\n");
+            Console.WriteLine("Escaped code base " + Loaded_assembly.EscapedCodeBase + "\n");
+            Console.WriteLine("Cargado desde la global assembly cache = " + Loaded_assembly.GlobalAssemblyCache + "\n");
+        }
+
+        public static void Main()
+        {
+            Load_LoadPartialName c = new Load_LoadPartialName("System.xml,version=1.0.3300.0, Culture=Neutral,PublicKeyToken=b77a5c561934e089",false);
+            c = new Load_LoadPartialName("System.xml", false);
+            c = new Load_LoadPartialName("System.xml", true);
+
+        }
+    }
+}
