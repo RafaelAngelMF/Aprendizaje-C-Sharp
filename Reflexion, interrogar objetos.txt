@@ -1,0 +1,144 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Reflection;
+
+
+namespace PracticandoCSharp.Reflexion
+{
+    /// <summary>
+    /// Este class es para probarlo con la reflaxion.
+    /// </summary>
+    class Vegetal
+    {
+        public string Campo_Color = "Verde";
+
+        private int peso;
+
+        public int Peso
+        {
+            get
+            {
+                return peso;
+            }
+            set
+            {
+                peso = value;
+            }
+        }
+
+        private int tiempo_de_maduracion;
+
+        public int Tiempo_de_maduracion
+        {
+            get
+            {
+                return tiempo_de_maduracion;
+            }
+            set
+            {
+                tiempo_de_maduracion = value;
+            }
+        }
+
+        private string especie_de_fruta;
+
+        public string Especie_de_fruta
+        {
+            get
+            {
+                return especie_de_fruta;
+            }
+            set
+            {
+                especie_de_fruta = value;
+            }
+        }
+
+        public Vegetal()
+        {
+
+        }
+
+        public Vegetal(string nueva_especie_de_fruta)
+        {
+            //Se usa la variable privada(campo) por si se sobrecarga en un nuevo class o se hereda.
+            //Claro para heredarse debe tener la palabra "Virtual" , "override", "abstract" o incluso descender de una interface.
+            especie_de_fruta = nueva_especie_de_fruta;
+        }
+
+        public string Definicion_de_fruta()
+        {
+            return "Una fruta o fruto es lo que las plantas y arboles producen como cosecha.";
+        }
+
+        /// <summary>
+        /// Este metodo o funcion es solo para probarlo con la Reflectividad.
+        /// </summary>
+        /// <param name="nuevo_precio"></param>
+        /// <returns></returns>
+        public double Precio_de_venta_de_la_fruta(double nuevo_precio)
+        {
+            return nuevo_precio;
+        }
+
+        public void Acerca_de()
+        {
+            Console.WriteLine("Creador de este class: Rafael Angel Montero Fernández.\nCorreo: Sharkyc12@gmail.com\nCelular en Costa Rica: 506 83942235");
+        }
+    }
+    class Interrogar_objetos
+    {
+        public void Interrogar()
+        {
+            Type type = typeof(Vegetal);
+
+            Console.WriteLine("Tipo de clase " + type + "\nNamespace " + type.Namespace);
+
+            ConstructorInfo[] mConstructorInfo = type.GetConstructors();
+
+            Console.WriteLine("\n\nLos constructores son:\n\n");
+
+            foreach (ConstructorInfo un_constructor in mConstructorInfo)
+            {
+                Console.WriteLine(un_constructor);
+            }
+
+            PropertyInfo []mPropertyInfo = type.GetProperties();
+
+            Console.WriteLine("\n\nLas propiedades son:\n\n");
+
+            foreach (PropertyInfo una_propiedad in mPropertyInfo)
+            {
+                Console.WriteLine(una_propiedad);
+            }
+
+            MethodInfo []mMethod_info = type.GetMethods();
+
+            Console.WriteLine("\n\nLos metodos son:\n\n");
+
+            foreach (MethodInfo un_metodo in mMethod_info)
+            {
+                Console.WriteLine("Nombre del metodo " + un_metodo.Name + "\nLos parametros son:");
+                
+                ParameterInfo[] mParameter_info = un_metodo.GetParameters();
+
+                foreach (ParameterInfo un_parametro in mParameter_info)
+                {
+                    Console.WriteLine("Type " + un_parametro.ParameterType + ", nombre " + un_parametro.Name + "\n");
+                }
+                Console.WriteLine("\n");
+            }
+
+            Console.ReadKey();
+        }
+
+        public static void Main()
+        {
+            Interrogar_objetos c = new Interrogar_objetos();
+            c.Interrogar();
+        }
+    }
+}

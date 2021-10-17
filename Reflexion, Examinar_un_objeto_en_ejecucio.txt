@@ -1,0 +1,43 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Reflection;
+using System.Diagnostics;
+
+//Pagina 696 en la Biblia del C#.
+
+namespace PracticandoCSharp.Reflexion
+{
+    class Examinar_un_objeto_en_ejecucion
+    {
+        public void Examinar()
+        {
+            Process process = Process.GetCurrentProcess();
+            string nombre_del_ensamblado = process.ProcessName + ".exe";
+
+            Console.WriteLine("Examinando el objeto en tiempo de ejecucion\n" + nombre_del_ensamblado);
+            Assembly assembly = Assembly.LoadFrom(nombre_del_ensamblado);
+            Type[] mTypes = assembly.GetTypes();
+            try{
+                foreach (Type type in mTypes)
+                {
+                    Console.WriteLine("FullName= " + type.FullName);
+                    Console.WriteLine("\n\ntype.BaseType.FullName = " + type.BaseType.FullName);
+                }
+            }
+            catch (NullReferenceException e)
+            {
+                Console.WriteLine("\n\nError\n" + e);
+            }
+            Console.ReadKey();
+        }
+
+        public static void Main()
+        {
+            Examinar_un_objeto_en_ejecucion c = new Examinar_un_objeto_en_ejecucion();
+            c.Examinar();
+        }
+    }
+}

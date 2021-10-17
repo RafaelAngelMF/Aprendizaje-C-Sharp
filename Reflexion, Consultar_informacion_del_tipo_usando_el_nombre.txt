@@ -1,0 +1,30 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Reflection;
+
+namespace PracticandoCSharp.Reflexion
+{
+    /// <summary>
+    /// Pagina 693 de la biblia del C#.
+    /// </summary>
+    class Consultar_informacion_del_tipo_usando_el_nombre
+    {
+        public void Consultar()
+        {
+            Type type = Type.GetType("System.String");
+            Console.WriteLine("Nombre del tipo " + type.Name);
+            Console.WriteLine("UnderlyingSystemType= " + type.UnderlyingSystemType);
+            Console.WriteLine("Es un class " + type.IsClass);
+            Console.ReadKey();
+        }
+
+        public static void Main()
+        {
+            Consultar_informacion_del_tipo_usando_el_nombre c = new Consultar_informacion_del_tipo_usando_el_nombre();
+            c.Consultar();
+        }
+    }
+}

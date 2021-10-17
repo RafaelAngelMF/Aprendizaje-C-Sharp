@@ -1,0 +1,86 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Reflection;
+using System.Reflection.Emit;
+
+namespace PracticandoCSharp.Reflexion
+{
+    class GenerarCodigoDinamicamente
+    {
+        private Type type;
+
+        /// <summary>
+        /// Dominio de la aplicacion actual.
+        /// </summary>
+        private AppDomain app_domain;
+
+        /// <summary>
+        /// Crea un nuevo ensamblado para los metodos.
+        /// </summary>
+        private AssemblyName assemblyName;
+        private AssemblyBuilder assemblyBuilder;
+
+        /// <summary>
+        /// Crea un nuevo modulo.
+        /// </summary>
+        private ModuleBuilder moduleBuilder;
+
+        /// <summary>
+        /// Crea un nuevo tipo en el modulo.
+        /// </summary>
+        private TypeBuilder typeBuilder;
+        private MethodBuilder methodBuilder;
+
+        /// <summary>
+        /// Generador de codigo intermedio.
+        /// </summary>
+        private ILGenerator iLGenerator;
+
+
+        public GenerarCodigoDinamicamente()
+        {
+            app_domain = AppDomain.CurrentDomain;
+            assemblyName = new AssemblyName();
+            assemblyName.Name="BibliaDelC#";
+            assemblyBuilder = app_domain.DefineDynamicAssembly(assemblyName,AssemblyBuilderAccess.Run);
+            moduleBuilder = assemblyBuilder.DefineDynamicModule("EntrenamientoModulo");
+            typeBuilder = moduleBuilder.DefineType("EntrenamientoClass",TypeAttributes.Public);
+            methodBuilder = typeBuilder.DefineMethod("Hola_mundo", MethodAttributes.Public);
+            iLGenerator = methodBuilder.GetILGenerator();
+            iLGenerator.EmitWriteLine("Hola desde el entrenamineto C#");
+            iLGenerator.Emit(OpCodes.Ret);
+            type = typeBuilder.CreateType();
+        }
+
+        public Type PrType
+        {
+            get
+            {
+                return type;
+            }
+        }
+
+        public static void Main()
+        {
+            GenerarCodigoDinamicamente c = new GenerarCodigoDinamicamente();
+            Type TypeMain = c.PrType;
+            if (TypeMain != null)
+            {
+                Object objeto = Activator.CreateInstance(TypeMain);
+                MethodInfo methodInfo = TypeMain.GetMethod("Hola_mundo");
+                if (methodInfo != null)
+                {
+                    methodInfo.Invoke(objeto,null);
+                }
+                else
+                {
+                    Console.WriteLine("No se puede tener acceso al tipo (Class)");
+                }
+                Console.ReadKey();
+            }
+        }
+    }
+}

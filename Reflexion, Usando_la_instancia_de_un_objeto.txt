@@ -1,0 +1,30 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Reflection;
+
+
+namespace PracticandoCSharp.Reflexion
+{
+    class Usando_la_instancia_de_un_objeto
+    {
+        public void Consultar_instancia()
+        {
+            String UnString = "Rafael Angel Montero Fernández\n Correo= sharkyc12@gmail.com";
+            Type type = UnString.GetType();
+
+            Console.WriteLine("Obteniendo el tipo de la instancia\n" + type.Name);
+            Console.WriteLine("UnderlyingSystemType = " + type.UnderlyingSystemType);
+            Console.WriteLine("Es un class = " + type.IsClass);
+            Console.ReadKey();
+        }
+
+        public static void Main()
+        {
+            Usando_la_instancia_de_un_objeto c = new Usando_la_instancia_de_un_objeto();
+            c.Consultar_instancia();
+        }
+    }
+}
