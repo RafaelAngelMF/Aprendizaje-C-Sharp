@@ -1,0 +1,40 @@
+Miembros más usados de la clase Thread en C#
+
+Pagina 701 del archivo pdf de la Biblia del C#.
+
+Fecha domingo 17 de octubre del 2021.
+________________________________________________
+
+
+
+CurrentContext = Obtiene el contexto actual donde se esta ejecutando el subproceso.
+
+CurrentThread = Obtiene el subproceso actualmente en ejecucion.
+
+ResetAbort = Restablece una peticion de anulacion.
+
+Sleep = Bloquea el subproceso actual durante el tiempo especificado.
+
+ApartmentState = Obtiene o establece el estado de apartamento de un subproceso.
+
+IsAlive = Obtiene un valor que indica si el subproceso ha comenzado y no ha finalizado.
+
+IsBackgroud = Obtiene o establece un valor que indica si un subproceso es o no un subproceso en segundo plano.
+
+Name = Obtiene o establece el nombre del subproceso.
+
+Priority = Obtiene o establece la prioridad del subproceso.
+
+Threadstate = Obtiene el estado del subproceso.
+
+Abort = Inicia ThreadAbortException, que puede finalizar el subproceso.
+
+Interrupt = Interrumpe un subproceso que se encuentra en estado de subproceso WaitSleepJoin.
+
+Join = Espera un subproceso.
+
+Resume = Reanuda un subproceso que ha sido suspendido.
+
+Start = Inicia la ejecucion del subproceso.
+
+Suspend = Suspende el subproceso.
