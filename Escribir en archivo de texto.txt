@@ -1,0 +1,76 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace MiVida
+{
+    /// <summary>
+    /// Sabado 13 de noviembre del 2021.
+    /// Autor de la variante del ejemplo: Rafael Angel Montero Fernández.
+    /// Ejemplo de como escribir textos en un archivo de texto.
+    /// </summary>
+    class Escribir_Textos
+    {
+
+        public static void Main()
+        {
+            Escribir_Textos e = new Escribir_Textos();
+            e.Escribir();
+            e.Leer();
+            MessageBox.Show(e.Todo_el_texto);
+        }
+        public Escribir_Textos()
+        {
+
+        }
+
+        /// <summary>
+        /// Escribe en un archivo txt.
+        /// </summary>
+        public void Escribir()
+        {
+            MessageBox.Show(Application.StartupPath+ "\\");
+            
+            StreamWriter stream_writer = new StreamWriter(Application.StartupPath+"\\Texto.txt");
+            stream_writer.WriteLine("Hola");
+            stream_writer.Close();
+        }
+
+        private string todo_el_texto = "";
+
+        public string Todo_el_texto
+        {
+            get
+            {
+                return todo_el_texto;
+            }
+        }
+        public void Leer()
+        {
+            try
+            {
+                StreamReader stream_reader = new StreamReader(Application.StartupPath + "\\Texto.txt");
+                
+                string linea_de_texto = stream_reader.ReadLine();
+                int numero_de_linea = 0;
+                //Se continua leyendo hasta llegar al final del arcchivo.
+                while (linea_de_texto != null)
+                {
+                    todo_el_texto ="(" + numero_de_linea + ") " + linea_de_texto + "\n";
+                    numero_de_linea++;
+                    linea_de_texto = stream_reader.ReadLine();
+                }
+                stream_reader.Close();
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
+
+        }
+    }
+}

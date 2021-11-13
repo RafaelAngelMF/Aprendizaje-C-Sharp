@@ -1,0 +1,159 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using System.Speech.Recognition; //reconocimiento del mic.
+using System.Speech.Synthesis; // voz del asistente.
+using System.IO;
+using nombre1Final.Properties;
+ 
+namespace nombre1Final
+{
+    /// <summary>
+    /// Lógica de interacción para Minimizado.xaml
+    /// </summary>
+    public partial class Minimizado : Window
+    {
+        SpeechRecognitionEngine reconocedor = new SpeechRecognitionEngine(); // inicio del reconocimiento.
+        SpeechSynthesizer nombre1 = new SpeechSynthesizer(); // inicio del aistente.
+        string Speech;
+        bool habilitarReconocimiento = false;
+ 
+        public Minimizado()
+        {
+            InitializeComponent();
+            LblTextoSalida.Content = "Para activar el micrófono diga:  " + Settings.Default.NomAsist;
+            InicioMicApagado();
+        }
+ 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            InicioDeGramaticas();
+            nombre1.SpeakAsync("Iniciando el asistente, . .En línea");
+        }
+ 
+        void InicioDeGramaticas()
+        {
+ 
+            LoadGrammarAlarma(); // carga las gramaticas dela alarma por voz
+ 
+            reconocedor.LoadGrammarAsync(new Grammar(new GrammarBuilder(new Choices(File.ReadAllLines(@"Comandos\ComandoTexto.txt"))))); // carga los comandos de la carpeta.
+ 
+            reconocedor.RequestRecognizerUpdate();// actualizador del mic.
+            reconocedor.SpeechRecognized += Reconocedor_SpeechRecognized; // cuando se habla por el mic.
+ 
+            nombre1.SpeakStarted += (nombre1)_SpeakStarted; // reconoce el comando.
+            nombre1.SpeakCompleted += (nombre1)_SpeakCompleted; // cuando el asistente termina de hablar.
+ 
+            reconocedor.AudioLevelUpdated += Reconocedor_AudioLevelUpdated; // obtiene el nivel de entrada del mic.
+            reconocedor.SetInputToDefaultAudioDevice(); // selecciona los dispositivos de audio por defecto.
+            reconocedor.RecognizeAsync(RecognizeMode.Multiple); // mic siempre activo.
+        }
+ 
+        private void Reconocedor_AudioLevelUpdated(object sender, AudioLevelUpdatedEventArgs e)
+        {
+            int nivelAudio = e.AudioLevel;
+            PbNivelAudio.Value = nivelAudio;
+        } // muestra el nivel del mic
+ 
+        void nombre1_SpeakCompleted(object sender, SpeakCompletedEventArgs e)
+        {
+            reconocedor.RecognizeAsync(RecognizeMode.Multiple);
+            LblStatus.Visibility = Visibility.Visible;
+            LblStatus2.Visibility = Visibility.Hidden;
+        } // cuando el asistente termina activa el reconocimiento
+ 
+        void nombre1_SpeakStarted(object sender, SpeakStartedEventArgs e)
+        {
+            reconocedor.RecognizeAsyncCancel();
+            LblStatus.Visibility = Visibility.Hidden;
+            LblStatus2.Visibility = Visibility.Visible;
+ 
+        } // desactiva el reconocimiento para que hable el asistente
+ 
+        private void Reconocedor_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
+        {
+            double Confidencia, ConfidenciaAux;
+            Confidencia = Settings.Default.Confidencia;
+            ConfidenciaAux = Math.Round(Confidencia, 2);
+            Speech = e.Result.Text;
+ 
+            if (Speech == Settings.Default.NomAsist)
+            {
+                OnMic();
+            } // para activar el mic
+ 
+            if (Speech == "Grácias")
+            {
+                OffMic();
+            }  // para desactivar el mic
+ 
+            if (Settings.Default.on_of_mic)
+            {
+                if (e.Result.Confidence >= ConfidenciaAux)
+                {
+                    if (Speech == "Hola")
+                    {
+                        nombre1.SpeakAsync("Hola Señor ¿cómo está?");
+                        LblTextoSalida.Content = "";
+                        LblTextoSalida.Content = Speech;
+                    }
+                    if (Speech == "Buenos días")
+                    {
+                        nombre1.SpeakAsync("Buenos Días Señor  ¿Cómo amaneció?");
+                        LblTextoSalida.Content = "";
+                        LblTextoSalida.Content = Speech;
+                    }
+                    if (Speech == "Muy bién y ¿tú?")
+                    {
+                        nombre1.SpeakAsync("Exelente señor y lista para el trabajo");
+                        LblTextoSalida.Content = "";
+                        LblTextoSalida.Content = Speech;
+                    }
+                    if (Speech == "Buenas noches")
+                    {
+                        (nombre1).SpeakAsync("Buenas noches Señor");
+                        LblTextoSalida.Content = "";
+                        LblTextoSalida.Content = Speech;
+                    }
+                    if (Speech == "¿Cómo estás?")
+                    {
+                        nombre1.SpeakAsync("Muy Bién Señor  grácias por preguntar");
+                        LblTextoSalida.Content = "";
+                        LblTextoSalida.Content = Speech;
+                    }
+                    if (Speech == "Abre el Word")
+                    {
+                        nombre1.SpeakAsync("Abriendo el editor de texto, espere un momento");
+                        LblTextoSalida.Content = "";
+                        LblTextoSalida.Content = Speech;
+                        System.Diagnostics.Process.Start("WINWORD.exe");
+                    }
+                    if (Speech == "Muéstrame el Google")
+                    {
+                        System.Diagnostics.Process.Start("chrome.exe","https://www.google.com");
+                        nombre1.SpeakAsync("Abriendo el navegador");
+                        LblTextoSalida.Content = "";
+                        LblTextoSalida.Content = Speech;
+                    }
+ 
+                }
+                    habilitarReconocimiento = true;
+            }     // Gramáticas 
+        } // reconoce la voz del usuario
+ 
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+        } // mueve la ventana
+    }
+}

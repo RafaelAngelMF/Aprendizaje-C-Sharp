@@ -8,6 +8,9 @@ namespace PracticandoCSharp.Usar_ADO_Net
 {
     class CadenaDeConexionAccess2000
     {
+	//Campo publico.
+	public string direccion_completa_de_la_base;
+
         private static string OleDbConectionString_Access2000
         {
             get
