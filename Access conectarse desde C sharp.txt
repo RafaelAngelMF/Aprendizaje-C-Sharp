@@ -1,0 +1,292 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Data.OleDb;
+using System.Windows.Forms;
+using System.Data;
+
+namespace UsarAccess
+{
+    public delegate void Delegado_Datos_modificados();
+
+    public delegate void Delegado_Datos_insertados();
+
+    /// <summary>
+    /// Es de suma importancia.
+    /// Implemente un metodo para este delegado para sacarle mejor provecho al class DatosDeAccess.
+    /// </summary>
+    public delegate void Delegado_Consulta_de_datos_realizada();
+
+    /// <summary>
+    /// Día miercoles 8 de diciembre del 2021.
+    /// Autor de este class=Rafael Angel Montero Fernández.
+    /// Correo: Sharkyc12@Gmail.com
+    /// Celular de Costa Rica:506 83942235
+    /// Clase creada para facilitar la interaccion con los datos de las bases de datos de MS Access.
+    /// Los eventos de este class pueden ser implementados alla en otra parte para aumentar la potencia del class.
+    /// 
+    /// </summary>
+    class DatosDeAccess
+    {
+        /// <summary>
+        /// Sucede cuando se modifican los datos.
+        /// </summary>
+        public event Delegado_Datos_modificados Datos_modificados;
+        /// <summary>
+        /// Sucede justo despues de insertar los nuevos datos.
+        /// </summary>
+        public event Delegado_Datos_insertados Datos_insertados;
+
+        /// <summary>
+        /// Puede usar este evento para colocar multiples lineas de la funcion "Obtener_datos_consultados", para obtener datos de todos los campos.
+        /// Tambien sucede cuando se ejecutan los siguientes procedimientos: Primero, Anterior, Siguiente y Ultimo.
+        /// </summary>
+        public event Delegado_Consulta_de_datos_realizada Consulta_de_datos_realizada;
+
+        private const string ConecctionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\\Biblioteca de Rafael\\Back Ups\\Notas2021.mdb";
+        private OleDbConnection ole_deb_conection;
+
+        private void Conectar()
+        {
+            try
+            {
+                ole_deb_conection = new OleDbConnection();
+                ole_deb_conection.ConnectionString = ConecctionString;
+                ole_deb_conection.Open();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
+        }
+
+        private OleDbDataAdapter ole_db_data_adapter;
+        private DataSet data_set;
+
+        public void ConsultaUpdate(string nueva_consulta_update_sql)
+        {
+            Conectar();
+            int SiNo = ((int)MessageBox.Show("¿Desea modificar?", "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question));
+            if (SiNo == 7)//7=no, 6=si
+            {
+                MessageBox.Show("Has decidido no modificar el registro.");
+                Datos_modificados();
+            }
+            else
+            {
+                try
+                {
+
+                    OleDbCommand ole_db_command = new OleDbCommand(nueva_consulta_update_sql);
+                    ole_db_command.Connection = ole_deb_conection;
+                    int guardado = -1;
+                    guardado = ole_db_command.ExecuteNonQuery();
+                    if (guardado > 0)
+                    {
+                        MessageBox.Show("Se modificó el registro.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se modifico.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+                ole_deb_conection.Close();
+            }
+        }
+
+        public void Consulta_insert(string nueva_consulta_sql_insert)
+        {
+            Conectar();
+            try
+            {
+                OleDbCommand ole_db_command = new OleDbCommand(nueva_consulta_sql_insert);
+                ole_db_command.Connection = ole_deb_conection;
+                int guardado = -1;
+                guardado = ole_db_command.ExecuteNonQuery();
+                if (guardado > 0)
+                {
+                    MessageBox.Show("Se gurdó el registro.");
+                Datos_insertados();
+                }
+                else
+                {
+                    MessageBox.Show("No guardado.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            ole_deb_conection.Close();
+        }
+
+        private OleDbDataReader ole_deb_data_reader;
+
+        private int id_del_registro = 0;
+
+        private OleDbCommand ole_db_command;
+
+        public void Consultar()
+        {
+            Conectar();
+            try
+            {
+                ole_db_command = new OleDbCommand("select id, Tema, Detalles, Analisis, Fecha from Bitacoras where id=" + id_del_registro + ";");
+                ole_db_command.Connection = ole_deb_conection;
+                Consulta_de_datos_realizada();
+            }
+            catch (Exception)
+            {
+                //LbEstado.Text = "El registro con id " + id_del_registro + " no existe.";
+                //MessageBox.Show("Debe hacer click en el boton consultar.");
+            }
+            ole_deb_conection.Close();
+        }
+
+        /// <summary>
+        /// Retorna los datos de algun campo de la consulta.
+        /// Debe ejecutar primero el procedimiento "Consultar()".
+        /// Puede usar una implementacion del evento "Consulta_de_datos_realizada" para insertar multiples lineas de esta funcion.
+        /// </summary>
+        /// <param name="nombre_del_campo"></param>
+        /// <returns></returns>
+        public string Obtener_datos_consultados(string nombre_del_campo)
+        {
+            if (ole_db_command != null) { 
+                ole_deb_data_reader = ole_db_command.ExecuteReader();
+                ole_deb_data_reader.Read();
+                return ole_deb_data_reader[nombre_del_campo].ToString();
+            }
+            return "";
+        }
+
+        public void Siguiente()
+        {
+            if (id_del_registro < Maximo_id)
+            {
+                id_del_registro++;
+            }
+            else
+            {
+                id_del_registro = Maximo_id;
+            }
+            Consultar();
+        }
+
+        public void Anterior()
+        {
+            if (id_del_registro > Minimo_id)
+            {
+                id_del_registro--;
+            }
+            else
+            {
+                id_del_registro = Minimo_id;
+            }
+
+            Consultar();
+        }
+
+        private int Minimo_id = 0;
+        public void Primero()
+        {
+            Conectar();
+            try
+            {
+                OleDbCommand ole_db_command = new OleDbCommand("select Min(id) as Minimo from Bitacoras;");
+                ole_db_command.Connection = ole_deb_conection;
+
+                ole_deb_data_reader = ole_db_command.ExecuteReader();
+                ole_deb_data_reader.Read();
+                Minimo_id = int.Parse(ole_deb_data_reader["Minimo"].ToString());
+                id_del_registro = Minimo_id;
+                Consultar();
+            }
+            catch (Exception)
+            {
+
+            }
+            ole_deb_conection.Close();
+        }
+
+        private int Maximo_id = 0;
+
+        public void Ultimo()
+        {
+            Conectar();
+            try
+            {
+                OleDbCommand ole_db_command = new OleDbCommand("select Max(id) as Maximo from Bitacoras;");
+                ole_db_command.Connection = ole_deb_conection;
+
+                ole_deb_data_reader = ole_db_command.ExecuteReader();
+                ole_deb_data_reader.Read();
+                Maximo_id = int.Parse(ole_deb_data_reader["Maximo"].ToString());
+                id_del_registro = Maximo_id;
+
+                Consultar();
+            }
+            catch (Exception)
+            {
+
+            }
+            ole_deb_conection.Close();
+        }
+
+        private void ConsultarParaLlenar()
+        {
+            Consultar();
+
+            ole_db_data_adapter = new OleDbDataAdapter("select id, Tema, Detalles, Analisis from Bitacoras", ole_deb_conection);
+            data_set = new DataSet();
+            ole_db_data_adapter.Fill(data_set, "Bitacoras");
+        }
+
+        public ListBox LlenarListBox()
+        {
+            ConsultarParaLlenar();
+            ListBox Lstbox = new ListBox();
+            Lstbox.DataSource = data_set.DefaultViewManager;
+            Lstbox.DisplayMember = "Bitacoras.Tema";
+
+            return Lstbox;
+        }
+
+        public DataGridView LlenarDataGridView()
+        {
+            ConsultarParaLlenar();
+            DataGridView dbgrid = new DataGridView();
+            dbgrid.DataMember = "Bitacoras";
+            dbgrid.DataSource = data_set.DefaultViewManager;
+
+            return dbgrid;
+        }
+
+        public int Cantidad_de_registros()
+        {
+            Conectar();
+            try
+            {
+                OleDbCommand ole_db_command = new OleDbCommand("select Max(id) as Maximo from Bitacoras;");
+                ole_db_command.Connection = ole_deb_conection;
+
+                ole_deb_data_reader = ole_db_command.ExecuteReader();
+                ole_deb_data_reader.Read();
+                Maximo_id = int.Parse(ole_deb_data_reader["Maximo"].ToString());
+            }
+            catch (Exception)
+            {
+
+            }
+            ole_deb_conection.Close();
+            return Maximo_id;
+        }
+
+    }
+}
