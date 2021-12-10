@@ -50,7 +50,8 @@
             private int Contador = 0;
 
             private Delegado_plantilla_de_evento[]mProcedimeintos_de_eventos= { null,null};
-            /// <summary>
+            
+	    /// <summary>
             /// Esta propiedad de evento es para que el evento llamado "Evento", 
             /// pueda tener tantos procedimientos de eventos como se quiera.
             /// 

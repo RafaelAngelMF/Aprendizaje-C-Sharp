@@ -17,10 +17,11 @@ namespace UsarAccess
     /// Es de suma importancia.
     /// Implemente un metodo para este delegado para sacarle mejor provecho al class DatosDeAccess.
     /// </summary>
-    public delegate void Delegado_Consulta_de_datos_realizada();
+    public delegate void Delegado_ResultadosDeLaConsultaDeDatos();
+
+    public delegate void Delegado_Dame_una_Consulta_de_datos(out String consulta,out string id);
 
     /// <summary>
-    /// Día miercoles 8 de diciembre del 2021.
     /// Autor de este class=Rafael Angel Montero Fernández.
     /// Correo: Sharkyc12@Gmail.com
     /// Celular de Costa Rica:506 83942235
@@ -43,7 +44,7 @@ namespace UsarAccess
         /// Puede usar este evento para colocar multiples lineas de la funcion "Obtener_datos_consultados", para obtener datos de todos los campos.
         /// Tambien sucede cuando se ejecutan los siguientes procedimientos: Primero, Anterior, Siguiente y Ultimo.
         /// </summary>
-        public event Delegado_Consulta_de_datos_realizada Consulta_de_datos_realizada;
+        public event Delegado_ResultadosDeLaConsultaDeDatos ResultadosDeLaConsultaDeDatos;
 
         private const string ConecctionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\\Biblioteca de Rafael\\Back Ups\\Notas2021.mdb";
         private OleDbConnection ole_deb_conection;
@@ -128,18 +129,58 @@ namespace UsarAccess
 
         private OleDbDataReader ole_deb_data_reader;
 
-        private int id_del_registro = 0;
+        private int id_del_registro_actual = 0;
+
+        /// <summary>
+        /// Retorna el id donde ha quedado el puntero de datos.
+        /// </summary>
+        public int id_actual
+        {
+            get
+            {
+                return id_del_registro_actual;
+            }
+        }
 
         private OleDbCommand ole_db_command;
 
+        private string consulta_de_datos_inicial;
+
+        /// <summary>
+        /// Consulta de solo lectura.
+        /// Si esta propiedad no contiene ningua consulta de datos entonces no se podra acceder a los registros de la tabla.
+        /// Procure usar los nombres de todos los campos en lugar de asterisco (*).
+        /// </summary>
+        public string Consulta_de_datos_principal
+        {
+            get
+            {
+                return consulta_de_datos_inicial;
+            }
+        }
+
+        /// <summary>
+        /// Es de suma importancia ya que si no le pasas el id o llave primaria y la consulta de datos simple entonces no podras ver los registros y ocurriran errores.
+        /// La consulta no debe tener Where... ni terminar en punto y como (;).
+        /// </summary>
+        public event Delegado_Dame_una_Consulta_de_datos DameUnaConsultaDeDatos;
         public void Consultar()
         {
+            string idLocal;
+            DameUnaConsultaDeDatos(out consulta_de_datos_inicial,out idLocal);
             Conectar();
             try
             {
-                ole_db_command = new OleDbCommand("select id, Tema, Detalles, Analisis, Fecha from Bitacoras where id=" + id_del_registro + ";");
+                ole_db_command = new OleDbCommand
+                    (consulta_de_datos_inicial + " where " + idLocal + "=" + id_del_registro_actual + ";");
                 ole_db_command.Connection = ole_deb_conection;
-                Consulta_de_datos_realizada();
+                if (ole_db_command != null)
+                {
+                    ole_deb_data_reader = ole_db_command.ExecuteReader();
+                    ole_deb_data_reader.Read();
+                    ResultadosDeLaConsultaDeDatos();
+                }
+                    
             }
             catch (Exception)
             {
@@ -158,36 +199,40 @@ namespace UsarAccess
         /// <returns></returns>
         public string Obtener_datos_consultados(string nombre_del_campo)
         {
-            if (ole_db_command != null) { 
-                ole_deb_data_reader = ole_db_command.ExecuteReader();
-                ole_deb_data_reader.Read();
+            try
+            {
                 return ole_deb_data_reader[nombre_del_campo].ToString();
             }
+            catch (Exception)
+            {
+
+            }
+                
             return "";
         }
 
         public void Siguiente()
         {
-            if (id_del_registro < Maximo_id)
+            if (id_del_registro_actual < Maximo_id)
             {
-                id_del_registro++;
+                id_del_registro_actual++;
             }
             else
             {
-                id_del_registro = Maximo_id;
+                id_del_registro_actual = Maximo_id;
             }
             Consultar();
         }
 
         public void Anterior()
         {
-            if (id_del_registro > Minimo_id)
+            if (id_del_registro_actual > Minimo_id)
             {
-                id_del_registro--;
+                id_del_registro_actual--;
             }
             else
             {
-                id_del_registro = Minimo_id;
+                id_del_registro_actual = Minimo_id;
             }
 
             Consultar();
@@ -205,7 +250,7 @@ namespace UsarAccess
                 ole_deb_data_reader = ole_db_command.ExecuteReader();
                 ole_deb_data_reader.Read();
                 Minimo_id = int.Parse(ole_deb_data_reader["Minimo"].ToString());
-                id_del_registro = Minimo_id;
+                id_del_registro_actual = Minimo_id;
                 Consultar();
             }
             catch (Exception)
@@ -222,13 +267,14 @@ namespace UsarAccess
             Conectar();
             try
             {
+
                 OleDbCommand ole_db_command = new OleDbCommand("select Max(id) as Maximo from Bitacoras;");
                 ole_db_command.Connection = ole_deb_conection;
 
                 ole_deb_data_reader = ole_db_command.ExecuteReader();
                 ole_deb_data_reader.Read();
                 Maximo_id = int.Parse(ole_deb_data_reader["Maximo"].ToString());
-                id_del_registro = Maximo_id;
+                id_del_registro_actual = Maximo_id;
 
                 Consultar();
             }
@@ -239,41 +285,57 @@ namespace UsarAccess
             ole_deb_conection.Close();
         }
 
-        private void ConsultarParaLlenar()
+        private void ConsultarParaLlenar(string Consulta, string nombre_de_la_tabla)
         {
-            Consultar();
+            Conectar();
 
-            ole_db_data_adapter = new OleDbDataAdapter("select id, Tema, Detalles, Analisis from Bitacoras", ole_deb_conection);
+            ole_db_data_adapter = new OleDbDataAdapter(Consulta, ole_deb_conection);
             data_set = new DataSet();
-            ole_db_data_adapter.Fill(data_set, "Bitacoras");
+            ole_db_data_adapter.Fill(data_set, nombre_de_la_tabla);
         }
 
-        public ListBox LlenarListBox()
+        /// <summary>
+        /// Este campo se usa despues de ejecutar el procedimiento LlenarListBox.
+        /// </summary>
+        public ListBox Lista;
+
+        public void LlenarListBox(string Consulta, string nombre_de_la_tabla,string nombre_del_campo_a_cargar)
         {
-            ConsultarParaLlenar();
-            ListBox Lstbox = new ListBox();
-            Lstbox.DataSource = data_set.DefaultViewManager;
-            Lstbox.DisplayMember = "Bitacoras.Tema";
-
-            return Lstbox;
+            ConsultarParaLlenar(Consulta, nombre_de_la_tabla);
+            Lista = new ListBox();
+            Lista.DataSource = data_set.DefaultViewManager;
+            Lista.DisplayMember = nombre_de_la_tabla + "." + nombre_del_campo_a_cargar;
         }
 
-        public DataGridView LlenarDataGridView()
+        /// <summary>
+        /// Este campo se usa despues de ejecutar el procedimiento LlenarDataGridView. 
+        /// </summary>
+        public DataGridView Tabla;
+        //Todo arreglar esto
+        public void LlenarDataGridView(string Consulta, string nombre_de_la_tabla)
         {
-            ConsultarParaLlenar();
-            DataGridView dbgrid = new DataGridView();
-            dbgrid.DataMember = "Bitacoras";
-            dbgrid.DataSource = data_set.DefaultViewManager;
-
-            return dbgrid;
+            ConsultarParaLlenar(Consulta, nombre_de_la_tabla);
+            Tabla = new DataGridView();
+            Tabla.DataMember = nombre_de_la_tabla;
+            Tabla.DataSource = data_set.DefaultViewManager;
         }
 
-        public int Cantidad_de_registros()
+        public int Maximo_id_de_la_tabla()
+        {
+            return Maximo_id_de_la_tabla("id");
+        }
+
+        /// <summary>
+        /// Permite obtener el maximo id
+        /// </summary>
+        /// <param name="nombre_del_campo_primario_o_llave_primaria">Debe ser un campo int (Numerico)</param>
+        /// <returns></returns>
+        public int Maximo_id_de_la_tabla(string nombre_del_campo_primario_o_llave_primaria)
         {
             Conectar();
             try
             {
-                OleDbCommand ole_db_command = new OleDbCommand("select Max(id) as Maximo from Bitacoras;");
+                OleDbCommand ole_db_command = new OleDbCommand("select Max(" + nombre_del_campo_primario_o_llave_primaria + ") as Maximo from Bitacoras;");
                 ole_db_command.Connection = ole_deb_conection;
 
                 ole_deb_data_reader = ole_db_command.ExecuteReader();
@@ -286,6 +348,63 @@ namespace UsarAccess
             }
             ole_deb_conection.Close();
             return Maximo_id;
+        }
+
+        public int Contidad_de_registros()
+        {
+            return Contidad_de_registros("id");
+        }
+
+        /// <summary>
+        /// Retorna la cantidad de registros en la tabla.
+        /// Diferente a Maximo id porque si se elimina un registro de la tabla entonces es eindice se elimina.
+        /// Supongase 10 registros, se elimina el registro 9 con el id=9 entonces solo quedan nueve registros.
+        /// Pero el Maximo id sigue siendo 10 mientras que la cantidad de registros ahora es 9.
+        /// </summary>
+        /// <param name="nombre_del_campo_primario_o_llave_primaria"></param>
+        /// <returns></returns>
+        public int Contidad_de_registros(string nombre_del_campo_primario_o_llave_primaria)
+        {
+            Conectar();
+            int cantidad = 0;
+            try
+            {
+                OleDbCommand ole_db_command = new OleDbCommand("select Count(" + nombre_del_campo_primario_o_llave_primaria + ") as Maximo from Bitacoras; ");
+                ole_db_command.Connection = ole_deb_conection;
+
+                ole_deb_data_reader = ole_db_command.ExecuteReader();
+                ole_deb_data_reader.Read();
+                cantidad = int.Parse(ole_deb_data_reader["Maximo"].ToString());
+            }
+            catch (Exception)
+            {
+
+            }
+            ole_deb_conection.Close();
+            return cantidad;
+        }
+
+        public void Buscar(string consulta_de_busqueda, string nombre_de_la_llave_primaria)
+        {
+            Conectar();
+            try
+            {
+                ole_db_command = new OleDbCommand (consulta_de_busqueda);
+                ole_db_command.Connection = ole_deb_conection;
+                if (ole_db_command != null)
+                {
+                    ole_deb_data_reader = ole_db_command.ExecuteReader();
+                    ole_deb_data_reader.Read();
+                    id_del_registro_actual = int.Parse( Obtener_datos_consultados(nombre_de_la_llave_primaria));
+                    ResultadosDeLaConsultaDeDatos();
+                }
+            }
+            catch (Exception)
+            {
+                //LbEstado.Text = "El registro con id " + id_del_registro + " no existe.";
+                //MessageBox.Show("Debe hacer click en el boton consultar.");
+            }
+            ole_deb_conection.Close();
         }
 
     }
