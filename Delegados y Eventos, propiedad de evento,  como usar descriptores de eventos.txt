@@ -34,7 +34,6 @@
                 {
                     System.Console.WriteLine("Evento 2 activado con el numero " + nuevo_numero);
                 }
-                
             }
         }
 
@@ -83,6 +82,8 @@
                             if(mProcedimeintos_de_eventos[i] == value)
                             {
                                 mProcedimeintos_de_eventos[i] = null;
+                                //El contador de eventos se pocisiona en el id bacio.
+                                Contador = i;
                             }
                         }
                         catch (Exception)
