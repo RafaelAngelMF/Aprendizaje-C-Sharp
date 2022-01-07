@@ -7,7 +7,7 @@ class VariablesImplicitas
 	int VariableInt=43;
 	char VariableChar;
 
-	long VariableLong=0;//Se usa para una convercion explicita aunque se puea realizar en forma implicita.
+	long VariableLong=0;//Se usa para una convercion explicita aunque se pueda realizar en forma implicita.
 
 	static void Main()
 	{

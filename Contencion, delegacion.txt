@@ -4,7 +4,7 @@
     /// No sabia que yo ya sabia delegar.
     /// Lo habia hecho durante años sin saber como se llamaba esta tecnica.
     /// Se usa este tecnica porque no se puede realizar herencia multiple de clases abstractas o clases normales.
-    /// Solo se acepta la herencia multiplo en interfaces.
+    /// Solo se acepta la herencia multiple en interfaces.
     /// </summary>
 public class Delegar_en_lugar_de_heredar
 {
