@@ -1,0 +1,148 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace WindowsFormsApp2.Aprendizages
+{
+    public enum EnNombreDelEvento
+    {
+        Sumar,Restar,Dividir,Multiplicar
+    }
+    public delegate void DelegadoResultados(in EnNombreDelEvento Nombre_del_evento, in int resultado);
+
+    public class PropiedadDeUnDelegado
+    {
+        public event DelegadoResultados OperacionMatematica;
+
+        public DelegadoResultados[] mOperacionMatematica = new DelegadoResultados[4];
+
+        private event DelegadoResultados prDelegadoClickTerritorio
+        {
+            add
+            {
+                for (int i = 0; i < mOperacionMatematica.Length; i++)
+                {
+                    if (mOperacionMatematica[i] == null)
+                    {
+                        mOperacionMatematica[i] = value;
+                    }
+                }
+            }
+            remove
+            {
+                for (int i = 0; i < mOperacionMatematica.Length; i++)
+                {
+                    if (mOperacionMatematica[i] == value)
+                    {
+                        mOperacionMatematica[i] = null;
+                    }
+                }
+            }
+        }
+
+        private int resultado;
+        public int Resultado
+        {
+            get
+            {
+                return resultado;
+            }
+        }
+
+        public void Suma( int UnNumero, int OtroNumero)
+        {
+            resultado = UnNumero + OtroNumero;
+            OperacionMatematica(EnNombreDelEvento.Sumar, resultado);
+        }
+
+        public void Resta(int UnNumero, int OtroNumero)
+        {
+            resultado = UnNumero - OtroNumero;
+            OperacionMatematica(EnNombreDelEvento.Restar, resultado);
+        }
+
+        public void Multiplica(int UnNumero, int OtroNumero)
+        {
+            if (UnNumero != 0 && OtroNumero != 0)
+            {
+                resultado = UnNumero * OtroNumero;
+                OperacionMatematica(EnNombreDelEvento.Multiplicar, resultado);
+            }
+        }
+
+        public void Divide(int UnNumero, int OtroNumero)
+        {
+            if (UnNumero != 0 && OtroNumero != 0)
+            {
+                resultado = UnNumero / OtroNumero;
+                OperacionMatematica(EnNombreDelEvento.Dividir, resultado);
+            }
+        }
+    }
+
+    public class Calculadora
+    {
+        private PropiedadDeUnDelegado MotorMatematico;
+
+        public Calculadora()
+        {
+            MotorMatematico=new PropiedadDeUnDelegado();
+            MotorMatematico.OperacionMatematica += EventoSumar;
+            MotorMatematico.OperacionMatematica += EventoRestar;
+            MotorMatematico.OperacionMatematica += EventoMultiplicar;
+            MotorMatematico.OperacionMatematica += EventoDividir;
+        }
+
+        public void RealizarOperaciones()
+        {
+            MotorMatematico.Divide(8,2);
+            MotorMatematico.Resta(5,3);
+            MotorMatematico.Multiplica(8,6);
+            MotorMatematico.Suma(12,4);
+        }
+
+        private void EventoSumar(in EnNombreDelEvento Nombre_del_evento, in int resultado)
+        {
+            if(Nombre_del_evento== EnNombreDelEvento.Sumar)
+            {
+                MessageBox.Show("Resultado de sumar " + resultado);
+            }
+        }
+
+        private void EventoRestar(in EnNombreDelEvento Nombre_del_evento, in int resultado)
+        {
+            if (Nombre_del_evento == EnNombreDelEvento.Restar)
+            {
+                MessageBox.Show("Resultado de restar " + resultado);
+            }
+        }
+
+        private void EventoMultiplicar(in EnNombreDelEvento Nombre_del_evento, in int resultado)
+        {
+            if (Nombre_del_evento == EnNombreDelEvento.Multiplicar)
+            {
+                MessageBox.Show("Resultado de multiplicar " + resultado);
+            }
+        }
+
+        private void EventoDividir(in EnNombreDelEvento Nombre_del_evento, in int resultado)
+        {
+            if (Nombre_del_evento == EnNombreDelEvento.Dividir)
+            {
+                MessageBox.Show("Resultado de dividir " + resultado);
+            }
+        }
+    }
+
+    public class Principal
+    {
+        public static void Main()
+        {
+            Calculadora calculadora = new Calculadora();
+            calculadora.RealizarOperaciones();
+        }
+    }
+}

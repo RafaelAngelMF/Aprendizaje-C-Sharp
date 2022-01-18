@@ -1,0 +1,88 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace WindowsFormsApp2.Risk2
+{
+    /// <summary>
+    /// Recive del exterior.
+    /// </summary>
+    /// <param name="dame"></param>
+    public delegate void DelegadoInicio(out int dame);
+
+    /// <summary>
+    /// Retorna desde aqui.
+    /// </summary>
+    /// <param name="tome"></param>
+    public delegate void DelegadoFin(in int tome);
+
+    public class UsandoInOut
+    {
+        public event DelegadoInicio Inicio;
+        public event DelegadoFin Fin;
+
+        public UsandoInOut()
+        {
+            
+        }
+
+        public void EjecutarEventos()
+        {
+            int d, m;
+
+            Inicio(out d);
+            m = d;
+            Fin( m);
+        }
+    }
+
+    public class ImplementandoEventos
+    {
+        private UsandoInOut usando_in_out;
+
+        public ImplementandoEventos()
+        {
+            usando_in_out=new UsandoInOut();
+            usando_in_out.Inicio += Inicio;
+            usando_in_out.Fin += Fin;
+            usando_in_out.EjecutarEventos();
+        }
+
+
+        private int numero = 43;
+
+
+        public int Numero
+        {
+            get
+            {
+                return numero;
+            }
+            set
+            {
+                numero = value;
+            }
+        }
+
+        /// <summary>
+        /// Permite enviarle informacion al class por medio de out.
+        /// </summary>
+        /// <param name="dame"></param>
+        private void Inicio(out int dame)
+        {
+            dame = numero;
+        }
+
+        /// <summary>
+        /// Permite recivir informacion del class por medio de in.
+        /// </summary>
+        /// <param name="tome"></param>
+        private void Fin (in int tome)
+        {
+            numero = tome;
+        }
+
+    }
+}

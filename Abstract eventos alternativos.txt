@@ -1,0 +1,75 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace WindowsFormsApp2.Aprendizages
+{
+    public abstract class Abstract_Y_Eventos
+    {
+        public abstract void EventoResultados(in int saldoAnterior, in int SaldoActual);
+        public abstract void EventoEntrada(out int saldo, out int valor_de_entrada);
+        public abstract void EventoSalida(out int saldo, out int valor_de_salida);
+
+        public void Entrada()
+        {
+            int saldo_anterior_local;
+            int valor_de_entrada_local;
+            EventoEntrada(out saldo_anterior_local, out valor_de_entrada_local);
+            MessageBox.Show("Depositando\nSaldo anterior = " + saldo_anterior_local + "\nEntrada = " + valor_de_entrada_local);
+            EventoResultados(saldo_anterior_local, saldo_anterior_local + valor_de_entrada_local);
+        }
+
+        public void Salida()
+        {
+            int saldo_anterior_local;
+            int valor_de_salida_local;
+            EventoSalida(out saldo_anterior_local, out valor_de_salida_local);
+            MessageBox.Show("Retirando\nSaldo anterior = " + saldo_anterior_local + "\nSalida = " + valor_de_salida_local);
+            EventoResultados(saldo_anterior_local, saldo_anterior_local - valor_de_salida_local);
+        }
+    }
+
+    public class ImplementandoEventosAlternativos : Abstract_Y_Eventos
+    {
+        private int SaldoAnterior = 0;
+        private int SaldoGlobal = 0;
+
+        public ImplementandoEventosAlternativos()
+        {
+
+        }
+
+        public override void EventoEntrada(out int saldo, out int valor_de_entrada)
+        {
+            saldo = SaldoGlobal;
+            valor_de_entrada = 4000;
+        }
+
+        public override void EventoResultados(in int saldoAnterior, in int SaldoActual)
+        {
+            SaldoGlobal = SaldoActual;
+            SaldoAnterior = saldoAnterior;
+            MessageBox.Show("Resultados de la operacion\nSaldo anterior = " + SaldoAnterior
+                + "\nSaldo actual = " + SaldoGlobal);
+        }
+
+        public override void EventoSalida(out int saldo, out int valor_de_salida)
+        {
+            saldo = SaldoGlobal;
+            valor_de_salida = 1400;
+        }
+    }
+
+    public class ElMain
+    {
+        public static void Main()
+        {
+            ImplementandoEventosAlternativos Cuentas = new ImplementandoEventosAlternativos();
+            Cuentas.Entrada();
+            Cuentas.Salida();
+        }
+    }
+}
