@@ -1,0 +1,59 @@
+//Ejemplo creado el 1 de febrero del 2022.
+
+/*
+Este espacio de nombres sirve para crear hilos en los programas.
+Se debe crear un procedimiento para el delegado de Thread.
+El cual se pasa por parametro en el constructor.
+
+*/
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+
+//Esta es el namespace.
+using System.Threading;
+
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+public class Hilo
+        {
+
+            private System.Threading.Thread t = new System.Threading.Thread(ImplementacionDeThreadStart);
+
+            public static void ImplementacionDeThreadStart()
+            {
+                Hilo H=new Hilo();
+                H.Tiempo(null,null);
+                Thread.Sleep(2000);
+                H.Tiempo(null, null);
+            }
+
+            public Hilo()
+            {
+                
+            }
+
+            public void ya()
+            {
+                t.Start();
+            }
+
+            private int contador = 0;
+
+            private void Tiempo(object sender, EventArgs e)
+            {
+                contador++;
+                if (contador >= 5)
+                {
+                    t.Abort();
+                }
+                MessageBox.Show("Contando " + contador);
+                
+            }
+        }
