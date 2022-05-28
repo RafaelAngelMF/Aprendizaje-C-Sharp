@@ -1,0 +1,114 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace WindowsFormsApp2.Administrativo
+{
+    public class Escribir
+    {
+        public Boolean EscribirTexto()
+        {
+            try
+            {
+                StreamWriter sw = new StreamWriter(Application.StartupPath + "\\Texto.txt");
+                //Escribir una linea de texto.
+                sw.WriteLine("Una linea de texto.");
+                sw.WriteLine("Otra linea de texto.");
+                sw.Close();
+                return true;
+            }catch (Exception ) { }
+            return false;
+        }
+    }
+
+    public delegate void LeyendoTexto(String nuevo_texto);
+    public class Leer
+    {
+        public event LeyendoTexto eveLeyendoTexto;
+        public void LeerTexto()
+        {
+            string linea = "";
+            try {
+                StreamReader sr = new StreamReader(Application.StartupPath + "\\Texto.txt");
+                //Leyendo primera linea del texto.
+                linea = sr.ReadLine();
+                while (linea != null)
+                {
+                    eveLeyendoTexto(linea);
+                    //Lee la siguiente linea de texto.
+                    linea = sr.ReadLine();
+                }
+                sr.Close();
+            }
+            catch (Exception) { }
+        }
+    }
+
+    public class MainES
+    {
+        public static void Main()
+        {
+            Escribir es = new Escribir();
+            es.EscribirTexto();
+            MainES.dsLeer leer= new MainES.dsLeer();
+            leer.LeerTexto();
+        }
+
+
+
+        public class dsLeer : Leer
+        {
+            public dsLeer()
+            {
+                this.eveLeyendoTexto += Leyendo;
+            }
+
+            private void Leyendo(string datos)
+            {
+                MessageBox.Show(datos);
+            }
+        }
+
+        public class EscribirLeer
+        {
+            public Boolean EscribirTexto()
+            {
+                try
+                {
+                    StreamWriter sw = new StreamWriter(Application.StartupPath + "\\Texto.txt");
+                    //Escribir una linea de texto.
+                    sw.WriteLine("Una linea de texto.");
+                    sw.WriteLine("Otra linea de texto.");
+                    sw.Close();
+                    return true;
+                }
+                catch (Exception) { }
+                return false;
+            }
+
+            public event LeyendoTexto eveLeyendoTexto;
+            public void LeerTexto()
+            {
+                string linea = "";
+                try
+                {
+                    StreamReader sr = new StreamReader(Application.StartupPath + "\\Texto.txt");
+                    //Leyendo primera linea del texto.
+                    linea = sr.ReadLine();
+                    while (linea != null)
+                    {
+                        eveLeyendoTexto(linea);
+                        //Lee la siguiente linea de texto.
+                        linea = sr.ReadLine();
+                    }
+                    sr.Close();
+                }
+                catch (Exception) { }
+            }
+        }
+    }
+}

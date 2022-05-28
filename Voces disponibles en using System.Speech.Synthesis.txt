@@ -1,3 +1,5 @@
+Voces disponibles en using System.Speech.Synthesis
+
 
 id=TTS_MS_EN-US_ZIRA_11.0; Nombre=Microsoft Zira Desktop, edad=Adult, genero=Female, cultra=en-US
 
