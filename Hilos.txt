@@ -1,0 +1,217 @@
+//threads
+//Domingo 5 de junio del 2022.
+//Tema investigado por internet por medio de MSDN.
+
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace WindowsFormsApp2.Hilos
+{
+    internal class UsarHilos
+    {
+
+        // The ThreadProc method is called when the thread starts.
+        // It loops ten times, writing to the console and yielding
+        // the rest of its time slice each time, and then ends.
+        public static void ThreadProc()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                Console.WriteLine("ThreadProc: {0}", i);
+                // Yield the rest of the time slice.
+                Thread.Sleep(0);
+            }
+        }
+
+        //public static void Main()
+        //{
+        //    Console.WriteLine("Main thread: Start a second thread.");
+        //    // The constructor for the Thread class requires a ThreadStart
+        //    // delegate that represents the method to be executed on the
+        //    // thread.  C# simplifies the creation of this delegate.
+        //    Thread t = new Thread(new ThreadStart(ThreadProc));
+
+        //    // Start ThreadProc.  Note that on a uniprocessor, the new
+        //    // thread does not get any processor time until the main thread
+        //    // is preempted or yields.  Uncomment the Thread.Sleep that
+        //    // follows t.Start() to see the difference.
+        //    t.Start();
+        //    //Thread.Sleep(0);
+
+        //    for (int i = 0; i < 4; i++)
+        //    {
+        //        Console.WriteLine("Main thread: Do some work.");
+        //        Thread.Sleep(0);
+        //    }
+
+        //    Console.WriteLine("Main thread: Call Join(), to wait until ThreadProc ends.");
+        //    t.Join();
+        //    Console.WriteLine("Main thread: ThreadProc.Join has returned.  Press Enter to end program.");
+        //    Console.ReadLine();
+        //    Console.ReadLine();
+        //}
+    }
+
+    public class Hilo2
+    {
+        //public static void Main()
+        //{
+        //    var th = new Thread(ExecuteInForeground);
+        //    th.Start();
+        //    Thread.Sleep(1000);
+        //    Console.WriteLine("Main thread ({0}) exiting...",
+        //                      Thread.CurrentThread.ManagedThreadId);
+        //    Console.ReadKey();
+        //}
+
+        private static void ExecuteInForeground()
+        {
+            var sw = Stopwatch.StartNew();
+            Console.WriteLine("Thread {0}: {1}, Priority {2}",
+                              Thread.CurrentThread.ManagedThreadId,
+                              Thread.CurrentThread.ThreadState,
+                              Thread.CurrentThread.Priority);
+            do
+            {
+                Console.WriteLine("Thread {0}: Elapsed {1:N2} seconds",
+                                  Thread.CurrentThread.ManagedThreadId,
+                                  sw.ElapsedMilliseconds / 1000.0);
+                Thread.Sleep(500);
+            } while (sw.ElapsedMilliseconds <= 5000);
+            sw.Stop();
+        }
+    }
+
+    public class Hilo3
+    {
+        //public static void Main()
+        //{
+        //    var th = new Thread(ExecuteInForeground);
+        //    th.Start(4500);
+        //    Thread.Sleep(1000);
+        //    Console.WriteLine("Main thread ({0}) exiting...",
+        //                      Thread.CurrentThread.ManagedThreadId);
+        //    Console.ReadKey();
+        //}
+
+        private static void ExecuteInForeground(Object obj)
+        {
+            int interval;
+            try
+            {
+                interval = (int)obj;
+            }
+            catch (InvalidCastException)
+            {
+                interval = 5000;
+            }
+            var sw = Stopwatch.StartNew();
+            Console.WriteLine("Thread {0}: {1}, Priority {2}",
+                              Thread.CurrentThread.ManagedThreadId,
+                              Thread.CurrentThread.ThreadState,
+                              Thread.CurrentThread.Priority);
+            do
+            {
+                Console.WriteLine("Thread {0}: Elapsed {1:N2} seconds",
+                                  Thread.CurrentThread.ManagedThreadId,
+                                  sw.ElapsedMilliseconds / 1000.0);
+                Thread.Sleep(500);
+            } while (sw.ElapsedMilliseconds <= interval);
+            sw.Stop();
+        }
+    }
+
+    public class Hilo4
+    {
+        static Object obj = new Object();
+
+        //public static void Main()
+        //{
+        //    ThreadPool.QueueUserWorkItem(ShowThreadInformation);
+        //    var th1 = new Thread(ShowThreadInformation);
+        //    th1.Start();
+        //    var th2 = new Thread(ShowThreadInformation);
+        //    th2.IsBackground = true;
+        //    th2.Start();
+        //    Thread.Sleep(500);
+        //    ShowThreadInformation(null);
+        //    Console.ReadKey();
+        //}
+
+        private static void ShowThreadInformation(Object state)
+        {
+            lock (obj)
+            {
+                var th = Thread.CurrentThread;
+                Console.WriteLine("Managed thread #{0}: ", th.ManagedThreadId);
+                Console.WriteLine("   Background thread: {0}", th.IsBackground);
+                Console.WriteLine("   Thread pool thread: {0}", th.IsThreadPoolThread);
+                Console.WriteLine("   Priority: {0}", th.Priority);
+                Console.WriteLine("   Culture: {0}", th.CurrentCulture.Name);
+                Console.WriteLine("   UI culture: {0}", th.CurrentUICulture.Name);
+                Console.WriteLine();
+            }
+        }
+    }
+
+    public class Hilo5
+    {
+        //public static void Main()
+        //{
+        //    var th = new Thread(ExecuteInForeground);
+        //    th.IsBackground = true;
+        //    th.Start();
+        //    Thread.Sleep(1000);
+        //    Console.WriteLine("Main thread ({0}) exiting...",
+        //                      Thread.CurrentThread.ManagedThreadId);
+        //    Console.ReadKey();
+        //}
+
+        private static void ExecuteInForeground()
+        {
+            var sw = Stopwatch.StartNew();
+            Console.WriteLine("Thread {0}: {1}, Priority {2}",
+                              Thread.CurrentThread.ManagedThreadId,
+                              Thread.CurrentThread.ThreadState,
+                              Thread.CurrentThread.Priority);
+            do
+            {
+                Console.WriteLine("Thread {0}: Elapsed {1:N2} seconds",
+                                  Thread.CurrentThread.ManagedThreadId,
+                                  sw.ElapsedMilliseconds / 1000.0);
+                Thread.Sleep(500);
+            } while (sw.ElapsedMilliseconds <= 5000);
+            sw.Stop();
+        }
+    }
+
+    public class Hilo6
+    {
+
+        public void EventoThread()
+        {
+            var sw = Stopwatch.StartNew();
+            System.Console.WriteLine("Stopwatch valor inicial " + sw.Elapsed);
+            int i = 0;
+            do
+            {
+                System.Console.WriteLine("Tiempo ejecutandose " + sw.Elapsed.TotalMilliseconds);
+                Thread.Sleep(50);
+            } while (sw.Elapsed.TotalMilliseconds < 3000);
+        }
+
+        public static void Main()
+        {
+            Hilo6 h6 = new Hilo6();
+            Thread t = new Thread(h6.EventoThread);
+            t.Start();
+            Console.ReadKey();
+        }
+
+    }
+}
