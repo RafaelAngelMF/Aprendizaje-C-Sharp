@@ -1,0 +1,5 @@
+Los operadores +=, -=, *=, /=
+Se sobrecargan indirectamente con sobrecargar los siguientes operadores:
++, *, -, /.
+
++=, -=, *=, /= No se permite redefinirlos o sobrecargarlos pero se generan automaticamente al redefinir los ya indicados.
